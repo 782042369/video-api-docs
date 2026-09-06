@@ -157,20 +157,20 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p class="price">¥2.00 / 次</p>
 <p>SD-2.5 视频生成：固定输出 30 秒 / 720P，支持最多 10 张公开参考图（<code>images</code> 字段），不支持参考视频或音频。请求中的时长与分辨率参数会被忽略，统一按固定规格计费。</p></div>
 <div class="mcard"><h4><code>minimax_h3_t2v</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 / 秒</p>
-<p>文生视频工作流，最长 15 秒。仅支持 480P / 768P 两档分辨率，传 1080P 会在扣费前直接返回 400。</p></div>
+<p class="price">¥0.10 / 0.15 每秒</p>
+<p>文生视频工作流，最长 15 秒。仅支持 480P / 768P 两档分辨率：480P 档 ¥0.10/秒、768P 档 ¥0.15/秒，传 1080P 会在扣费前直接返回 400。</p></div>
 <div class="mcard"><h4><code>minimax_h3_i2v</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 / 秒</p>
-<p>多图参考图生视频，最长 12 秒，参考图用 <code>input_reference</code>（最多 9 张）。实际固定输出 736p：传入 480P / 720P / 768P / 1080P 会按画幅自动映射，按 768P 档计价。</p></div>
+<p class="price">¥0.15 / 秒</p>
+<p>多图参考图生视频，最长 12 秒，参考图用 <code>input_reference</code>（最多 9 张）。实际固定输出 736p：传入 480P / 720P / 768P / 1080P 会按画幅自动映射，按 768P 档计价（¥0.15/秒）。</p></div>
 <div class="mcard"><h4><code>minimax_h3_15s</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 / 秒</p>
-<p>长镜头工作流，最长 15 秒，与 i2v 相同的多图参考能力；固定输出 736p，按 768P 档计价。</p></div>
+<p class="price">¥0.15 / 秒</p>
+<p>长镜头工作流，最长 15 秒，与 i2v 相同的多图参考能力；固定输出 736p，按 768P 档计价（¥0.15/秒）。</p></div>
 <div class="mcard"><h4><code>minimax_h3_first_last</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 / 秒</p>
-<p>首尾帧工作流：通过 <code>first_frame</code> 与 <code>last_frame</code> 传入两张首尾帧图片 URL，模型生成中间过渡。</p></div>
+<p class="price">¥0.10 – 0.20 / 秒</p>
+<p>首尾帧工作流：通过 <code>first_frame</code> 与 <code>last_frame</code> 传入两张首尾帧图片 URL，模型生成中间过渡。按分辨率档计价：480P ¥0.10、720P / 768P ¥0.15、1080P ¥0.20 每秒。</p></div>
 <div class="mcard"><h4><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 / 秒</p>
-<p>音画同步（口型对齐）工作流三兄弟：通过 <code>audio</code> 传入音频 URL，配合参考图生成对齐口型的视频；<code>_15s</code> 支持更长时长。</p></div>
+<p class="price">¥0.10 – 0.20 / 秒</p>
+<p>音画同步（口型对齐）工作流三兄弟：通过 <code>audio</code> 传入音频 URL，配合参考图生成对齐口型的视频；<code>_15s</code> 支持更长时长。按分辨率档计价：480P ¥0.10、720P / 768P ¥0.15、1080P ¥0.20 每秒。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>sd-2.5</code></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
@@ -180,7 +180,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax_h3_first_last</code></td><td>按秒</td><td>15 秒</td><td>支持档位见创建节</td><td><code>first_frame</code> + <code>last_frame</code></td></tr>
 <tr><td><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code></td><td>按秒</td><td>15 秒</td><td>支持档位见创建节</td><td><code>input_reference</code> + <code>audio</code></td></tr>
 </table>
-<div class="note"><b>i</b><span>按秒模型基准价为 480P / 720P / 768P 档 ¥0.10/秒；支持 1080P 输出的工作流按 1.5 倍（¥0.15/秒）计价。全部价格以站内「模型广场」实时展示为准。</span></div>
+<div class="note"><b>i</b><span>按秒模型分档价：480P 档 ¥0.10/秒；720P / 768P 档 ¥0.15/秒；1080P 档 ¥0.20/秒。<code>i2v</code> 与 <code>15s</code> 固定输出 736p，按 768P 档计价。全部价格以站内「模型广场」实时展示为准。</span></div>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
@@ -231,7 +231,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>sd-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
-<tr><td><code>minimax_h3_*</code> 全系</td><td>按实际生成秒数</td><td>480P / 720P / 768P 档 ¥0.10/秒；1080P 档 ×1.5 = ¥0.15/秒；<code>i2v</code> 与 <code>15s</code> 固定 736p 按 768P 档计价</td></tr>
+<tr><td><code>minimax_h3_*</code> 全系</td><td>按实际生成秒数</td><td>480P 档 ¥0.10/秒；720P / 768P 档 ¥0.15/秒；1080P 档 ¥0.20/秒；<code>i2v</code> 与 <code>15s</code> 固定 736p 按 768P 档（¥0.15/秒）计价</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>成功才结算：任务完成且产出视频结果才计入成功用量；参数被拒、任务失败或无成品会自动退回冻结额度，失败任务不扣费。</span></div>
 <div class="note"><b>i</b><span>任务受理时按请求参数预冻结预估费用，完成后按实际生成时长与分辨率档位修正结算。价格以站内「模型广场」实时展示为准，不同用户分组可能配置不同倍率。</span></div>
