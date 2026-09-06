@@ -154,7 +154,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>一个令牌可调用站内全部已授权模型。当前提供两组能力：SD-2.5 按次计费，MiniMax H3 系列按秒计费；全部使用同一个 OpenAI 兼容异步视频入口。</p>
 <div class="mgrid">
 <div class="mcard"><h4><code>sd-2.5</code><span class="tag per">按次</span></h4>
-<p class="price">¥2.00 / 次</p>
+<p class="price">¥5.00 / 次</p>
 <p>SD-2.5 视频生成：固定输出 30 秒 / 720P，支持最多 10 张公开参考图（<code>images</code> 字段），不支持参考视频或音频。请求中的时长与分辨率参数会被忽略，统一按固定规格计费。</p></div>
 <div class="mcard"><h4><code>minimax_h3_t2v</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
@@ -173,7 +173,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>音画同步（口型对齐）工作流三兄弟：通过 <code>audio</code> 传入音频 URL，配合参考图生成对齐口型的视频；<code>_15s</code> 支持更长时长。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒、1080P ¥0.20/秒。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
-<tr><td><code>sd-2.5</code></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
+<tr><td><code>sd-2.5</code></td><td>按次 ¥5.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
 <tr><td><code>minimax_h3_t2v</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P（不支持 1080P）</td><td>—</td></tr>
 <tr><td><code>minimax_h3_i2v</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P / 1080P</td><td><code>input_reference</code>（≤9 张）</td></tr>
 <tr><td><code>minimax_h3_15s</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P（不支持 1080P）</td><td><code>input_reference</code>（≤9 张）</td></tr>
@@ -230,7 +230,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
-<tr><td><code>sd-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
+<tr><td><code>sd-2.5</code></td><td>按成功生成次数</td><td>¥5.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
 <tr><td><code>minimax_h3_*</code> 全系</td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；1080P ¥0.20/秒；<code>t2v</code> / <code>15s</code> / <code>first_last</code> 不支持 1080P</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>成功才结算：任务完成且产出视频结果才计入成功用量；参数被拒、任务失败或无成品会自动退回冻结额度，失败任务不扣费。</span></div>
