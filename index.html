@@ -158,29 +158,29 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>SD-2.5 视频生成：固定输出 30 秒 / 720P，支持最多 10 张公开参考图（<code>images</code> 字段），不支持参考视频或音频。请求中的时长与分辨率参数会被忽略，统一按固定规格计费。</p></div>
 <div class="mcard"><h4><code>minimax_h3_t2v</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
-<p>文生视频工作流，最长 15 秒，不支持 1080P。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<p>文生视频工作流，最长 15 秒。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 <div class="mcard"><h4><code>minimax_h3_i2v</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 – 0.30 / 秒</p>
-<p>多图参考图生视频，最长 12 秒，参考图用 <code>input_reference</code>（最多 9 张）。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒、1080P ¥0.30/秒。</p></div>
+<p class="price">¥0.10 / 0.15 每秒</p>
+<p>多图参考图生视频，最长 12 秒，参考图用 <code>input_reference</code>（最多 9 张）。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 <div class="mcard"><h4><code>minimax_h3_15s</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
-<p>长镜头工作流，最长 15 秒，与 i2v 相同的多图参考能力，不支持 1080P。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<p>长镜头工作流，最长 15 秒，与 i2v 相同的多图参考能力。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 <div class="mcard"><h4><code>minimax_h3_first_last</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
-<p>首尾帧工作流：通过 <code>first_frame</code> 与 <code>last_frame</code> 传入两张首尾帧图片 URL，模型生成中间过渡，不支持 1080P。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<p>首尾帧工作流：通过 <code>first_frame</code> 与 <code>last_frame</code> 传入两张首尾帧图片 URL，模型生成中间过渡。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 <div class="mcard"><h4><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 – 0.30 / 秒</p>
-<p>音画同步（口型对齐）工作流三兄弟：通过 <code>audio</code> 传入音频 URL，配合参考图生成对齐口型的视频；<code>_15s</code> 支持更长时长。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒、1080P ¥0.30/秒。</p></div>
+<p class="price">¥0.10 / 0.15 每秒</p>
+<p>音画同步（口型对齐）工作流三兄弟：通过 <code>audio</code> 传入音频 URL，配合参考图生成对齐口型的视频；<code>_15s</code> 支持更长时长。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>sd-2.5</code></td><td>按次 ¥5.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
-<tr><td><code>minimax_h3_t2v</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P（不支持 1080P）</td><td>—</td></tr>
-<tr><td><code>minimax_h3_i2v</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P / 1080P</td><td><code>input_reference</code>（≤9 张）</td></tr>
-<tr><td><code>minimax_h3_15s</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P（不支持 1080P）</td><td><code>input_reference</code>（≤9 张）</td></tr>
-<tr><td><code>minimax_h3_first_last</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P（不支持 1080P）</td><td><code>first_frame</code> + <code>last_frame</code></td></tr>
-<tr><td><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td><code>input_reference</code> + <code>audio</code></td></tr>
+<tr><td><code>minimax_h3_t2v</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td>—</td></tr>
+<tr><td><code>minimax_h3_i2v</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td><code>input_reference</code>（≤9 张）</td></tr>
+<tr><td><code>minimax_h3_15s</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>input_reference</code>（≤9 张）</td></tr>
+<tr><td><code>minimax_h3_first_last</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code></td></tr>
+<tr><td><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>input_reference</code> + <code>audio</code></td></tr>
 </table>
-<div class="note"><b>i</b><span>按秒模型分档价：480P ¥0.10/秒；720P ¥0.15/秒；1080P ¥0.30/秒。<code>minimax_h3_t2v</code> / <code>minimax_h3_15s</code> / <code>minimax_h3_first_last</code> 不支持 1080P。全部价格以站内「模型广场」实时展示为准。</span></div>
+<div class="note"><b>i</b><span>按秒模型分档价：480P ¥0.10/秒；720P ¥0.15/秒。全部价格以站内「模型广场」实时展示为准。</span></div>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
@@ -193,7 +193,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>prompt</code></td><td>string</td><td>必填。描述画面、动作与镜头。</td></tr>
 <tr><td><code>seconds</code> / <code>duration</code></td><td>number</td><td>视频时长（秒），二选一，<code>duration</code> 为兼容别名。H3 工作流上限见模型目录；超限会在扣费前返回 400。</td></tr>
 <tr><td><code>aspect_ratio</code></td><td>string</td><td>画幅比例：<code>16:9</code> 横屏、<code>9:16</code> 竖屏、<code>1:1</code> 方形。</td></tr>
-<tr><td><code>resolution</code> / <code>size</code></td><td>string</td><td>分辨率档位（如 <code>480P</code>、<code>720P</code>、<code>1080P</code>）。SD-2.5 忽略此参数。</td></tr>
+<tr><td><code>resolution</code> / <code>size</code></td><td>string</td><td>分辨率档位（如 <code>480P</code>、<code>720P</code>）。SD-2.5 忽略此参数。</td></tr>
 </table>
 <h3>各工作流参考素材</h3>
 <table><tr><th>模型</th><th>素材字段</th><th>说明</th></tr>
@@ -231,7 +231,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>sd-2.5</code></td><td>按成功生成次数</td><td>¥5.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
-<tr><td><code>minimax_h3_*</code> 全系</td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；1080P ¥0.30/秒；<code>t2v</code> / <code>15s</code> / <code>first_last</code> 不支持 1080P</td></tr>
+<tr><td><code>minimax_h3_*</code> 全系</td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>成功才结算：任务完成且产出视频结果才计入成功用量；参数被拒、任务失败或无成品会自动退回冻结额度，失败任务不扣费。</span></div>
 <div class="note"><b>i</b><span>任务受理时按请求参数预冻结预估费用，完成后按实际生成时长与分辨率档位修正结算。价格以站内「模型广场」实时展示为准，不同用户分组可能配置不同倍率。</span></div>
