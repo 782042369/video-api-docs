@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="天才第一步 视频生成 API（Vela-2.5 + MiniMax H3）开发者文档">
-<title>视频生成 API（Vela-2.5 + MiniMax H3）· 天才第一步</title>
+<meta name="description" content="天才第一步 视频/生图 API（Vela-2.5 + MiniMax H3 + GPT Image）开发者文档">
+<title>视频与生图 API（Vela-2.5 + MiniMax H3 + GPT Image）· 天才第一步</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230ea5e9'/%3E%3Cpath d='M26 20l18 12-18 12z' fill='white'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#f6f9fc;--card:#fff;--soft:#eef6fd;--ink:#12233b;--muted:#5b7186;--line:#dbe7f2;--brand:#0e7fd9;--brand2:#095e9e;--ok:#0c9a6e;--warn:#b97a12;--bad:#c23b4b;--code:#0d1b2a;--codeink:#dceefb;--shadow:0 14px 36px #12324d14}
@@ -78,18 +78,18 @@ footer p{margin:.3em 0}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.nav{display:none}}
 </style></head><body>
 <header><div class="wrap bar">
-<a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频生成 API（Vela-2.5 + MiniMax H3）</small></span></a>
-<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#query">查询与下载</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
+<a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频 / 生图 API（Vela-2.5 + MiniMax H3 + GPT Image）</small></span></a>
+<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
 <div class="actions"><button class="action" id="theme" onclick="toggleTheme()">深色</button></div>
 </div></header>
 
 <main class="wrap" id="top">
 <div class="hero"><div class="hero-grid"><div>
 <div class="eyebrow">REST API · VIDEO GENERATION</div>
-<h1>Vela-2.5 与 MiniMax H3，一站式接入视频生成。</h1>
-<p class="lead">使用熟悉的 OpenAI 风格认证与 JSON 请求，创建异步视频任务、轮询状态并下载 MP4。文生视频、多图参考、首尾帧与音画同步，统一一套接口。</p>
+<h1>Vela-2.5、MiniMax H3 与 GPT Image，一站式接入视频与生图。</h1>
+<p class="lead">使用熟悉的 OpenAI 风格认证与 JSON 请求：创建异步视频任务、轮询状态并下载 MP4；或用标准 Images 接口文生图、图生图。文生视频、多图参考、首尾帧、音画同步与生图，统一一套接口。</p>
 <div class="pills">
-<span class="pill"><i></i>vela-2.5 · 按次</span><span class="pill"><i></i>minimax-h3-a · 文生视频</span><span class="pill"><i></i>minimax-h3-b · 多图参考</span><span class="pill"><i></i>minimax-h3-c · 首尾帧</span><span class="pill"><i></i>minimax-h3-d / e · 音画同步</span><span class="pill"><i></i>异步任务 · MP4 直下</span>
+<span class="pill"><i></i>vela-2.5 · 按次</span><span class="pill"><i></i>minimax-h3-a · 文生视频</span><span class="pill"><i></i>minimax-h3-b · 多图参考</span><span class="pill"><i></i>minimax-h3-c · 首尾帧</span><span class="pill"><i></i>minimax-h3-d / e · 音画同步</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -212,6 +212,30 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="note ok"><b>✓</b><span>素材 URL 必须是公网可访问的 HTTP(S) 直链，不能只在本机或局域网可见，也不能写成 Markdown 链接形式。素材无法访问的任务不会按成功视频扣费。</span></div>
 </section>
 
+<section id="images"><div class="eyebrow">IMAGE GENERATION</div><h2>生图 API（OpenAI 兼容）</h2>
+<p>GPT Image 系列使用标准 OpenAI Images 接口，同步返回结果：文生图 <code>POST /v1/images/generations</code>（JSON），图生图 <code>POST /v1/images/edits</code>（multipart）。令牌需属于「生图」分组。</p>
+<table><tr><th>模型</th><th>档位</th><th>计费</th></tr>
+<tr><td><code>gpt-image-2</code></td><td>1K 档</td><td>按张计费</td></tr>
+<tr><td><code>gpt-image-2-high</code></td><td>4K 档</td><td>按张计费</td></tr>
+<tr><td><code>gpt-image-2.5-flare</code></td><td>2.5 创意档</td><td>按张计费</td></tr>
+</table>
+<div class="endpoint"><span class="m">POST</span>/v1/images/generations · 文生图</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/images/generations <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "gpt-image-2",<br>    "prompt": "一只戴宇航员头盔的柯基犬，插画风格",<br>    "n": 1<br>  }'</code></pre>
+<div class="endpoint"><span class="m">POST</span>/v1/images/edits · 图生图</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/images/edits <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -F "model=gpt-image-2" <br>  -F "prompt=把这只柯基改成水彩画风格，保持姿势" <br>  -F "image=@corgi.png"</code></pre>
+<h3>公共参数</h3>
+<table><tr><th>字段</th><th>类型</th><th>说明</th></tr>
+<tr><td><code>model</code></td><td>string</td><td>必填。gpt-image-2 / gpt-image-2-high / gpt-image-2.5-flare。</td></tr>
+<tr><td><code>prompt</code></td><td>string</td><td>必填。文生图描述画面；图生图描述要做的修改。</td></tr>
+<tr><td><code>n</code></td><td>number</td><td>生成张数，按张计费。</td></tr>
+<tr><td><code>size</code></td><td>string</td><td>可选，如 <code>1024x1024</code>；档位由模型决定。</td></tr>
+<tr><td><code>image</code></td><td>file</td><td>仅 <code>/edits</code>：multipart 图片文件，支持 PNG / JPG / WebP。</td></tr>
+</table>
+<h3>响应格式</h3>
+<pre><code>{<br>  "created": 1789469339,<br>  "data": [<br>    {<br>      "revised_prompt": "一只戴宇航员头盔的柯基犬，插画风格",<br>      "url": "https://.../xxx.png",<br>      "b64_json": "iVBORw0KGgo..."<br>    }<br>  ]<br>}</code></pre>
+<div class="note ok"><b>✓</b><span>响应同时包含 <code>url</code> 与 <code>b64_json</code>：可直接下载 URL，或用 base64 自行落盘。生成失败不扣费；价格以站内「模型广场」实时展示为准。</span></div>
+</section>
+
 <section id="query"><div class="eyebrow">TASK LIFECYCLE</div><h2>查询任务与下载</h2>
 <p>建议按 5–15 秒间隔指数退避轮询，不要高频请求，也不要对同一素材重复创建任务。任务对象状态机如下：</p>
 <div class="states">
@@ -235,6 +259,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥5.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
+<tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>成功才结算：任务完成且产出视频结果才计入成功用量；参数被拒、任务失败或无成品会自动退回冻结额度，失败任务不扣费。</span></div>
 <div class="note"><b>i</b><span>任务受理时按请求参数预冻结预估费用，完成后按实际生成时长与分辨率档位修正结算。价格以站内「模型广场」实时展示为准，不同用户分组可能配置不同倍率。</span></div>
@@ -257,7 +282,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </main>
 
 <footer><div class="wrap">
-<p>天才第一步 Developer Docs · Vela-2.5 与 MiniMax H3 视频生成接口</p>
+<p>天才第一步 Developer Docs · Vela-2.5 / MiniMax H3 视频生成 与 GPT Image 生图接口</p>
 <p>价格与可用模型以站内模型广场实时配置为准 · 反馈时请提供时间、模型、任务 ID 与错误码，不要发送 API 令牌</p>
 </div></footer>
 
