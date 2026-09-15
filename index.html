@@ -89,7 +89,7 @@ footer p{margin:.3em 0}
 <h1>Vela-2.5 与 MiniMax H3，一站式接入视频生成。</h1>
 <p class="lead">使用熟悉的 OpenAI 风格认证与 JSON 请求，创建异步视频任务、轮询状态并下载 MP4。文生视频、多图参考、首尾帧与音画同步，统一一套接口。</p>
 <div class="pills">
-<span class="pill"><i></i>vela-2.5 · 按次</span><span class="pill"><i></i>minimax_h3_t2v · 文生视频</span><span class="pill"><i></i>minimax_h3_i2v · 多图参考</span><span class="pill"><i></i>minimax_h3_first_last · 首尾帧</span><span class="pill"><i></i>minimax_h3_lipsync* · 音画同步</span><span class="pill"><i></i>异步任务 · MP4 直下</span>
+<span class="pill"><i></i>vela-2.5 · 按次</span><span class="pill"><i></i>minimax-h3-a · 文生视频</span><span class="pill"><i></i>minimax-h3-b · 多图参考</span><span class="pill"><i></i>minimax-h3-c · 首尾帧</span><span class="pill"><i></i>minimax-h3-d / e · 音画同步</span><span class="pill"><i></i>异步任务 · MP4 直下</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -110,7 +110,7 @@ footer p{margin:.3em 0}
 </div>
 <div class="pane on" id="q-sd"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5",<br>    "prompt": "保持人物身份一致，生成电影感动作视频",<br>    "images": ["https://example.com/ref-1.jpg"],<br>    "resolution": "720p",<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 <p class="cm" style="color:var(--muted);font-size:13px">Vela-2.5 固定输出 30 秒 / 720P，按次计费，请求中的 <code>seconds</code>、<code>duration</code>、<code>size</code> 会被忽略。</p></div>
-<div class="pane" id="q-h3"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax_h3_t2v",<br>    "prompt": "海边日落，镜头缓慢向前推进，电影质感",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9",<br>    "resolution": "720P"<br>  }'</code></pre>
+<div class="pane" id="q-h3"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-a",<br>    "prompt": "海边日落，镜头缓慢向前推进，电影质感",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9",<br>    "resolution": "720P"<br>  }'</code></pre>
 <p style="color:var(--muted);font-size:13px">MiniMax H3 全系工作流同样提交到 <code>POST /v1/videos</code>——本站已统一入口，无需使用 <code>/v1/videos/generations</code> 路径。</p></div>
 <div class="pane" id="q-py"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>import requests, time
 
@@ -119,7 +119,7 @@ HEADERS = {"Authorization": "Bearer sk-你的令牌"}
 
 # 1) 创建任务
 payload = {
-    "model": "minimax_h3_i2v",
+    "model": "minimax-h3-b",
     "prompt": "角色从窗边走向镜头，布料和发丝自然运动",
     "seconds": 5,
     "aspect_ratio": "16:9",
@@ -156,31 +156,32 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="mcard"><h4><code>vela-2.5</code><span class="tag per">按次</span></h4>
 <p class="price">¥5.00 / 次</p>
 <p>Vela-2.5 视频生成：固定输出 30 秒 / 720P，支持最多 10 张公开参考图（<code>images</code> 字段），不支持参考视频或音频。请求中的时长与分辨率参数会被忽略，统一按固定规格计费。</p></div>
-<div class="mcard"><h4><code>minimax_h3_t2v</code><span class="tag sec">按秒</span></h4>
+<div class="mcard"><h4><code>minimax-h3-a</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
-<p>文生视频工作流，最长 15 秒。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
-<div class="mcard"><h4><code>minimax_h3_i2v</code><span class="tag sec">按秒</span></h4>
+<p>文生视频工作流，1–12 秒；纯文本提示词生成，不接受参考图或音频。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<div class="mcard"><h4><code>minimax-h3-b</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.15 / 秒</p>
-<p>多图参考图生视频，最长 12 秒，参考图用 <code>input_reference</code> 或 <code>ref_image_0…8</code>（最多 9 张）。按秒计费：统一 ¥0.15/秒，不受请求分辨率影响。</p></div>
-<div class="mcard"><h4><code>minimax_h3_15s</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.15 / 秒</p>
-<p>长镜头工作流，最长 15 秒，与 i2v 相同的多图参考能力。按秒计费：统一 ¥0.15/秒，不受请求分辨率影响。</p></div>
-<div class="mcard"><h4><code>minimax_h3_first_last</code><span class="tag sec">按秒</span></h4>
+<p>多图参考图生视频，1–15 秒，参考图用 <code>input_reference</code>（最多 9 张，兼容 <code>ref_image_0…8</code>），不支持音频。固定输出分辨率，统一 ¥0.15/秒，不受请求分辨率影响。</p></div>
+<div class="mcard"><h4><code>minimax-h3-c</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
-<p>首尾帧工作流：通过 <code>first_frame</code> 与 <code>last_frame</code> 传入两张首尾帧图片 URL，模型生成中间过渡。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
-<div class="mcard"><h4><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code><span class="tag sec">按秒</span></h4>
+<p>首尾帧工作流（1–15 秒）：<code>first_frame</code> 与 <code>last_frame</code> 两帧均必填，模型生成中间过渡。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<div class="mcard"><h4><code>minimax-h3-d</code><span class="tag sec">按秒</span> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
-<p>音画同步（口型对齐）工作流三兄弟：通过 <code>audio</code> 传入音频 URL，配合参考图生成对齐口型的视频；<code>_15s</code> 支持更长时长。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<p>单图版音画同步（恰好 1 张参考图 + 1 段 <code>audio</code> 音频 URL）。当前上游工作流参数校验异常，任务会失败并自动全额退款；请改用 <code>minimax-h3-e</code>（传 1 张图即可）。</p></div>
+<div class="mcard"><h4><code>minimax-h3-e</code><span class="tag sec">按秒</span></h4>
+<p class="price">¥0.10 / 0.15 每秒</p>
+<p>多图版音画同步（口型对齐）：最多 9 张参考图 + 恰好 1 段 <code>audio</code> 音频 URL（多段声音请先混音成一个文件）。按秒计费：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按次 ¥5.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
-<tr><td><code>minimax_h3_t2v</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td>—</td></tr>
-<tr><td><code>minimax_h3_i2v</code></td><td>按秒</td><td>12 秒</td><td>固定输出（统一计价）</td><td><code>input_reference</code>（≤9 张）</td></tr>
-<tr><td><code>minimax_h3_15s</code></td><td>按秒</td><td>15 秒</td><td>固定输出（统一计价）</td><td><code>input_reference</code>（≤9 张）</td></tr>
-<tr><td><code>minimax_h3_first_last</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code></td></tr>
-<tr><td><code>minimax_h3_lipsync</code> / <code>_v2</code> / <code>_15s</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>input_reference</code> + <code>audio</code></td></tr>
+<tr><td><code>minimax-h3-a</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td>—（不接受任何参考素材）</td></tr>
+<tr><td><code>minimax-h3-b</code></td><td>按秒</td><td>15 秒</td><td>固定输出（统一计价）</td><td><code>input_reference</code>（≤9 张）</td></tr>
+<tr><td><code>minimax-h3-c</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code>（均必填）</td></tr>
+<tr><td><code>minimax-h3-d</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td>恰好 1 张图 + <code>audio</code>（上游维护中，建议用 <code>e</code>）</td></tr>
+<tr><td><code>minimax-h3-e</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>input_reference</code>（≤9 张）+ <code>audio</code>（恰好 1 段）</td></tr>
 </table>
-<div class="note"><b>i</b><span>按秒模型分档价：480P ¥0.10/秒；720P ¥0.15/秒；<code>i2v</code> 与 <code>15s</code> 固定输出分辨率，统一 ¥0.15/秒。全部价格以站内「模型广场」实时展示为准。</span></div>
+<div class="note"><b>i</b><span>按秒模型分档价：480P ¥0.10/秒；720P ¥0.15/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒。H3 全系仅提供 480P / 720P 两档（不提供 1080P），且不支持参考视频。全部价格以站内「模型广场」实时展示为准。</span></div>
+<div class="note warn"><b>!</b><span>旧模型 ID 已于 2026-09-15 下线，请切换为新名：<code>minimax_h3_t2v</code>→<code>minimax-h3-a</code>；<code>minimax_h3_i2v</code> / <code>minimax_h3_15s</code>→<code>minimax-h3-b</code>；<code>minimax_h3_first_last</code>→<code>minimax-h3-c</code>；<code>minimax_h3_lipsync</code>→<code>minimax-h3-d</code>；<code>minimax_h3_lipsync_v2</code> / <code>minimax_h3_lipsync_15s</code>→<code>minimax-h3-e</code>。旧名请求将返回 503 model_not_found。</span></div>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
@@ -191,7 +192,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>字段</th><th>类型</th><th>说明</th></tr>
 <tr><td><code>model</code></td><td>string</td><td>必填。模型 ID，见上方模型目录。</td></tr>
 <tr><td><code>prompt</code></td><td>string</td><td>必填。描述画面、动作与镜头。</td></tr>
-<tr><td><code>seconds</code> / <code>duration</code></td><td>number</td><td>视频时长（秒），二选一，<code>duration</code> 为兼容别名。H3 工作流上限见模型目录；超限会在扣费前返回 400。</td></tr>
+<tr><td><code>seconds</code> / <code>duration</code></td><td>number</td><td>视频时长（秒），二选一，<code>duration</code> 为兼容别名，两者同传时必须一致；推荐传整数。H3 工作流上限见模型目录；超限会在扣费前返回 400。</td></tr>
 <tr><td><code>aspect_ratio</code></td><td>string</td><td>画幅比例：<code>16:9</code> 横屏、<code>9:16</code> 竖屏、<code>1:1</code> 方形。</td></tr>
 <tr><td><code>resolution</code> / <code>size</code></td><td>string</td><td>分辨率档位（如 <code>480P</code>、<code>720P</code>）。Vela-2.5 忽略此参数。</td></tr>
 </table>
@@ -199,13 +200,15 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>素材字段</th><th>说明</th></tr>
 <tr><td><code>vela-2.5</code></td><td><code>images</code>: string[]</td><td>参考图 URL 数组，最多 10 张；推荐使用 <code>images</code>（也兼容 <code>image_urls</code>）。</td></tr>
 <tr><td>H3 全系</td><td><code>input_reference</code>: string[]</td><td>参考图 URL 数组，最多 9 张，重复 URL 自动去重；兼容 <code>image</code> / <code>images</code> / <code>image_url</code> / <code>image_urls</code> / <code>reference_images</code>，也可用 <code>ref_image_0</code>…<code>ref_image_8</code> 逐张指定。</td></tr>
-<tr><td><code>minimax_h3_first_last</code></td><td><code>first_frame</code> / <code>last_frame</code>: string</td><td>首帧与尾帧图片 URL。</td></tr>
-<tr><td><code>minimax_h3_lipsync*</code></td><td><code>audio</code>: string</td><td>音频文件 URL，用于口型对齐。</td></tr>
+<tr><td><code>minimax-h3-c</code></td><td><code>first_frame</code> / <code>last_frame</code>: string</td><td>首帧与尾帧图片 URL，两帧均必填。</td></tr>
+<tr><td><code>minimax-h3-e</code></td><td><code>audio</code>: string</td><td>音频文件 URL，用于口型对齐；恰好 1 段（多段声音先混音成一个文件），可配最多 9 张参考图。</td></tr>
+<tr><td><code>minimax-h3-d</code></td><td><code>audio</code>: string</td><td>单图版：恰好 1 张参考图 + 1 段音频。当前上游异常（维护中），建议改用 <code>minimax-h3-e</code>。</td></tr>
+<tr><td>H3 全系</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝。</td></tr>
 </table>
 <h3>示例：首尾帧</h3>
-<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax_h3_first_last",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-c",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 <h3>示例：音画同步</h3>
-<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax_h3_lipsync",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "input_reference": ["https://example.com/character.jpg"],<br>    "audio": "https://example.com/voice.mp3",<br>    "seconds": 5,<br>    "aspect_ratio": "9:16"<br>  }'</code></pre>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-e",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "input_reference": ["https://example.com/character.jpg"],<br>    "audio": "https://example.com/voice.mp3",<br>    "seconds": 5,<br>    "aspect_ratio": "9:16"<br>  }'</code></pre>
 <div class="note ok"><b>✓</b><span>素材 URL 必须是公网可访问的 HTTP(S) 直链，不能只在本机或局域网可见，也不能写成 Markdown 链接形式。素材无法访问的任务不会按成功视频扣费。</span></div>
 </section>
 
@@ -220,7 +223,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos/{task_id} \<br>  -H "Authorization: Bearer sk-你的令牌"</code></pre>
 <p>查询返回 OpenAI 风格的 video 对象：</p>
-<pre><code>{<br>  "id": "cgo...task_id",<br>  "object": "video",<br>  "model": "minimax_h3_t2v",<br>  "status": "in_progress",   // queued | in_progress | completed | failed<br>  "progress": 50,<br>  "created_at": 1757136000,<br>  "completed_at": 1757136123,<br>  "error": null              // 失败时为 {"message": "...", "code": "task_failed"}<br>}</code></pre>
+<pre><code>{<br>  "id": "cgo...task_id",<br>  "object": "video",<br>  "model": "minimax-h3-a",<br>  "status": "in_progress",   // queued | in_progress | completed | failed<br>  "progress": 50,<br>  "created_at": 1757136000,<br>  "completed_at": 1757136123,<br>  "error": null              // 失败时为 {"message": "...", "code": "task_failed"}<br>}</code></pre>
 <div class="note warn"><b>!</b><span>查询响应不包含成品视频直链。下载成品一律使用下方 <code>/content</code> 接口，凭你的令牌获取；不要尝试从响应中提取第三方 URL。</span></div>
 <h3>下载成品</h3>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content</div>
@@ -231,7 +234,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥5.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
-<tr><td><code>minimax_h3_*</code> 全系</td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；<code>i2v</code> / <code>15s</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
+<tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>成功才结算：任务完成且产出视频结果才计入成功用量；参数被拒、任务失败或无成品会自动退回冻结额度，失败任务不扣费。</span></div>
 <div class="note"><b>i</b><span>任务受理时按请求参数预冻结预估费用，完成后按实际生成时长与分辨率档位修正结算。价格以站内「模型广场」实时展示为准，不同用户分组可能配置不同倍率。</span></div>
