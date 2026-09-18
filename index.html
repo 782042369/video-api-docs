@@ -89,7 +89,7 @@ footer p{margin:.3em 0}
 <h1>Vela-2.5、MiniMax H3 与 GPT Image，一站式接入视频与生图。</h1>
 <p class="lead">你只需要三步：拿到令牌 → 发一句话描述想要的画面 → 等一两分钟下载成品视频。想生成图片更简单，发一段描述直接出图。不用安装任何软件，写文字、传图片链接就行。</p>
 <div class="pills">
-<span class="pill"><i></i>vela 系 · 按次</span><span class="pill"><i></i>vela 系 -ps · 按秒</span><span class="pill"><i></i>minimax-h3-a · 文生视频</span><span class="pill"><i></i>minimax-h3-b · 多图参考</span><span class="pill"><i></i>minimax-h3-c · 首尾帧</span><span class="pill"><i></i>minimax-h3-d / e · 音画同步</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
+<span class="pill"><i></i>vela 系 · 按次</span><span class="pill"><i></i>vela 系 -ps · 按秒</span><span class="pill"><i></i>minimax-h3-a · 文生视频</span><span class="pill"><i></i>minimax-h3-b · 多图参考</span><span class="pill"><i></i>minimax-h3-c · 首尾帧</span><span class="pill"><i></i>minimax-h3-d / e · 音画同步</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -171,6 +171,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="mcard"><h4><code>minimax-h3-e</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
 <p>让照片开口说话：给人物图（最多 9 张）和一段配音，嘴型自动对上。有几段声音请先合成一个文件再传。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<div class="mcard"><h4><code>minimax-h3-720p</code><span class="tag sec">按秒</span></h4>
+<p class="price">¥0.15 / 秒</p>
+<p>参考视频版：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。固定 720P，5–15 秒，统一 ¥0.15/秒。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
@@ -179,8 +182,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-c</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code>（均必填）</td></tr>
 <tr><td><code>minimax-h3-d</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td>恰好 1 张图 + <code>audio</code>（上游维护中，建议用 <code>e</code>）</td></tr>
 <tr><td><code>minimax-h3-e</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>input_reference</code>（≤9 张）+ <code>audio</code>（恰好 1 段）</td></tr>
+<tr><td><code>minimax-h3-720p</code></td><td>按秒</td><td>15 秒</td><td>固定 720P</td><td><code>reference_videos</code>（1 段）或参考图；统一 ¥0.15/秒</td></tr>
 </table>
-<div class="note"><b>i</b><span>小贴士：H3 系列只有 480P（省钱包）和 720P（清晰包）两档，没有 1080P，也不能拿现成视频当参考素材。b 是固定清晰度，统一 ¥0.15/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
+<div class="note"><b>i</b><span>小贴士：H3 系列只有 480P（省钱包）和 720P（清晰包）两档，没有 1080P。a–e 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。b 和 720p 版是固定清晰度，统一 ¥0.15/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
 <h3>Vela 系列 · 按次档</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长</th><th>分辨率</th><th>参考素材与说明</th></tr>
 <tr><td><code>vela-mini</code></td><td>¥1.50</td><td>4–12 秒</td><td>720P</td><td>≤9 图 + 3 音频；不限制人脸</td></tr>
@@ -230,7 +234,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-c</code></td><td><code>first_frame</code> / <code>last_frame</code>: string</td><td>首帧与尾帧图片 URL，两帧均必填。</td></tr>
 <tr><td><code>minimax-h3-e</code></td><td><code>audio</code>: string</td><td>音频文件 URL，用于口型对齐；恰好 1 段（多段声音先混音成一个文件），可配最多 9 张参考图。</td></tr>
 <tr><td><code>minimax-h3-d</code></td><td><code>audio</code>: string</td><td>单图版：恰好 1 张参考图 + 1 段音频。当前上游异常（维护中），建议改用 <code>minimax-h3-e</code>。</td></tr>
-<tr><td>H3 全系</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝。</td></tr>
+<tr><td><code>minimax-h3-720p</code></td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（1 段），AI 沿用其人物与运镜；也可传参考图。</td></tr>
+<tr><td>H3 a–e</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝；需要参考视频请用 <code>minimax-h3-720p</code>。</td></tr>
 </table>
 <h3>示例：首尾帧</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-c",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
@@ -289,6 +294,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>Vela 按秒档 f / d（<code>-ps</code>）</td><td>按实际生成秒数</td><td>统一分档：480P ¥0.50、720P ¥0.80、1080P ¥1.00 / 秒</td></tr>
 <tr><td>Vela 按秒档 e（<code>vela-2.0-e-ps</code>）</td><td>按实际生成秒数</td><td>独立分档：480P ¥0.64、720P ¥0.94、1080P ¥2.24、4K ¥4.54 / 秒</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
+<tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
