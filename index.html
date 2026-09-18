@@ -205,9 +205,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th><th>4K</th><th>时长与素材</th></tr>
 <tr><td><code>vela-2.0-f-ps</code></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td rowspan="3">4–15 秒逐秒自选；≤9 图 / 3 视频 / 3 音频。f 为高速档；d 为满血档；e 为稳定满血档且支持多种画幅与 4K。真人脸素材可能被内容安全拦截，请自行调整素材。</td></tr>
 <tr><td><code>vela-2.0-d-ps</code></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td></tr>
-<tr><td><code>vela-2.0-e-ps</code></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>¥2.00/秒</td></tr>
+<tr><td><code>vela-2.0-e-ps</code></td><td>¥0.64/秒</td><td>¥0.94/秒</td><td>¥2.24/秒</td><td>¥4.54/秒</td></tr>
 </table>
-<div class="note"><b>i</b><span>怎么选？怕算不清就选按次（一口价，做多长都是那个钱）；要灵活控制成本就选带 <code>-ps</code> 的按秒款——统一价 480P 五毛、720P 八毛、1080P 一块、4K 两块（每秒），做几秒算几秒。表格里写「人脸易拦截」的模型，拿真人正脸照当素材可能被系统拦下，换个角度或漫画风头像更稳；写「face 放行」的可以加 face 参数解锁真人脸。最准的价格以网站「模型广场」为准。</span></div>
+<div class="note"><b>i</b><span>怎么选？怕算不清就选按次（一口价，做多长都是那个钱）；要灵活控制成本就选带 <code>-ps</code> 的按秒款——f / d 统一价 480P 五毛、720P 八毛、1080P 一块（每秒）；e 是高端满血 4K 款，独立分档 ¥0.64 / ¥0.94 / ¥2.24 / 4K ¥4.54（每秒），做几秒算几秒。表格里写「人脸易拦截」的模型，拿真人正脸照当素材可能被系统拦下，换个角度或漫画风头像更稳；写「face 放行」的可以加 face 参数解锁真人脸。最准的价格以网站「模型广场」为准。</span></div>
 <div class="note warn"><b>!</b><span>旧模型 ID 已于 2026-09-15 下线，请切换为新名：<code>minimax_h3_t2v</code>→<code>minimax-h3-a</code>；<code>minimax_h3_i2v</code> / <code>minimax_h3_15s</code>→<code>minimax-h3-b</code>；<code>minimax_h3_first_last</code>→<code>minimax-h3-c</code>；<code>minimax_h3_lipsync</code>→<code>minimax-h3-d</code>；<code>minimax_h3_lipsync_v2</code> / <code>minimax_h3_lipsync_15s</code>→<code>minimax-h3-e</code>。旧名请求将返回 503 model_not_found。</span></div>
 </section>
 
@@ -286,7 +286,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
 <tr><td>Vela 系列按次档（<code>vela-mini</code> … <code>vela-2.5-t</code>）</td><td>按成功生成次数</td><td>¥1.50 – ¥7.00 / 次，与时长无关</td></tr>
-<tr><td>Vela 按秒档（<code>-ps</code>）</td><td>按实际生成秒数</td><td>统一分档：480P ¥0.50、720P ¥0.80、1080P ¥1.00、4K ¥2.00 / 秒</td></tr>
+<tr><td>Vela 按秒档 f / d（<code>-ps</code>）</td><td>按实际生成秒数</td><td>统一分档：480P ¥0.50、720P ¥0.80、1080P ¥1.00 / 秒</td></tr>
+<tr><td>Vela 按秒档 e（<code>vela-2.0-e-ps</code>）</td><td>按实际生成秒数</td><td>独立分档：480P ¥0.64、720P ¥0.94、1080P ¥2.24、4K ¥4.54 / 秒</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
