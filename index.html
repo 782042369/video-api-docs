@@ -85,7 +85,7 @@ footer p{margin:.3em 0}
 </style></head><body>
 <header><div class="wrap bar">
 <a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频 / 生图 API（Vela-2.5 + MiniMax H3 + GPT Image）</small></span></a>
-<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
+<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#refvideo">参考视频</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
 <div class="actions"><button class="action" id="theme" onclick="toggleTheme()">深色</button></div>
 </div></header>
 
@@ -180,7 +180,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>让照片开口说话：给人物图（最多 9 张）和一段配音，嘴型自动对上。有几段声音请先合成一个文件再传。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 <div class="mcard" id="minimax-h3-720p"><h4><code>minimax-h3-720p</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.15 / 秒</p>
-<p>参考视频版：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。固定 720P，5–15 秒，统一 ¥0.15/秒。</p></div>
+<p>参考视频版：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。固定 720P，5–15 秒，统一 ¥0.15/秒。手头没直链？去 <a href="#refvideo">素材上传服务</a> 传一个。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
@@ -248,7 +248,23 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-c",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 <h3>示例：音画同步</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-e",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "input_reference": ["https://example.com/character.jpg"],<br>    "audio": "https://example.com/voice.mp3",<br>    "seconds": 5,<br>    "aspect_ratio": "9:16"<br>  }'</code></pre>
-<div class="note ok"><b>✓</b><span>给图片/音频素材的规矩只有一条：必须是一个「任何人点开这个网址都能看到」的公开链接。只存在你自己电脑里的文件、需要登录才能看的链接都不行。放心，素材打不开导致失败的任务不会收你的钱。</span></div>
+<div class="note ok"><b>✓</b><span>给图片/音频素材的规矩只有一条：必须是一个「任何人点开这个网址都能看到」的公开链接。只存在你自己电脑里的文件、需要登录才能看的链接都不行。没有直链？用 <a href="https://h3file.939593.xyz" target="_blank">素材上传服务</a>传一下就能拿到（2 小时有效）。放心，素材打不开导致失败的任务不会收你的钱。</span></div>
+</section>
+
+<section id="refvideo"><div class="eyebrow">REFERENCE VIDEO</div><h2>参考视频全流程（上传 → 生成 → 轮询 → 下载）</h2>
+<p>手上有段视频，想让 AI 照着它的人物和运镜拍新片子？四步搞定：先把视频传到本站素材暂存服务拿到直链 → 把直链塞进生成请求 → 隔几秒问一次进度 → 做好了下载 MP4。</p>
+<div class="endpoint"><span class="m">POST</span>https://h3file.939593.xyz/upload · 第 1 步：上传参考视频</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl -F "file=@my-video.mp4" https://h3file.939593.xyz/upload</code></pre>
+<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>——这个 url 就是直链。文件 2 小时后自动删除，请尽快用它提交任务。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持 mp4 / mov / webm 等常见视频（以及图片、音频），单个 ≤200MB。</p>
+<div class="endpoint"><span class="m">POST</span>/v1/videos · 第 2 步：带参考视频生成（minimax-h3-720p）</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-720p",<br>    "prompt": "参考这段视频的人物形象和运镜风格，拍摄一只柯基在草地奔跑",<br>    "seconds": 5,<br>    "resolution": "720p",<br>    "reference_videos": ["https://h3file.939593.xyz/f/xxxx.mp4"]<br>  }'</code></pre>
+<p style="color:var(--muted);font-size:13.5px">保存返回的 <code>id</code>（任务编号）。minimax-h3-720p 固定 720P、5–15 秒、统一 ¥0.15/秒，做几秒付几秒，失败不扣费。</p>
+<div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id} · 第 3 步：轮询进度</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos/{task_id} <br>  -H "Authorization: Bearer sk-你的令牌"</code></pre>
+<p style="color:var(--muted);font-size:13.5px">每 5–15 秒查一次，看到 <code>"status": "completed"</code> 就是做好了；<code>failed</code> 是翻车（不扣费）。生成通常需要几分钟，高峰期可能 10–20 分钟，别狂刷。</p>
+<div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content · 第 4 步：下载成品</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos/{task_id}/content <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -o result.mp4</code></pre>
+<div class="note ok"><b>✓</b><span>素材直链的规矩：必须是公网可访问的链接。没有自己的图床/网盘直链？用上面第 1 步的上传服务就行，2 小时有效期内提交任务足够了。</span></div>
 </section>
 
 <section id="images"><div class="eyebrow">IMAGE GENERATION</div><h2>生图 API（OpenAI 兼容）</h2>
