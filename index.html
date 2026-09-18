@@ -85,7 +85,7 @@ footer p{margin:.3em 0}
 </style></head><body>
 <header><div class="wrap bar">
 <a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频 / 生图 API（Vela-2.5 + MiniMax H3 + GPT Image）</small></span></a>
-<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#refvideo">参考视频</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
+<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#refvideo">参考素材</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
 <div class="actions"><button class="action" id="theme" onclick="toggleTheme()">深色</button></div>
 </div></header>
 
@@ -251,11 +251,11 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="note ok"><b>✓</b><span>给图片/音频素材的规矩只有一条：必须是一个「任何人点开这个网址都能看到」的公开链接。只存在你自己电脑里的文件、需要登录才能看的链接都不行。没有直链？用 <a href="https://h3file.939593.xyz" target="_blank">素材上传服务</a>传一下就能拿到（2 小时有效）。放心，素材打不开导致失败的任务不会收你的钱。</span></div>
 </section>
 
-<section id="refvideo"><div class="eyebrow">REFERENCE VIDEO</div><h2>参考视频全流程（上传 → 生成 → 轮询 → 下载）</h2>
-<p>手上有段视频，想让 AI 照着它的人物和运镜拍新片子？四步搞定：先把视频传到本站素材暂存服务拿到直链 → 把直链塞进生成请求 → 隔几秒问一次进度 → 做好了下载 MP4。</p>
+<section id="refvideo"><div class="eyebrow">REFERENCE ASSETS</div><h2>参考素材全流程（上传 → 生成 → 轮询 → 下载）</h2>
+<p>手上有段视频、几张图或一段配音，想让 AI 照着它们拍片？四步搞定：先把素材传到本站素材暂存服务拿到直链 → 把直链塞进生成请求对应字段 → 隔几秒问一次进度 → 做好了下载 MP4。下面以参考视频为例走完整流程，图片 / 音频的用法在后面。</p>
 <div class="endpoint"><span class="m">POST</span>https://h3file.939593.xyz/upload · 第 1 步：上传参考视频</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl -F "file=@my-video.mp4" https://h3file.939593.xyz/upload</code></pre>
-<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>——这个 url 就是直链。文件 2 小时后自动删除，请尽快用它提交任务。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持 mp4 / mov / webm 等常见视频（以及图片、音频），单个 ≤200MB。</p>
+<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>——这个 url 就是直链。文件 2 小时后自动删除，请尽快用它提交任务。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持常见视频（mp4 / mov / webm…）、图片（jpg / png / webp…）和音频（mp3 / wav / m4a），单个 ≤200MB。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · 第 2 步：带参考视频生成（minimax-h3-720p）</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-720p",<br>    "prompt": "参考这段视频的人物形象和运镜风格，拍摄一只柯基在草地奔跑",<br>    "seconds": 5,<br>    "resolution": "720p",<br>    "reference_videos": ["https://h3file.939593.xyz/f/xxxx.mp4"]<br>  }'</code></pre>
 <p style="color:var(--muted);font-size:13.5px">保存返回的 <code>id</code>（任务编号）。minimax-h3-720p 固定 720P、5–15 秒、统一 ¥0.15/秒，做几秒付几秒，失败不扣费。</p>
@@ -264,6 +264,17 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p style="color:var(--muted);font-size:13.5px">每 5–15 秒查一次，看到 <code>"status": "completed"</code> 就是做好了；<code>failed</code> 是翻车（不扣费）。生成通常需要几分钟，高峰期可能 10–20 分钟，别狂刷。</p>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content · 第 4 步：下载成品</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos/{task_id}/content <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -o result.mp4</code></pre>
+<h3>图片 / 音频怎么用</h3>
+<p>上传方式一模一样（<code>curl -F "file=@xxx.jpg" https://h3file.939593.xyz/upload</code>），拿到的直链按素材类型填进对应字段：</p>
+<table><tr><th>素材类型</th><th>填哪个字段</th><th>适配模型</th></tr>
+<tr><td>参考视频</td><td><code>reference_videos</code></td><td><code>minimax-h3-720p</code>；Vela 多参考款用 <code>reference_videos</code> / <code>reference_videos</code> 数组位</td></tr>
+<tr><td>参考图片</td><td><code>input_reference</code>（数组）</td><td><code>minimax-h3-b</code> / <code>minimax-h3-e</code>；Vela 按次款多用 <code>images</code> 或 <code>input_reference</code></td></tr>
+<tr><td>首尾帧图片</td><td><code>first_frame</code> + <code>last_frame</code></td><td><code>minimax-h3-c</code>（两帧均必填）</td></tr>
+<tr><td>音频 / 配音</td><td><code>audio</code>（恰好 1 段）</td><td><code>minimax-h3-e</code> 对口型；Vela 按次款的 <code>reference_audios</code></td></tr>
+</table>
+<h3>示例：参考图 + 配音生成对口型视频（minimax-h3-e）</h3>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code># 1) 上传人物图和配音（各传一次，拿到两个直链）<br>curl -F "file=@character.jpg" https://h3file.939593.xyz/upload<br>curl -F "file=@voice.mp3" https://h3file.939593.xyz/upload<br><br># 2) 提交任务：图进 input_reference，音频进 audio<br>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-e",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "seconds": 5,<br>    "resolution": "720P",<br>    "input_reference": ["https://h3file.939593.xyz/f/xxxx.jpg"],<br>    "audio": "https://h3file.939593.xyz/f/yyyy.mp3"<br>  }'</code></pre>
+<p style="color:var(--muted);font-size:13.5px">轮询和下载与上面的第 3、4 步完全相同（换任务编号即可）。</p>
 <div class="note ok"><b>✓</b><span>素材直链的规矩：必须是公网可访问的链接。没有自己的图床/网盘直链？用上面第 1 步的上传服务就行，2 小时有效期内提交任务足够了。</span></div>
 </section>
 
