@@ -85,14 +85,14 @@ footer p{margin:.3em 0}
 </style></head><body>
 <header><div class="wrap bar">
 <a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频 / 生图 API（Vela-2.5 + MiniMax H3 + GPT Image）</small></span></a>
-<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#refvideo">参考素材</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#errors">错误处理</a></nav>
+<nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#refvideo">参考素材</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#faq">常见问题</a><a href="#errors">错误处理</a></nav>
 <div class="actions"><button class="action" id="theme" onclick="toggleTheme()">深色</button></div>
 </div></header>
 
 <main class="wrap" id="top">
 <div class="hero"><div class="hero-grid"><div>
 <div class="eyebrow">REST API · VIDEO GENERATION</div>
-<h1>Vela-2.5、MiniMax H3 与 GPT Image，一站式接入视频与生图。</h1>
+<h1>会打字，就能做视频和图片。</h1>
 <p class="lead">你只需要三步：拿到令牌 → 发一句话描述想要的画面 → 等一两分钟下载成品视频。想生成图片更简单，发一段描述直接出图。不用安装任何软件，写文字、传图片链接就行。</p>
 <div class="pills">
 <span class="pill"><i></i>vela 系 · 按次</span><span class="pill"><i></i>vela 系 -ps · 按秒</span><span class="pill"><i></i>minimax-h3-a · 文生视频</span><span class="pill"><i></i>minimax-h3-b · 多图参考</span><span class="pill"><i></i>minimax-h3-c · 首尾帧</span><span class="pill"><i></i>minimax-h3-d / e · 音画同步</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
@@ -108,7 +108,8 @@ footer p{margin:.3em 0}
 </div></div>
 
 <section id="quickstart"><div class="eyebrow">QUICKSTART</div><h2>快速开始</h2>
-<p>就像点外卖：下单（提交任务）→ 等骑手（每隔几秒查一次状态）→ 取餐（下载视频）。下面的例子可以直接复制，把「sk-你的令牌」换成自己的钥匙就能跑。</p>
+<div class="note ok"><b>✓</b><span><b>完全不想碰代码？</b>用我们的 <a href="https://canvas.939593.xyz" target="_blank">无限画布</a>：网页上拖图、传视频、打字描述，点一下就出片，零代码。</span></div>
+<p>愿意动手调 API 的，就像点外卖：下单（提交任务）→ 等骑手（每隔几秒查一次状态）→ 取餐（下载视频）。下面的例子可以直接复制，把「sk-你的令牌」换成自己的钥匙就能跑。</p>
 <div class="tabs">
 <button class="on" onclick="tab(this,'q-sd')">cURL · Vela-2.5 图生视频</button>
 <button onclick="tab(this,'q-h3')">cURL · H3 文生视频</button>
@@ -158,20 +159,21 @@ print("saved", task_id + ".mp4")</code></pre></div>
 
 <section id="models"><div class="eyebrow">MODEL CATALOG</div><h2>模型目录</h2>
 <p>模型就像不同风格的厨师：有的擅长文生视频，有的需要你给参考图，有的能让照片开口说话。带「按次」标签的是一口价（做一条付一次钱）；带「按秒」标签的像打电话计费（做了几秒付几秒的钱），名字带 <code>-ps</code> 的就是按秒款。想直接看某个模型？点下面的名字就能跳过去（也可以把网址里的 <code>#模型名</code> 直接发给别人）。</p>
-<h3>场景速选：我想做什么，用哪个？</h3>
+<h3 id="scene-picker">场景速选：我想做什么，用哪个？</h3>
 <table>
 <tr><th>你想做的事</th><th>用这个模型</th><th>怎么喂料</th><th>大概花多少</th></tr>
-<tr><td>脑子里有个画面，一句话让它动起来</td><td><code>minimax-h3-a</code></td><td>只写一段描述，不用传任何东西</td><td>6 秒约 ¥0.6（480P）</td></tr>
-<tr><td>想让人物 / 商品在视频里长得和照片一模一样</td><td><code>minimax-h3-b</code></td><td>传 1–9 张参考图 + 描述动作</td><td>6 秒约 ¥0.9（统一价）</td></tr>
-<tr><td>开头和结尾两张图都画好了，中间让 AI 演出来</td><td><code>minimax-h3-c</code></td><td>传首帧图 + 尾帧图（缺一不可）</td><td>6 秒约 ¥0.6–0.9</td></tr>
-<tr><td>让一张人物照片开口说话 / 唱歌（口型对上）</td><td><code>minimax-h3-e</code></td><td>传人物图（1–9 张）+ 一段配音</td><td>5 秒 ¥0.5–1.75（看清晰度）</td></tr>
-<tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><code>minimax-h3-720p</code></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
-<tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela 按次档（<code>vela-mini</code> 起步最便宜）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
-<tr><td>要求高清晰度（1080P）的口播对口型</td><td><code>minimax-h3-e</code>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.75</td></tr>
-<tr><td>想精确控制成本，做几秒付几秒</td><td><code>vela-2.0-d-ps</code></td><td>写描述 + 自选秒数和清晰度</td><td>每秒 ¥0.5 / 0.8 / 1.0</td></tr>
-<tr><td>不想要视频，只要一张图</td><td><code>gpt-image-2</code> 系列</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
+<tr><td>脑子里有个画面，一句话让它动起来</td><td><a href="#minimax-h3-a"><code>minimax-h3-a</code></a></td><td>只写一段描述，不用传任何东西</td><td>6 秒约 ¥0.6（480P）</td></tr>
+<tr><td>想让人物 / 商品在视频里长得和照片一模一样</td><td><a href="#minimax-h3-b"><code>minimax-h3-b</code></a></td><td>传 1–9 张参考图 + 描述动作</td><td>6 秒约 ¥0.9（统一价）</td></tr>
+<tr><td>开头和结尾两张图都画好了，中间让 AI 演出来</td><td><a href="#minimax-h3-c"><code>minimax-h3-c</code></a></td><td>传首帧图 + 尾帧图（缺一不可）</td><td>6 秒约 ¥0.6–0.9</td></tr>
+<tr><td>让一张人物照片开口说话 / 唱歌（口型对上）</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（多图）/ <a href="#minimax-h3-d"><code>minimax-h3-d</code></a>（单图）</td><td>传人物图（1–9 张）+ 一段配音</td><td>5 秒 ¥0.5–1.75（看清晰度）</td></tr>
+<tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
+<tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela <a href="#vela-percall">按次档</a>（<a href="#vela-mini"><code>vela-mini</code></a> 起步最便宜）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
+<tr><td>要求高清晰度（1080P）的口播对口型</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.75</td></tr>
+<tr><td>想精确控制成本，做几秒付几秒</td><td><a href="#vela-2.0-d-ps"><code>vela-2.0-d-ps</code></a></td><td>写描述 + 自选秒数和清晰度</td><td>每秒 ¥0.5 / 0.8 / 1.0</td></tr>
+<tr><td>不想要视频，只要一张图</td><td><a href="#gpt-image-2"><code>gpt-image-2</code> 系列</a></td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
 </table>
 <div class="note"><b>i</b><span>记住一个规律：带「参考图」的模型负责「长得像」，带「音频」的负责「开口说话」，带「参考视频」的负责「照着拍」。只要记不住模型名，回这张表按「你想做的事」找就行。</span></div>
+<div class="jump"><b>章节</b><a href="#scene-picker">场景速选</a><a href="#quickstart">快速开始</a><a href="#create">怎么提交</a><a href="#materials">素材怎么传</a><a href="#refvideo">素材上传服务</a><a href="#query">查进度取成品</a><a href="#images">生图</a><a href="#faq">常见问题</a><a href="#billing">价格</a><a href="#errors">报错怎么办</a></div>
 <div class="jump"><b>H3 按秒</b><a href="#minimax-h3-a">minimax-h3-a</a><a href="#minimax-h3-b">minimax-h3-b</a><a href="#minimax-h3-c">minimax-h3-c</a><a href="#minimax-h3-d">minimax-h3-d</a><a href="#minimax-h3-e">minimax-h3-e</a><a href="#minimax-h3-720p">minimax-h3-720p</a><b>Vela 按次</b><a href="#vela-mini">vela-mini</a><a href="#vela-2.5">vela-2.5</a><a href="#vela-2.0-a">vela-2.0-a</a><a href="#vela-2.0-b">vela-2.0-b</a><a href="#vela-2.5-a">vela-2.5-a</a><a href="#vela-2.0-c">vela-2.0-c</a><a href="#vela-2.5-u">vela-2.5-u</a><a href="#vela-2.5-s">vela-2.5-s</a><a href="#vela-2.5-r">vela-2.5-r</a><a href="#vela-2.5-t">vela-2.5-t</a><b>Vela 按秒</b><a href="#vela-2.0-d-ps">vela-2.0-d-ps</a><b>生图</b><a href="#gpt-image-2">gpt-image-2</a><a href="#gpt-image-2-high">gpt-image-2-high</a><a href="#gpt-image-2.5-flare">gpt-image-2.5-flare</a></div>
 <div class="mgrid">
 <div class="mcard" id="vela-2.5"><h4><code>vela-2.5</code><span class="tag per">按次</span></h4>
@@ -186,9 +188,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="mcard" id="minimax-h3-c"><h4><code>minimax-h3-c</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 每秒</p>
 <p>开头和结尾两张图你来定，中间怎么过渡 AI 自己演，最长 15 秒，两张图缺一不可。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
-<div class="mcard" id="minimax-h3-d"><h4><code>minimax-h3-d</code><span class="tag sec">按秒</span> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></h4>
+<div class="mcard" id="minimax-h3-d"><h4><code>minimax-h3-d</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 / 0.35 每秒</p>
-<p>单图版音画同步（恰好 1 张参考图 + 1 段 <code>audio</code> 音频 URL）。请改用 <code>minimax-h3-e</code>（传 1 张图即可）。</p></div>
+<p>单图版音画同步：只传 1 张人物图 + 1 段配音，嘴型自动对上。图和音频可以用 <a href="#refvideo">上传服务</a>拿直链。</p></div>
 <div class="mcard" id="minimax-h3-e"><h4><code>minimax-h3-e</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 / 0.35 每秒</p>
 <p>让照片开口说话：给人物图（最多 9 张）和一段配音，嘴型自动对上。有几段声音请先合成一个文件再传。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒、1080P ¥0.35/秒。</p></div>
@@ -201,12 +203,12 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-a</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td>—（不接受任何参考素材）</td></tr>
 <tr><td><code>minimax-h3-b</code></td><td>按秒</td><td>15 秒</td><td>固定输出（统一计价）</td><td><code>input_reference</code>（≤9 张）</td></tr>
 <tr><td><code>minimax-h3-c</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code>（均必填）</td></tr>
-<tr><td><code>minimax-h3-d</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td>恰好 1 张图 + <code>audio</code>（上游维护中，建议用 <code>e</code>）</td></tr>
+<tr><td><code>minimax-h3-d</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td>恰好 1 张图 + <code>audio</code>（恰好 1 段）</td></tr>
 <tr><td><code>minimax-h3-e</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td><code>input_reference</code>（≤9 张）+ <code>audio</code>（恰好 1 段）</td></tr>
 <tr><td><code>minimax-h3-720p</code></td><td>按秒</td><td>15 秒</td><td>固定 720P</td><td><code>reference_videos</code>（1 段）或参考图；统一 ¥0.15/秒</td></tr>
 </table>
 <div class="note"><b>i</b><span>小贴士：H3 系列有 480P（省钱包）、720P（清晰包）两档，d / e 两款另有 1080P（¥0.35/秒）。a–e 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。b 和 720p 版是固定清晰度，统一 ¥0.15/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
-<h3>Vela 系列 · 按次档</h3>
+<h3 id="vela-percall">Vela 系列 · 按次档</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长</th><th>分辨率</th><th>参考素材与说明</th></tr>
 <tr id="vela-mini"><td><code>vela-mini</code></td><td>¥1.50</td><td>4–12 秒</td><td>720P</td><td>≤9 图 + 3 音频；不限制人脸</td></tr>
 <tr><td><code>vela-2.5</code></td><td>¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td>≤10 图；时长与分辨率参数忽略</td></tr>
@@ -219,7 +221,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr id="vela-2.5-r"><td><code>vela-2.5-r</code></td><td>¥6.50</td><td>5 / 10 / 15 / 30 秒</td><td>720P</td><td>≤9 图；原生放行人脸；多种画幅；不支持视频 / 音频</td></tr>
 <tr id="vela-2.5-t"><td><code>vela-2.5-t</code></td><td>¥7.00</td><td>10 / 15 / 20 / 25 / 30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频</td></tr>
 </table>
-<h3>Vela 按秒档（<code>-ps</code> 后缀 = 按秒计费）</h3>
+<h3 id="vela-persec">Vela 按秒档（<code>-ps</code> 后缀 = 按秒计费）</h3>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th><th>4K</th><th>时长与素材</th></tr>
 <tr id="vela-2.0-d-ps"><td><code>vela-2.0-d-ps</code></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>4–15 秒逐秒自选；≤9 图 / 3 视频 / 3 音频，满血档。真人脸素材可能被内容安全拦截，请自行调整素材。</td></tr>
 </table>
@@ -231,7 +233,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>提交成功后会马上回给你一个任务编号（id）——这只是「订单已接单」，视频还要再做一会儿。务必把这个编号存下来，查进度、取成品全靠它。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos</div>
 <div class="note warn"><b>!</b><span>所有视频模型都用同一个地址提交：<code>POST /v1/videos</code>。网上教程里出现的 <code>/v1/videos/generations</code> 在本站不存在（会报 404），从别家搬代码过来记得先改地址。</span></div>
-<h3>公共参数</h3>
+<h3 id="params">公共参数</h3>
 <table><tr><th>字段</th><th>类型</th><th>说明</th></tr>
 <tr><td><code>model</code></td><td>string</td><td>必填。用哪个模型，名字照抄模型目录里的拼写。</td></tr>
 <tr><td><code>prompt</code></td><td>string</td><td>必填。用一句大白话描述你要的画面：谁、在干嘛、什么风格，写得越具体效果越好。</td></tr>
@@ -239,19 +241,19 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>aspect_ratio</code></td><td>string</td><td>画面形状：<code>16:9</code> 电视横屏、<code>9:16</code> 手机竖屏（发抖音用这个）、<code>1:1</code> 方形。</td></tr>
 <tr><td><code>resolution</code> / <code>size</code></td><td>string</td><td>清晰度：480P 省钱、720P 更清楚（部分 Vela 按秒款还有 1080P / 4K）。vela-2.5 固定 720P，填了也忽略。</td></tr>
 </table>
-<h3>各工作流参考素材</h3>
+<h3 id="materials">各工作流参考素材</h3>
 <table><tr><th>模型</th><th>素材字段</th><th>说明</th></tr>
 <tr><td><code>vela-2.5</code></td><td><code>images</code>: string[]</td><td>参考图 URL 数组，最多 10 张；推荐使用 <code>images</code>（也兼容 <code>image_urls</code>）。</td></tr>
 <tr><td>H3 全系</td><td><code>input_reference</code>: string[]</td><td>参考图 URL 数组，最多 9 张，重复 URL 自动去重；兼容 <code>image</code> / <code>images</code> / <code>image_url</code> / <code>image_urls</code> / <code>reference_images</code>，也可用 <code>ref_image_0</code>…<code>ref_image_8</code> 逐张指定。</td></tr>
 <tr><td><code>minimax-h3-c</code></td><td><code>first_frame</code> / <code>last_frame</code>: string</td><td>首帧与尾帧图片 URL，两帧均必填。</td></tr>
 <tr><td><code>minimax-h3-e</code></td><td><code>audio</code>: string</td><td>音频文件 URL，用于口型对齐；恰好 1 段（多段声音先混音成一个文件），可配最多 9 张参考图。</td></tr>
-<tr><td><code>minimax-h3-d</code></td><td><code>audio</code>: string</td><td>单图版：恰好 1 张参考图 + 1 段音频。当前上游异常（维护中），建议改用 <code>minimax-h3-e</code>。</td></tr>
+<tr><td><code>minimax-h3-d</code></td><td><code>audio</code>: string</td><td>单图版：恰好 1 张参考图 + 1 段音频，人物嘴型对齐。</td></tr>
 <tr><td><code>minimax-h3-720p</code></td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（1 段），AI 沿用其人物与运镜；也可传参考图。</td></tr>
 <tr><td>H3 a–e</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝；需要参考视频请用 <code>minimax-h3-720p</code>。</td></tr>
 </table>
-<h3>示例：首尾帧</h3>
+<h3 id="example-frames">示例：首尾帧</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-c",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
-<h3>示例：音画同步</h3>
+<h3 id="example-lipsync">示例：音画同步</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-e",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "input_reference": ["https://example.com/character.jpg"],<br>    "audio": "https://example.com/voice.mp3",<br>    "seconds": 5,<br>    "aspect_ratio": "9:16"<br>  }'</code></pre>
 <div class="note ok"><b>✓</b><span>给图片/音频素材的规矩只有一条：必须是一个「任何人点开这个网址都能看到」的公开链接。只存在你自己电脑里的文件、需要登录才能看的链接都不行。没有直链？用 <a href="https://h3file.939593.xyz" target="_blank">素材上传服务</a>传一下就能拿到（2 小时有效）。放心，素材打不开导致失败的任务不会收你的钱。</span></div>
 </section>
@@ -269,7 +271,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p style="color:var(--muted);font-size:13.5px">每 5–15 秒查一次，看到 <code>"status": "completed"</code> 就是做好了；<code>failed</code> 是翻车（不扣费）。生成通常需要几分钟，高峰期可能 10–20 分钟，别狂刷。</p>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content · 第 4 步：下载成品</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos/{task_id}/content <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -o result.mp4</code></pre>
-<h3>图片 / 音频怎么用</h3>
+<h3 id="ref-assets-usage">图片 / 音频怎么用</h3>
 <p>上传方式一模一样（<code>curl -F "file=@xxx.jpg" https://h3file.939593.xyz/upload</code>），拿到的直链按素材类型填进对应字段：</p>
 <table><tr><th>素材类型</th><th>填哪个字段</th><th>适配模型</th></tr>
 <tr><td>参考视频</td><td><code>reference_videos</code></td><td><code>minimax-h3-720p</code>；Vela 多参考款用 <code>reference_videos</code> / <code>reference_videos</code> 数组位</td></tr>
@@ -294,7 +296,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/images/generations <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "gpt-image-2",<br>    "prompt": "一只戴宇航员头盔的柯基犬，插画风格",<br>    "n": 1<br>  }'</code></pre>
 <div class="endpoint"><span class="m">POST</span>/v1/images/edits · 图生图</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/images/edits <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -F "model=gpt-image-2" <br>  -F "prompt=把这只柯基改成水彩画风格，保持姿势" <br>  -F "image=@corgi.png"</code></pre>
-<h3>公共参数</h3>
+<h3 id="image-params">公共参数</h3>
 <table><tr><th>字段</th><th>类型</th><th>说明</th></tr>
 <tr><td><code>model</code></td><td>string</td><td>必填。gpt-image-2 / gpt-image-2-high / gpt-image-2.5-flare。</td></tr>
 <tr><td><code>prompt</code></td><td>string</td><td>必填。文生图描述画面；图生图描述要做的修改。</td></tr>
@@ -302,7 +304,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>size</code></td><td>string</td><td>可选，如 <code>1024x1024</code>；档位由模型决定。</td></tr>
 <tr><td><code>image</code></td><td>file</td><td>仅 <code>/edits</code>：multipart 图片文件，支持 PNG / JPG / WebP。</td></tr>
 </table>
-<h3>响应格式</h3>
+<h3 id="image-response">响应格式</h3>
 <pre><code>{<br>  "created": 1789469339,<br>  "data": [<br>    {<br>      "revised_prompt": "一只戴宇航员头盔的柯基犬，插画风格",<br>      "url": "https://.../xxx.png",<br>      "b64_json": "iVBORw0KGgo..."<br>    }<br>  ]<br>}</code></pre>
 <div class="note ok"><b>✓</b><span>结果一次给两种格式：<code>url</code> 是个现成链接，浏览器打开就能看图、右键另存；<code>b64_json</code> 是图片内容本身（给程序用的）。生成失败不扣费；价格以网站「模型广场」为准。</span></div>
 </section>
@@ -320,7 +322,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>查询返回 OpenAI 风格的 video 对象：</p>
 <pre><code>{<br>  "id": "cgo...task_id",<br>  "object": "video",<br>  "model": "minimax-h3-a",<br>  "status": "in_progress",   // queued | in_progress | completed | failed<br>  "progress": 50,<br>  "created_at": 1757136000,<br>  "completed_at": 1757136123,<br>  "error": null              // 失败时为 {"message": "...", "code": "task_failed"}<br>}</code></pre>
 <div class="note warn"><b>!</b><span>查进度时不会直接给视频链接——取成品永远走下面的 <code>/content</code> 下载接口，带上你的令牌就行，这是为了保护你的视频不被别人偷拿。</span></div>
-<h3>下载成品</h3>
+<h3 id="download">下载成品</h3>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl --continue-at - --retry 5 --retry-all-errors \<br>  -H "Authorization: Bearer sk-你的令牌" \<br>  -o "{task_id}.mp4" \<br>  https://ai.939593.xyz/v1/videos/{task_id}/content</code></pre>
 <p style="color:var(--muted);font-size:13.5px">下载回来就是普通 MP4，手机电脑都能直接放。还没做好就来取会失败，等状态变成 completed 再来；网断了别慌，接着上次下到的位置继续下就行，千万别重新下单（会重复花钱）。</p>
@@ -337,6 +339,25 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
 <div class="note"><b>i</b><span>扣费像酒店预授权：下单时先按你的要求冻一笔预估费用，成品出来后按实际时长和清晰度多退少补。不同会员分组价格可能不同，以「模型广场」显示为准。</span></div>
+</section>
+
+<section id="faq"><div class="eyebrow">FAQ</div><h2>常见问题（小白版）</h2>
+<h3 id="faq-nocode">完全不会编程，能用吗？</h3>
+<p>能。两个办法：① 打开 <a href="https://canvas.939593.xyz" target="_blank">无限画布</a>，像用修图软件一样拖拽素材、打字描述、点生成，全程不写代码；② 复制本页的示例，只改「令牌」和「想要什么内容」两个地方，也能跑。</p>
+<h3 id="faq-money">钱怎么算？失败了收不收钱？</h3>
+<p>带「按次」的模型一条一口价，做多久都那个价；带「按秒」的做几秒付几秒。只有真正拿到成品才扣钱——参数填错、任务翻车、素材打不开，一分不扣，冻结的额度自动退回。</p>
+<h3 id="faq-wait">一条视频要等多久？</h3>
+<p>一般 2–5 分钟。高峰期可能 10–20 分钟，属正常排队，别狂刷查询（5–15 秒查一次足够），更不要重新下单（会重复花钱）。</p>
+<h3 id="faq-asset">「素材直链」是什么？我只有手机里的文件怎么办？</h3>
+<p>直链 = 一个任何人点开都能看到/下载的网址。本地文件先传到我们的 <a href="#refvideo">素材上传服务</a>（h3file.939593.xyz），拿到链接填进请求即可。注意链接 2 小时过期，拿到尽快提交任务。</p>
+<h3 id="faq-resolution">480P / 720P / 1080P 怎么选？</h3>
+<p>发朋友圈、快速试想法用 480P（最便宜）；正式发布用 720P（清晰且不贵）；大屏投放或精修口播用 1080P（目前仅 minimax-h3-d / e 支持）。</p>
+<h3 id="faq-fail">任务失败了，一般是什么原因？</h3>
+<p>最常见的三个：① 素材链接打不开（换上传服务重新传）；② 时长超出该模型的范围（对照模型目录改秒数）；③ 真人脸素材被内容安全拦截（换角度或漫画风）。失败都不扣钱，改好重发即可。</p>
+<h3 id="faq-save">成品和素材能存多久？</h3>
+<p>成品视频做好后请尽快下载到自己设备长期保存（平台不承诺永久保留）；上传的素材 2 小时后自动删除。</p>
+<h3 id="faq-token">令牌是什么？在哪拿？别人能用我的吗？</h3>
+<p>令牌（sk- 开头）= 你的钥匙 + 钱包，登录网站在「令牌」页创建。谁拿到它就能花你的额度，别发群里、别写进公开代码；泄露了随时在网站禁用重发。</p>
 </section>
 
 <section id="errors" style="border-bottom:0"><div class="eyebrow">ERROR HANDLING</div><h2>错误处理</h2>
