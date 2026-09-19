@@ -158,6 +158,20 @@ print("saved", task_id + ".mp4")</code></pre></div>
 
 <section id="models"><div class="eyebrow">MODEL CATALOG</div><h2>模型目录</h2>
 <p>模型就像不同风格的厨师：有的擅长文生视频，有的需要你给参考图，有的能让照片开口说话。带「按次」标签的是一口价（做一条付一次钱）；带「按秒」标签的像打电话计费（做了几秒付几秒的钱），名字带 <code>-ps</code> 的就是按秒款。想直接看某个模型？点下面的名字就能跳过去（也可以把网址里的 <code>#模型名</code> 直接发给别人）。</p>
+<h3>场景速选：我想做什么，用哪个？</h3>
+<table>
+<tr><th>你想做的事</th><th>用这个模型</th><th>怎么喂料</th><th>大概花多少</th></tr>
+<tr><td>脑子里有个画面，一句话让它动起来</td><td><code>minimax-h3-a</code></td><td>只写一段描述，不用传任何东西</td><td>6 秒约 ¥0.6（480P）</td></tr>
+<tr><td>想让人物 / 商品在视频里长得和照片一模一样</td><td><code>minimax-h3-b</code></td><td>传 1–9 张参考图 + 描述动作</td><td>6 秒约 ¥0.9（统一价）</td></tr>
+<tr><td>开头和结尾两张图都画好了，中间让 AI 演出来</td><td><code>minimax-h3-c</code></td><td>传首帧图 + 尾帧图（缺一不可）</td><td>6 秒约 ¥0.6–0.9</td></tr>
+<tr><td>让一张人物照片开口说话 / 唱歌（口型对上）</td><td><code>minimax-h3-e</code></td><td>传人物图（1–9 张）+ 一段配音</td><td>5 秒 ¥0.5–1.75（看清晰度）</td></tr>
+<tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><code>minimax-h3-720p</code></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
+<tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela 按次档（<code>vela-mini</code> 起步最便宜）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
+<tr><td>要求高清晰度（1080P）的口播对口型</td><td><code>minimax-h3-e</code>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.75</td></tr>
+<tr><td>想精确控制成本，做几秒付几秒</td><td><code>vela-2.0-d-ps</code></td><td>写描述 + 自选秒数和清晰度</td><td>每秒 ¥0.5 / 0.8 / 1.0</td></tr>
+<tr><td>不想要视频，只要一张图</td><td><code>gpt-image-2</code> 系列</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
+</table>
+<div class="note"><b>i</b><span>记住一个规律：带「参考图」的模型负责「长得像」，带「音频」的负责「开口说话」，带「参考视频」的负责「照着拍」。只要记不住模型名，回这张表按「你想做的事」找就行。</span></div>
 <div class="jump"><b>H3 按秒</b><a href="#minimax-h3-a">minimax-h3-a</a><a href="#minimax-h3-b">minimax-h3-b</a><a href="#minimax-h3-c">minimax-h3-c</a><a href="#minimax-h3-d">minimax-h3-d</a><a href="#minimax-h3-e">minimax-h3-e</a><a href="#minimax-h3-720p">minimax-h3-720p</a><b>Vela 按次</b><a href="#vela-mini">vela-mini</a><a href="#vela-2.5">vela-2.5</a><a href="#vela-2.0-a">vela-2.0-a</a><a href="#vela-2.0-b">vela-2.0-b</a><a href="#vela-2.5-a">vela-2.5-a</a><a href="#vela-2.0-c">vela-2.0-c</a><a href="#vela-2.5-u">vela-2.5-u</a><a href="#vela-2.5-s">vela-2.5-s</a><a href="#vela-2.5-r">vela-2.5-r</a><a href="#vela-2.5-t">vela-2.5-t</a><b>Vela 按秒</b><a href="#vela-2.0-d-ps">vela-2.0-d-ps</a><b>生图</b><a href="#gpt-image-2">gpt-image-2</a><a href="#gpt-image-2-high">gpt-image-2-high</a><a href="#gpt-image-2.5-flare">gpt-image-2.5-flare</a></div>
 <div class="mgrid">
 <div class="mcard" id="vela-2.5"><h4><code>vela-2.5</code><span class="tag per">按次</span></h4>
