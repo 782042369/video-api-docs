@@ -169,7 +169,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
 <tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela <a href="#vela-percall">按次档</a>（<a href="#vela-mini"><code>vela-mini</code></a> 起步最便宜）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
 <tr><td>要求高清晰度（1080P）的口播对口型</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.75</td></tr>
-<tr><td>想精确控制成本，做几秒付几秒</td><td><a href="#vela-2.0-d-ps"><code>vela-2.0-d-ps</code></a></td><td>写描述 + 自选秒数和清晰度</td><td>每秒 ¥0.5 / 0.8 / 1.0</td></tr>
+<tr><td>想精确控制成本，做几秒付几秒（自选清晰度）</td><td><a href="#vela-2.0-d-ps"><code>vela-2.0-d-ps</code></a></td><td>写描述 + 自选秒数和清晰度</td><td>每秒 ¥0.5 / 0.8 / 1.0</td></tr>
+<tr><td>长片子（最长 30 秒）按秒付费，素材管够</td><td><a href="#vela-480-pro-ps">固定分辨率按秒档</a>（480/720 × 稳定/增强）</td><td>写描述 + 自选秒数，可传 30 图 + 10 视频 + 10 音频</td><td>每秒 ¥0.8 – ¥1.1</td></tr>
 <tr><td>不想要视频，只要一张图（快速、日常）</td><td><a href="#gpt-image-2.5-flare"><code>gpt-image-2.5-flare</code></a>（速度档）</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
 <tr><td>要精修一张图：改细节、改文字、商品图</td><td><a href="#gpt-image-2.5-sunburst"><code>gpt-image-2.5-sunburst</code></a>（质量档）</td><td>写描述 + 可多轮继续改</td><td>¥0.10 一张</td></tr>
 </table>
@@ -225,6 +226,10 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3 id="vela-persec">Vela 按秒档（<code>-ps</code> 后缀 = 按秒计费）</h3>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th><th>4K</th><th>时长与素材</th></tr>
 <tr id="vela-2.0-d-ps"><td><code>vela-2.0-d-ps</code></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>4–15 秒逐秒自选；≤9 图 / 3 视频 / 3 音频，满血档。真人脸素材可能被内容安全拦截，请自行调整素材。</td></tr>
+<tr id="vela-480-pro-ps"><td><code>vela-480-pro-ps</code></td><td>¥0.80/秒</td><td>—</td><td>—</td><td>—</td><td rowspan="4">固定分辨率按秒档（分辨率由模型名决定）：4–30 秒逐秒自选；最多 30 图 + 10 视频 + 10 音频（合计 ≤50）。480P 与 720P 各有「稳定 / 增强」两档，增强档输出质量更高。</td></tr>
+<tr id="vela-480-plus-ps"><td><code>vela-480-plus-ps</code></td><td>¥0.90/秒</td><td>—</td><td>—</td><td>—</td></tr>
+<tr id="vela-720-pro-ps"><td><code>vela-720-pro-ps</code></td><td>—</td><td>¥1.00/秒</td><td>—</td><td>—</td></tr>
+<tr id="vela-720-plus-ps"><td><code>vela-720-plus-ps</code></td><td>—</td><td>¥1.10/秒</td><td>—</td><td>—</td></tr>
 </table>
 <div class="note"><b>i</b><span>怎么选？怕算不清就选按次（一口价，做多长都是那个钱）；要灵活控制成本就选按秒款 <code>vela-2.0-d-ps</code>——480P 五毛、720P 八毛、1080P 一块（每秒），做几秒算几秒。表格里写「人脸易拦截」的模型，拿真人正脸照当素材可能被系统拦下，换个角度或漫画风头像更稳；写「face 放行」的可以加 face 参数解锁真人脸。最准的价格以网站「模型广场」为准。</span></div>
 <div class="note warn"><b>!</b><span>旧模型 ID 已于 2026-09-15 下线，请切换为新名：<code>minimax_h3_t2v</code>→<code>minimax-h3-a</code>；<code>minimax_h3_i2v</code> / <code>minimax_h3_15s</code>→<code>minimax-h3-b</code>；<code>minimax_h3_first_last</code>→<code>minimax-h3-c</code>；<code>minimax_h3_lipsync</code>→<code>minimax-h3-d</code>；<code>minimax_h3_lipsync_v2</code> / <code>minimax_h3_lipsync_15s</code>→<code>minimax-h3-e</code>。旧名请求将返回 503 model_not_found。</span></div>
@@ -238,7 +243,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>字段</th><th>类型</th><th>说明</th></tr>
 <tr><td><code>model</code></td><td>string</td><td>必填。用哪个模型，名字照抄模型目录里的拼写。</td></tr>
 <tr><td><code>prompt</code></td><td>string</td><td>必填。用一句大白话描述你要的画面：谁、在干嘛、什么风格，写得越具体效果越好。</td></tr>
-<tr><td><code>seconds</code> / <code>duration</code></td><td>number</td><td>要做几秒的视频。两个名字等效，填一个就行，填整数（如 5、10）。各模型有自己的时长范围（见目录），超了会在扣费前被拦下。</td></tr>
+<tr><td><code>seconds</code> / <code>duration</code> / <code>duration_seconds</code></td><td>number</td><td>要做几秒的视频。三个名字等效，填一个就行，填整数（如 5、10）。各模型有自己的时长范围（见目录），超了会在扣费前被拦下。</td></tr>
 <tr><td><code>aspect_ratio</code></td><td>string</td><td>画面形状：<code>16:9</code> 电视横屏、<code>9:16</code> 手机竖屏（发抖音用这个）、<code>1:1</code> 方形。</td></tr>
 <tr><td><code>resolution</code> / <code>size</code></td><td>string</td><td>清晰度：480P 省钱、720P 更清楚（部分 Vela 按秒款还有 1080P / 4K）。vela-2.5 固定 720P，填了也忽略。</td></tr>
 </table>
@@ -251,6 +256,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-d</code></td><td><code>audio</code>: string</td><td>单图版：恰好 1 张参考图 + 1 段音频，人物嘴型对齐。</td></tr>
 <tr><td><code>minimax-h3-720p</code></td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（1 段），AI 沿用其人物与运镜；也可传参考图。</td></tr>
 <tr><td>H3 a–e</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝；需要参考视频请用 <code>minimax-h3-720p</code>。</td></tr>
+<tr><td>Vela 系列字段别名</td><td>—</td><td>参考图可用 <code>images</code> / <code>image_url</code> / <code>reference_images</code>，视频用 <code>videos</code> / <code>reference_videos</code>，音频用 <code>audios</code> / <code>reference_audios</code>；多图建议在提示词里逐张点名（@图1、@图2…）。标注「face 放行」的款可加 <code>face: true</code> 开启真人脸放行（默认关）。</td></tr>
 </table>
 <h3 id="example-frames">示例：首尾帧</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-c",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
@@ -336,6 +342,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
 <tr><td>Vela 系列按次档（<code>vela-mini</code> … <code>vela-2.5-t</code>）</td><td>按成功生成次数</td><td>¥1.50 – ¥7.00 / 次，与时长无关</td></tr>
 <tr><td>Vela 按秒档（<code>vela-2.0-d-ps</code>）</td><td>按实际生成秒数</td><td>480P ¥0.50、720P ¥0.80、1080P ¥1.00 / 秒</td></tr>
+<tr><td>Vela 固定分辨率按秒档（480/720 × 稳定/增强）</td><td>按实际生成秒数</td><td>¥0.80 / ¥0.90 / ¥1.00 / ¥1.10 每秒（分辨率由模型名决定）</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；d / e 另有 1080P ¥0.35/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
