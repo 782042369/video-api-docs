@@ -173,11 +173,11 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p class="price">¥0.10 / 0.15 每秒</p>
 <p>开头和结尾两张图你来定，中间怎么过渡 AI 自己演，最长 15 秒，两张图缺一不可。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
 <div class="mcard" id="minimax-h3-d"><h4><code>minimax-h3-d</code><span class="tag sec">按秒</span> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></h4>
-<p class="price">¥0.10 / 0.15 每秒</p>
+<p class="price">¥0.10 / 0.15 / 0.35 每秒</p>
 <p>单图版音画同步（恰好 1 张参考图 + 1 段 <code>audio</code> 音频 URL）。请改用 <code>minimax-h3-e</code>（传 1 张图即可）。</p></div>
 <div class="mcard" id="minimax-h3-e"><h4><code>minimax-h3-e</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.10 / 0.15 每秒</p>
-<p>让照片开口说话：给人物图（最多 9 张）和一段配音，嘴型自动对上。有几段声音请先合成一个文件再传。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒。</p></div>
+<p class="price">¥0.10 / 0.15 / 0.35 每秒</p>
+<p>让照片开口说话：给人物图（最多 9 张）和一段配音，嘴型自动对上。有几段声音请先合成一个文件再传。做几秒付几秒：480P ¥0.10/秒、720P ¥0.15/秒、1080P ¥0.35/秒。</p></div>
 <div class="mcard" id="minimax-h3-720p"><h4><code>minimax-h3-720p</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.15 / 秒</p>
 <p>参考视频版：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。固定 720P，5–15 秒，统一 ¥0.15/秒。手头没直链？去 <a href="#refvideo">素材上传服务</a> 传一个。</p></div>
@@ -187,11 +187,11 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-a</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td>—（不接受任何参考素材）</td></tr>
 <tr><td><code>minimax-h3-b</code></td><td>按秒</td><td>15 秒</td><td>固定输出（统一计价）</td><td><code>input_reference</code>（≤9 张）</td></tr>
 <tr><td><code>minimax-h3-c</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code>（均必填）</td></tr>
-<tr><td><code>minimax-h3-d</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td>恰好 1 张图 + <code>audio</code>（上游维护中，建议用 <code>e</code>）</td></tr>
-<tr><td><code>minimax-h3-e</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>input_reference</code>（≤9 张）+ <code>audio</code>（恰好 1 段）</td></tr>
+<tr><td><code>minimax-h3-d</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td>恰好 1 张图 + <code>audio</code>（上游维护中，建议用 <code>e</code>）</td></tr>
+<tr><td><code>minimax-h3-e</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td><code>input_reference</code>（≤9 张）+ <code>audio</code>（恰好 1 段）</td></tr>
 <tr><td><code>minimax-h3-720p</code></td><td>按秒</td><td>15 秒</td><td>固定 720P</td><td><code>reference_videos</code>（1 段）或参考图；统一 ¥0.15/秒</td></tr>
 </table>
-<div class="note"><b>i</b><span>小贴士：H3 系列只有 480P（省钱包）和 720P（清晰包）两档，没有 1080P。a–e 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。b 和 720p 版是固定清晰度，统一 ¥0.15/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
+<div class="note"><b>i</b><span>小贴士：H3 系列有 480P（省钱包）、720P（清晰包）两档，d / e 两款另有 1080P（¥0.35/秒）。a–e 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。b 和 720p 版是固定清晰度，统一 ¥0.15/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
 <h3>Vela 系列 · 按次档</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长</th><th>分辨率</th><th>参考素材与说明</th></tr>
 <tr id="vela-mini"><td><code>vela-mini</code></td><td>¥1.50</td><td>4–12 秒</td><td>720P</td><td>≤9 图 + 3 音频；不限制人脸</td></tr>
@@ -317,7 +317,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
 <tr><td>Vela 系列按次档（<code>vela-mini</code> … <code>vela-2.5-t</code>）</td><td>按成功生成次数</td><td>¥1.50 – ¥7.00 / 次，与时长无关</td></tr>
 <tr><td>Vela 按秒档（<code>vela-2.0-d-ps</code>）</td><td>按实际生成秒数</td><td>480P ¥0.50、720P ¥0.80、1080P ¥1.00 / 秒</td></tr>
-<tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
+<tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；d / e 另有 1080P ¥0.35/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
