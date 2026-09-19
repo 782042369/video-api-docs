@@ -271,14 +271,14 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-c",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 <h3 id="example-lipsync">示例：音画同步</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-e",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "input_reference": ["https://example.com/character.jpg"],<br>    "audio": "https://example.com/voice.mp3",<br>    "seconds": 5,<br>    "aspect_ratio": "9:16"<br>  }'</code></pre>
-<div class="note ok"><b>✓</b><span>给图片/音频素材的规矩只有一条：必须是一个「任何人点开这个网址都能看到」的公开链接。只存在你自己电脑里的文件、需要登录才能看的链接都不行。没有直链？用 <a href="https://h3file.939593.xyz" target="_blank">素材上传服务</a>传一下就能拿到（2 小时有效）。放心，素材打不开导致失败的任务不会收你的钱。</span></div>
+<div class="note ok"><b>✓</b><span>给图片/音频素材的规矩只有一条：必须是一个「任何人点开这个网址都能看到」的公开链接。只存在你自己电脑里的文件、需要登录才能看的链接都不行。没有直链？用 <a href="https://h3file.939593.xyz" target="_blank">素材上传服务</a>传一下就能拿到（12 小时有效）。放心，素材打不开导致失败的任务不会收你的钱。</span></div>
 </section>
 
 <section id="refvideo"><div class="eyebrow">REFERENCE ASSETS</div><h2>参考素材全流程（上传 → 生成 → 轮询 → 下载）</h2>
 <p>手上有段视频、几张图或一段配音，想让 AI 照着它们拍片？四步搞定：先把素材传到本站素材暂存服务拿到直链 → 把直链塞进生成请求对应字段 → 隔几秒问一次进度 → 做好了下载 MP4。下面以参考视频为例走完整流程，图片 / 音频的用法在后面。</p>
 <div class="endpoint"><span class="m">POST</span>https://h3file.939593.xyz/upload · 第 1 步：上传参考视频</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl -F "file=@my-video.mp4" https://h3file.939593.xyz/upload</code></pre>
-<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>——这个 url 就是直链。文件 2 小时后自动删除，请尽快用它提交任务。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持常见视频（mp4 / mov / webm…）、图片（jpg / png / webp…）和音频（mp3 / wav / m4a），单个 ≤200MB。</p>
+<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>——这个 url 就是直链。文件 12 小时后自动删除，足够批量任务排队使用。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持常见视频（mp4 / mov / webm…）、图片（jpg / png / webp…）和音频（mp3 / wav / m4a），单个 ≤200MB。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · 第 2 步：带参考视频生成（minimax-h3-720p）</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-720p",<br>    "prompt": "参考这段视频的人物形象和运镜风格，拍摄一只柯基在草地奔跑",<br>    "seconds": 5,<br>    "resolution": "720p",<br>    "reference_videos": ["https://h3file.939593.xyz/f/xxxx.mp4"]<br>  }'</code></pre>
 <p style="color:var(--muted);font-size:13.5px">保存返回的 <code>id</code>（任务编号）。minimax-h3-720p 固定 720P、5–15 秒、统一 ¥0.15/秒，做几秒付几秒，失败不扣费。</p>
@@ -298,7 +298,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3>示例：参考图 + 配音生成对口型视频（minimax-h3-e）</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code># 1) 上传人物图和配音（各传一次，拿到两个直链）<br>curl -F "file=@character.jpg" https://h3file.939593.xyz/upload<br>curl -F "file=@voice.mp3" https://h3file.939593.xyz/upload<br><br># 2) 提交任务：图进 input_reference，音频进 audio<br>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-e",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "seconds": 5,<br>    "resolution": "720P",<br>    "input_reference": ["https://h3file.939593.xyz/f/xxxx.jpg"],<br>    "audio": "https://h3file.939593.xyz/f/yyyy.mp3"<br>  }'</code></pre>
 <p style="color:var(--muted);font-size:13.5px">轮询和下载与上面的第 3、4 步完全相同（换任务编号即可）。</p>
-<div class="note ok"><b>✓</b><span>素材直链的规矩：必须是公网可访问的链接。没有自己的图床/网盘直链？用上面第 1 步的上传服务就行，2 小时有效期内提交任务足够了。</span></div>
+<div class="note ok"><b>✓</b><span>素材直链的规矩：必须是公网可访问的链接。没有自己的图床/网盘直链？用上面第 1 步的上传服务就行，12 小时有效期内提交任务足够了。</span></div>
 </section>
 
 <section id="images"><div class="eyebrow">IMAGE GENERATION</div><h2>生图 API（OpenAI 兼容）</h2>
@@ -367,13 +367,13 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3 id="faq-wait">一条视频要等多久？</h3>
 <p>一般 2–5 分钟。高峰期可能 10–20 分钟，属正常排队，别狂刷查询（5–15 秒查一次足够），更不要重新下单（会重复花钱）。</p>
 <h3 id="faq-asset">「素材直链」是什么？我只有手机里的文件怎么办？</h3>
-<p>直链 = 一个任何人点开都能看到/下载的网址。本地文件先传到我们的 <a href="#refvideo">素材上传服务</a>（h3file.939593.xyz），拿到链接填进请求即可。注意链接 2 小时过期，拿到尽快提交任务。</p>
+<p>直链 = 一个任何人点开都能看到/下载的网址。本地文件先传到我们的 <a href="#refvideo">素材上传服务</a>（h3file.939593.xyz），拿到链接填进请求即可。链接 12 小时有效，足够批量任务排队。</p>
 <h3 id="faq-resolution">480P / 720P / 1080P 怎么选？</h3>
 <p>发朋友圈、快速试想法用 480P（最便宜）；正式发布用 720P（清晰且不贵）；大屏投放或精修口播用 1080P（目前仅 minimax-h3-d / e 支持）。</p>
 <h3 id="faq-fail">任务失败了，一般是什么原因？</h3>
 <p>最常见的三个：① 素材链接打不开（换上传服务重新传）；② 时长超出该模型的范围（对照模型目录改秒数）；③ 真人脸素材被内容安全拦截（换角度或漫画风）。失败都不扣钱，改好重发即可。</p>
 <h3 id="faq-save">成品和素材能存多久？</h3>
-<p>成品视频做好后请尽快下载到自己设备长期保存（平台不承诺永久保留）；上传的素材 2 小时后自动删除。</p>
+<p>成品视频做好后请尽快下载到自己设备长期保存（平台不承诺永久保留）；上传的素材 12 小时后自动删除。</p>
 <h3 id="faq-token">令牌是什么？在哪拿？别人能用我的吗？</h3>
 <p>令牌（sk- 开头）= 你的钥匙 + 钱包，登录网站在「令牌」页创建。谁拿到它就能花你的额度，别发群里、别写进公开代码；泄露了随时在网站禁用重发。</p>
 </section>
