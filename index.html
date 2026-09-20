@@ -166,7 +166,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>想让人物 / 商品在视频里长得和照片一模一样</td><td><a href="#minimax-h3-b"><code>minimax-h3-b</code></a></td><td>传 1–9 张参考图 + 描述动作</td><td>6 秒约 ¥0.9（统一价）</td></tr>
 <tr><td>开头和结尾两张图都画好了，中间让 AI 演出来</td><td><a href="#minimax-h3-c"><code>minimax-h3-c</code></a></td><td>传首帧图 + 尾帧图（缺一不可）</td><td>6 秒约 ¥0.6–0.9</td></tr>
 <tr><td>让一张人物照片开口说话 / 唱歌（口型对上）</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（多图）/ <a href="#minimax-h3-d"><code>minimax-h3-d</code></a>（单图）</td><td>传人物图（1–9 张）+ 一段配音</td><td>5 秒 ¥0.5–1.75（看清晰度）</td></tr>
-<tr><td>想要带声音的视频（AI 自动配音）</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a></td><td>写描述，可传 1 张起始图；默认自动生成音轨</td><td>6 秒 ¥3.0–6.0（看清晰度）</td></tr>
+<tr><td>想要带声音的视频（AI 自动配音）</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a></td><td>写描述，可传 1 张起始图；默认自动生成音轨</td><td>6 秒 ¥0.6–1.2（看清晰度）</td></tr>
 <tr><td>用几张图锁定人物和服装，让它动起来</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a>（≤7 张）或 <a href="#vela-2.0-b"><code>vela-2.0-b</code></a></td><td>传参考图，提示词用 &lt;IMAGE_1&gt; 点名</td><td>grok 按秒 / vela ¥2.70 一条</td></tr>
 <tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
 <tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela <a href="#vela-percall">按次档</a>（<a href="#vela-mini"><code>vela-mini</code></a> 起步最便宜）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
@@ -202,11 +202,11 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p class="price">¥0.15 / 秒</p>
 <p>参考视频版：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。固定 720P，5–15 秒，统一 ¥0.15/秒。手头没直链？去 <a href="#refvideo">素材上传服务</a> 传一个。</p></div>
 <div class="mcard" id="grok-imagine-video"><h4><code>grok-imagine-video</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.50 / 0.80 每秒</p>
-<p>Grok 想象视频·标准版：文生视频、单图图生（<code>image</code> 传 1 张起始帧）。1–15 秒，480P ¥0.50 / 720P ¥0.80 每秒；不支持 1080P。</p></div>
+<p class="price">¥0.10 / 0.15 每秒</p>
+<p>Grok 想象视频·标准版：文生视频、单图图生（<code>image</code> 传 1 张起始帧）。1–15 秒，480P ¥0.10 / 720P ¥0.15 每秒；不支持 1080P。</p></div>
 <div class="mcard" id="grok-imagine-video-1.5"><h4><code>grok-imagine-video-1.5</code><span class="tag sec">按秒</span></h4>
-<p class="price">¥0.50 / 0.80 / 1.00 每秒</p>
-<p>Grok 1.5 升级版：文生、单图图生、多参考图生视频（≤7 张，提示词用 <code>&lt;IMAGE_1&gt;</code> 点名）还支持预设声音（<code>&lt;AUDIO_0&gt;</code>）。1–15 秒，480P ¥0.50 / 720P ¥0.80 / 1080P ¥1.00 每秒（多参考图生最高 720P）。</p></div>
+<p class="price">¥0.10 / 0.15 / 0.20 每秒</p>
+<p>Grok 1.5 升级版：文生、单图图生、多参考图生视频（≤7 张，提示词用 <code>&lt;IMAGE_1&gt;</code> 点名）还支持预设声音（<code>&lt;AUDIO_0&gt;</code>）。1–15 秒，480P ¥0.10 / 720P ¥0.15 / 1080P ¥0.20 每秒（多参考图生最高 720P）。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
@@ -363,7 +363,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>Vela 固定分辨率按秒档（480/720 × 稳定/增强）</td><td>按实际生成秒数</td><td>¥0.80 / ¥0.90 / ¥1.00 / ¥1.10 每秒（分辨率由模型名决定）</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；d / e 另有 1080P ¥0.35/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
-<tr><td>Grok Imagine（<code>grok-imagine-video</code> / <code>-1.5</code>）</td><td>按实际生成秒数</td><td>480P ¥0.50、720P ¥0.80、1080P ¥1.00 / 秒（1080P 仅 1.5 文生与单图）</td></tr>
+<tr><td>Grok Imagine（<code>grok-imagine-video</code> / <code>-1.5</code>）</td><td>按实际生成秒数</td><td>480P ¥0.10、720P ¥0.15、1080P ¥0.20 / 秒（1080P 仅 1.5 文生与单图）</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
