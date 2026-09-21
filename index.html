@@ -167,23 +167,22 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>开头和结尾两张图都画好了，中间让 AI 演出来</td><td><a href="#minimax-h3-c"><code>minimax-h3-c</code></a></td><td>传首帧图 + 尾帧图（缺一不可）</td><td>6 秒约 ¥0.6–0.9</td></tr>
 <tr><td>让一张人物照片开口说话 / 唱歌（口型对上）</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（多图）/ <a href="#minimax-h3-d"><code>minimax-h3-d</code></a>（单图）</td><td>传人物图（1–9 张）+ 一段配音</td><td>5 秒 ¥0.5–1.75（看清晰度）</td></tr>
 <tr><td>想要带声音的视频（AI 自动配音）</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a></td><td>写描述，可传 1 张起始图；默认自动生成音轨</td><td>6 秒 ¥0.6–1.2（看清晰度）</td></tr>
-<tr><td>用几张图锁定人物和服装，让它动起来</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a>（≤7 张）或 <a href="#vela-2.0-b"><code>vela-2.0-b</code></a></td><td>传参考图，提示词用 &lt;IMAGE_1&gt; 点名</td><td>grok 按秒 / vela ¥2.70 一条</td></tr>
+<tr><td>用几张图锁定人物和服装，让它动起来</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a>（≤7 张）或 <a href="#vela-2.5-a"><code>vela-2.5-a</code></a></td><td>传参考图，提示词用 &lt;IMAGE_1&gt; 点名</td><td>grok 按秒 / vela ¥2.70 一条</td></tr>
 <tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
 <tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela <a href="#vela-percall">按次档</a>（<a href="#vela-mini"><code>vela-mini</code></a> 起步）或低价档 <a href="#vela-720p-30s"><code>vela-720p-30s</code></a>（¥2.20 固定 30 秒，容忍偶尔翻车）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
 <tr><td>要求高清晰度（1080P）的口播对口型</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.75</td></tr>
-<tr><td>想精确控制成本，做几秒付几秒（自选清晰度）</td><td><a href="#vela-2.0-d-ps"><code>vela-2.0-d-ps</code></a></td><td>写描述 + 自选秒数和清晰度</td><td>每秒 ¥0.5 / 0.8 / 1.0</td></tr>
 <tr><td>长片子（最长 30 秒）按秒付费，素材管够</td><td><a href="#vela-480-pro-ps">固定分辨率按秒档</a>（480/720 × 稳定/增强）</td><td>写描述 + 自选秒数，可传 30 图 + 10 视频 + 10 音频</td><td>每秒 ¥0.8 – ¥1.1</td></tr>
 <tr><td>不想要视频，只要一张图（快速、日常）</td><td><a href="#gpt-image-2.5-flare"><code>gpt-image-2.5-flare</code></a>（速度档）</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
 <tr><td>要精修一张图：改细节、改文字、商品图</td><td><a href="#gpt-image-2.5-sunburst"><code>gpt-image-2.5-sunburst</code></a>（质量档）</td><td>写描述 + 可多轮继续改</td><td>¥0.10 一张</td></tr>
 </table>
 <div class="note"><b>i</b><span>记住一个规律：带「参考图」的模型负责「长得像」，带「音频」的负责「开口说话」，带「参考视频」的负责「照着拍」。只要记不住模型名，回这张表按「你想做的事」找就行。</span></div>
 <div class="jump"><b>章节</b><a href="#scene-picker">场景速选</a><a href="#quickstart">快速开始</a><a href="#create">怎么提交</a><a href="#materials">素材怎么传</a><a href="#refvideo">素材上传服务</a><a href="#query">查进度取成品</a><a href="#images">生图</a><a href="#faq">常见问题</a><a href="#billing">价格</a><a href="#errors">报错怎么办</a></div>
-<div class="jump"><b>H3 按秒</b><a href="#minimax-h3-a">minimax-h3-a</a><a href="#minimax-h3-b">minimax-h3-b</a><a href="#minimax-h3-c">minimax-h3-c</a><a href="#minimax-h3-d">minimax-h3-d</a><a href="#minimax-h3-e">minimax-h3-e</a><a href="#minimax-h3-720p">minimax-h3-720p</a><a href="#grok-imagine-video-1.5">grok-video-1.5</a><b>Vela 按次</b><a href="#vela-mini">vela-mini</a><a href="#vela-2.5">vela-2.5</a><a href="#vela-720p-30s">vela-720p-30s</a><a href="#vela-2.0-a">vela-2.0-a</a><a href="#vela-2.0-b">vela-2.0-b</a><a href="#vela-2.5-a">vela-2.5-a</a><a href="#vela-2.0-c">vela-2.0-c</a><a href="#vela-2.5-u">vela-2.5-u</a><a href="#vela-2.5-s">vela-2.5-s</a><a href="#vela-2.5-r">vela-2.5-r</a><a href="#vela-2.5-t">vela-2.5-t</a><a href="#vela-2.5-m">m⚠</a><a href="#vela-2.5-n">n⚠</a><a href="#vela-2.5-o">o⚠</a><a href="#vela-2.5-p">p⚠</a><a href="#vela-2.5-q">q⚠</a><a href="#vela-2.0-d">2.0-d⚠</a><a href="#vela-2.0-e">2.0-e⚠</a><b>Vela 按秒</b><a href="#vela-2.0-d-ps">vela-2.0-d-ps</a><a href="#vela-2.0-f-ps">f⚠</a><a href="#vela-2.0-e-ps">e⚠</a><a href="#vela-480-pro-ps">480-pro</a><a href="#vela-480-plus-ps">480-plus</a><a href="#vela-720-pro-ps">720-pro</a><a href="#vela-720-plus-ps">720-plus</a><b>生图</b><a href="#gpt-image-2">gpt-image-2</a><a href="#gpt-image-2-high">gpt-image-2-high</a><a href="#gpt-image-2.5-flare">gpt-image-2.5-flare</a><a href="#gpt-image-2.5-sunburst">gpt-image-2.5-sunburst</a></div>
+<div class="jump"><b>H3 按秒</b><a href="#minimax-h3-a">minimax-h3-a</a><a href="#minimax-h3-b">minimax-h3-b</a><a href="#minimax-h3-c">minimax-h3-c</a><a href="#minimax-h3-d">minimax-h3-d</a><a href="#minimax-h3-e">minimax-h3-e</a><a href="#minimax-h3-720p">minimax-h3-720p</a><a href="#grok-imagine-video-1.5">grok-video-1.5</a><b>Vela 按次</b><a href="#vela-mini">vela-mini</a><a href="#vela-2.5">vela-2.5⚠</a><a href="#vela-720p-30s">720p-30s⚠</a><a href="#vela-2.5-a">vela-2.5-a</a><a href="#vela-2.0-a">a⚠</a><a href="#vela-2.0-b">b⚠</a><a href="#vela-2.0-c">c⚠</a><a href="#vela-2.5-u">u⚠</a><a href="#vela-2.5-s">s⚠</a><a href="#vela-2.5-r">r⚠</a><a href="#vela-2.5-t">t⚠</a><a href="#vela-2.5-m">m⚠</a><a href="#vela-2.5-n">n⚠</a><a href="#vela-2.5-o">o⚠</a><a href="#vela-2.5-p">p⚠</a><a href="#vela-2.5-q">q⚠</a><a href="#vela-2.0-d">2.0-d⚠</a><a href="#vela-2.0-e">2.0-e⚠</a><b>Vela 按秒</b><a href="#vela-2.0-d-ps">d-ps⚠</a><a href="#vela-2.0-f-ps">f⚠</a><a href="#vela-2.0-e-ps">e⚠</a><a href="#vela-480-pro-ps">480-pro</a><a href="#vela-480-plus-ps">480-plus</a><a href="#vela-720-pro-ps">720-pro</a><a href="#vela-720-plus-ps">720-plus</a><b>生图</b><a href="#gpt-image-2">gpt-image-2</a><a href="#gpt-image-2-high">gpt-image-2-high</a><a href="#gpt-image-2.5-flare">gpt-image-2.5-flare</a><a href="#gpt-image-2.5-sunburst">gpt-image-2.5-sunburst</a></div>
 <div class="mgrid">
-<div class="mcard" id="vela-2.5"><h4><code>vela-2.5</code><span class="tag per">按次</span></h4>
+<div class="mcard" id="vela-2.5"><h4><code>vela-2.5</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span><span class="tag per">按次</span></h4>
 <p class="price">¥2.00 / 次</p>
 <p>一条管够 30 秒、720P 清晰度，最多可以给它 10 张参考图帮你锁定人物和场景。不能传视频或音频当参考。时长分辨率都写死不用选，一条一口价。</p></div>
-<div class="mcard" id="vela-720p-30s"><h4><code>vela-720p-30s</code><span class="tag per">按次·低价档</span></h4>
+<div class="mcard" id="vela-720p-30s"><h4><code>vela-720p-30s</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span><span class="tag per">按次·低价档</span></h4>
 <p class="price">¥2.20 / 次</p>
 <p>30 秒 / 720P 一口价，最多 10 张参考图。低价档须知：可能出现画质降级、生成不稳定、人脸被打码等情况，失败自动全额退款；要稳定输出请选 Vela 稳定档。</p></div>
 <div class="mcard" id="minimax-h3-a"><h4><code>minimax-h3-a</code><span class="tag sec">按秒</span></h4>
@@ -209,7 +208,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>Grok 1.5 升级版：文生、单图图生、多参考图生视频（≤7 张，提示词用 <code>&lt;IMAGE_1&gt;</code> 点名）还支持预设声音（<code>&lt;AUDIO_0&gt;</code>）。1–15 秒，480P ¥0.10 / 720P ¥0.15 / 1080P ¥0.20 每秒（多参考图生最高 720P）。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
-<tr><td><code>vela-2.5</code></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
+<tr><td><code>vela-2.5</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>按次 ¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td><code>images</code>（≤10 张）</td></tr>
 <tr><td><code>minimax-h3-a</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td>—（不接受任何参考素材）</td></tr>
 <tr><td><code>minimax-h3-b</code></td><td>按秒</td><td>15 秒</td><td>固定输出（统一计价）</td><td><code>input_reference</code>（≤9 张）</td></tr>
 <tr><td><code>minimax-h3-c</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code>（均必填）</td></tr>
@@ -223,26 +222,26 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>价格/次</th><th>时长</th><th>分辨率</th><th>参考素材与说明</th></tr>
 <tr id="vela-mini"><td><code>vela-mini</code></td><td>¥1.50</td><td>4–12 秒</td><td>720P</td><td>≤9 图 + 3 音频；不限制人脸</td></tr>
 <tr><td><code>vela-2.5</code></td><td>¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td>≤10 图；时长与分辨率参数忽略</td></tr>
-<tr id="vela-2.0-a"><td><code>vela-2.0-a</code></td><td>¥2.10</td><td>4–15 秒</td><td>720P</td><td>≤9 图；真人脸素材易被内容安全拦截</td></tr>
-<tr id="vela-720p-30s"><td><code>vela-720p-30s</code><span class="tag per">低价档</span></td><td>¥2.20</td><td>固定 30 秒</td><td>固定 720P</td><td>≤10 图；16:9 / 9:16。低价档：可能降智 / 不稳定 / 人脸打码，失败自动退款</td></tr>
-<tr id="vela-2.0-b"><td><code>vela-2.0-b</code></td><td>¥2.70</td><td>4–15 秒</td><td>720P</td><td>9 图 / 3 视频 / 3 音频（合计 ≤15）；人脸易拦截</td></tr>
+<tr id="vela-2.0-a"><td><code>vela-2.0-a</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥2.10</td><td>4–15 秒</td><td>720P</td><td>≤9 图；真人脸素材易被内容安全拦截</td></tr>
+<tr id="vela-720p-30s"><td><code>vela-720p-30s</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span><span class="tag per">低价档</span></td><td>¥2.20</td><td>固定 30 秒</td><td>固定 720P</td><td>≤10 图；16:9 / 9:16。低价档：可能降智 / 不稳定 / 人脸打码，失败自动退款</td></tr>
+<tr id="vela-2.0-b"><td><code>vela-2.0-b</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥2.70</td><td>4–15 秒</td><td>720P</td><td>9 图 / 3 视频 / 3 音频（合计 ≤15）；人脸易拦截</td></tr>
 <tr id="vela-2.5-a"><td><code>vela-2.5-a</code></td><td>¥3.30</td><td>4–30 秒</td><td>720P</td><td>10 图 / 10 视频 / 10 音频（合计 ≤30）</td></tr>
 <tr id="vela-2.5-m"><td><code>vela-2.5-m</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥1.50</td><td>4–30 秒</td><td>480P / 720P</td><td>≤30 图；不支持参考视频 / 音频</td></tr>
 <tr id="vela-2.5-n"><td><code>vela-2.5-n</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥2.40</td><td>4–30 秒</td><td>720P</td><td>图 / 视频 / 音频（合计 ≤50）；face 放行（默认关）</td></tr>
 <tr id="vela-2.5-o"><td><code>vela-2.5-o</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥2.50</td><td>4–30 秒</td><td>720P</td><td>图 / 视频 / 音频（合计 ≤50）；face 放行（默认关）</td></tr>
 <tr id="vela-2.5-p"><td><code>vela-2.5-p</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥3.00</td><td>4–30 秒</td><td>720P</td><td>10 图 / 10 视频 / 10 音频（合计 ≤30）；face 放行</td></tr>
 <tr id="vela-2.5-q"><td><code>vela-2.5-q</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥4.30</td><td>4–30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频（合计 ≤50）；face 放行</td></tr>
-<tr id="vela-2.0-c"><td><code>vela-2.0-c</code></td><td>¥6.00</td><td>10 / 15 秒</td><td>720P</td><td>9 图 / 3 视频 / 3 音频；多种画幅比例</td></tr>
+<tr id="vela-2.0-c"><td><code>vela-2.0-c</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥6.00</td><td>10 / 15 秒</td><td>720P</td><td>9 图 / 3 视频 / 3 音频；多种画幅比例</td></tr>
 <tr id="vela-2.0-d"><td><code>vela-2.0-d</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥3.75</td><td>5–15 秒</td><td>720P</td><td>≤9 图 + 3 音频；不支持参考视频</td></tr>
 <tr id="vela-2.0-e"><td><code>vela-2.0-e</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥4.35</td><td>10–15 秒</td><td>720P</td><td>9 图 / 3 视频 / 3 音频；原生不拦截人脸</td></tr>
-<tr id="vela-2.5-u"><td><code>vela-2.5-u</code></td><td>¥6.00</td><td>5–30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频；原生不拦截人脸</td></tr>
-<tr id="vela-2.5-s"><td><code>vela-2.5-s</code></td><td>¥6.00</td><td>5 / 10 / 15 / 20 / 25 / 30 秒</td><td>720P</td><td>10 图 / 10 视频 / 10 音频</td></tr>
-<tr id="vela-2.5-r"><td><code>vela-2.5-r</code></td><td>¥6.50</td><td>5 / 10 / 15 / 30 秒</td><td>720P</td><td>≤9 图；原生放行人脸；多种画幅；不支持视频 / 音频</td></tr>
-<tr id="vela-2.5-t"><td><code>vela-2.5-t</code></td><td>¥7.00</td><td>10 / 15 / 20 / 25 / 30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频</td></tr>
+<tr id="vela-2.5-u"><td><code>vela-2.5-u</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥6.00</td><td>5–30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频；原生不拦截人脸</td></tr>
+<tr id="vela-2.5-s"><td><code>vela-2.5-s</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥6.00</td><td>5 / 10 / 15 / 20 / 25 / 30 秒</td><td>720P</td><td>10 图 / 10 视频 / 10 音频</td></tr>
+<tr id="vela-2.5-r"><td><code>vela-2.5-r</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥6.50</td><td>5 / 10 / 15 / 30 秒</td><td>720P</td><td>≤9 图；原生放行人脸；多种画幅；不支持视频 / 音频</td></tr>
+<tr id="vela-2.5-t"><td><code>vela-2.5-t</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥7.00</td><td>10 / 15 / 20 / 25 / 30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频</td></tr>
 </table>
 <h3 id="vela-persec">Vela 按秒档（<code>-ps</code> 后缀 = 按秒计费）</h3>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th><th>4K</th><th>时长与素材</th></tr>
-<tr id="vela-2.0-d-ps"><td><code>vela-2.0-d-ps</code></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>4–15 秒逐秒自选；≤9 图 / 3 视频 / 3 音频，满血档。真人脸素材可能被内容安全拦截，请自行调整素材。</td></tr>
+<tr id="vela-2.0-d-ps"><td><code>vela-2.0-d-ps</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>4–15 秒逐秒自选；≤9 图 / 3 视频 / 3 音频，满血档。真人脸素材可能被内容安全拦截，请自行调整素材。</td></tr>
 <tr id="vela-2.0-f-ps"><td><code>vela-2.0-f-ps</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>高速档；≤9 图 / 3 视频 / 3 音频。</td></tr>
 <tr id="vela-2.0-e-ps"><td><code>vela-2.0-e-ps</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥0.64/秒</td><td>¥0.94/秒</td><td>¥2.24/秒</td><td>¥4.54/秒</td><td>稳定满血档，支持 4K 与多种画幅。</td></tr>
 <tr id="vela-480-pro-ps"><td><code>vela-480-pro-ps</code></td><td>¥0.80/秒</td><td>—</td><td>—</td><td>—</td><td rowspan="4">固定分辨率按秒档（分辨率由模型名决定）：4–30 秒逐秒自选；最多 30 图 + 10 视频 + 10 音频（合计 ≤50）。480P 与 720P 各有「稳定 / 增强」两档，增强档输出质量更高。</td></tr>
@@ -251,7 +250,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr id="vela-720-plus-ps"><td><code>vela-720-plus-ps</code></td><td>—</td><td>¥1.10/秒</td><td>—</td><td>—</td></tr>
 </table>
 <div class="note warn"><b>!</b><span>标「维护中」的型号当前暂不可用（渠道调整中），恢复后自动解除；其余型号均可正常调用。</span></div>
-<div class="note"><b>i</b><span>怎么选？怕算不清就选按次（一口价，做多长都是那个钱）；要灵活控制成本就选按秒款 <code>vela-2.0-d-ps</code>——480P 五毛、720P 八毛、1080P 一块（每秒），做几秒算几秒。表格里写「人脸易拦截」的模型，拿真人正脸照当素材可能被系统拦下，换个角度或漫画风头像更稳；写「face 放行」的可以加 face 参数解锁真人脸。最准的价格以网站「模型广场」为准。</span></div>
+<div class="note"><b>i</b><span>怎么选？怕算不清就选按次（一口价，做多长都是那个钱）；要灵活控制成本就选固定分辨率按秒档（480P 八毛起，每秒计价），做几秒算几秒。表格里写「人脸易拦截」的模型，拿真人正脸照当素材可能被系统拦下，换个角度或漫画风头像更稳；写「face 放行」的可以加 face 参数解锁真人脸。最准的价格以网站「模型广场」为准。</span></div>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
@@ -358,9 +357,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
-<tr><td>Vela 系列按次档（<code>vela-mini</code> … <code>vela-2.5-t</code>）</td><td>按成功生成次数</td><td>¥1.50 – ¥7.00 / 次，与时长无关</td></tr>
-<tr><td><code>vela-720p-30s</code>（低价档）</td><td>按成功生成次数</td><td>¥2.20 / 次（固定 30 秒 / 720P；可能降智 / 不稳定 / 人脸打码，失败自动退款）</td></tr>
-<tr><td>Vela 按秒档（<code>vela-2.0-d-ps</code>）</td><td>按实际生成秒数</td><td>480P ¥0.50、720P ¥0.80、1080P ¥1.00 / 秒</td></tr>
+<tr><td>Vela 按次（<code>vela-mini</code> / <code>vela-2.5-a</code>）</td><td>按成功生成次数</td><td>¥1.50 / ¥3.30 每次（其余按次款维护中）</td></tr>
+<tr><td><code>vela-720p-30s</code>（低价档，维护中）</td><td>按成功生成次数</td><td>¥2.20 / 次（固定 30 秒 / 720P；可能降智 / 不稳定 / 人脸打码，失败自动退款）</td></tr>
 <tr><td>Vela 固定分辨率按秒档（480/720 × 稳定/增强）</td><td>按实际生成秒数</td><td>¥0.80 / ¥0.90 / ¥1.00 / ¥1.10 每秒（分辨率由模型名决定）</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；d / e 另有 1080P ¥0.35/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
