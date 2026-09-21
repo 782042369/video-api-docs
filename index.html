@@ -171,7 +171,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
 <tr><td>拍口播 / 带解说的片子，一口价不想算秒</td><td>Vela <a href="#vela-percall">按次档</a>（<a href="#vela-mini"><code>vela-mini</code></a> 起步）或低价档 <a href="#vela-720p-30s"><code>vela-720p-30s</code></a>（¥2.20 固定 30 秒，容忍偶尔翻车）</td><td>写描述，可选传参考图 / 视频 / 音频</td><td>¥1.5 – ¥7 一条</td></tr>
 <tr><td>要求高清晰度（1080P）的口播对口型</td><td><a href="#minimax-h3-e"><code>minimax-h3-e</code></a>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.75</td></tr>
-<tr><td>长片子（最长 30 秒）按秒付费，素材管够</td><td><a href="#vela-480-pro-ps">固定分辨率按秒档</a>（480/720 × 稳定/增强）</td><td>写描述 + 自选秒数，可传 30 图 + 10 视频 + 10 音频</td><td>每秒 ¥0.8 – ¥1.1</td></tr>
+<tr><td>长片子（最长 30 秒）按秒付费，素材管够</td><td><a href="#vela-480-pro-ps">固定分辨率按秒档</a>（480/720 × 稳定/增强）</td><td>写描述 + 自选秒数，可传 30 图 + 10 视频 + 10 音频</td><td>每秒 ¥0.55 – ¥1.4</td></tr>
 <tr><td>不想要视频，只要一张图（快速、日常）</td><td><a href="#gpt-image-2.5-flare"><code>gpt-image-2.5-flare</code></a>（速度档）</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
 <tr><td>要精修一张图：改细节、改文字、商品图</td><td><a href="#gpt-image-2.5-sunburst"><code>gpt-image-2.5-sunburst</code></a>（质量档）</td><td>写描述 + 可多轮继续改</td><td>¥0.10 一张</td></tr>
 </table>
@@ -241,15 +241,18 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </table>
 <h3 id="vela-persec">Vela 按秒档（<code>-ps</code> 后缀 = 按秒计费）</h3>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th><th>4K</th><th>时长与素材</th></tr>
-<tr id="vela-2.0-d-ps"><td><code>vela-2.0-d-ps</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>4–15 秒逐秒自选；≤9 图 / 3 视频 / 3 音频，满血档。真人脸素材可能被内容安全拦截，请自行调整素材。</td></tr>
-<tr id="vela-2.0-f-ps"><td><code>vela-2.0-f-ps</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥0.50/秒</td><td>¥0.80/秒</td><td>¥1.00/秒</td><td>—</td><td>高速档；≤9 图 / 3 视频 / 3 音频。</td></tr>
-<tr id="vela-2.0-e-ps"><td><code>vela-2.0-e-ps</code> <span class="tag" style="background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)">维护中</span></td><td>¥0.64/秒</td><td>¥0.94/秒</td><td>¥2.24/秒</td><td>¥4.54/秒</td><td>稳定满血档，支持 4K 与多种画幅。</td></tr>
-<tr id="vela-480-pro-ps"><td><code>vela-480-pro-ps</code></td><td>¥0.80/秒</td><td>—</td><td>—</td><td>—</td><td rowspan="4">固定分辨率按秒档（分辨率由模型名决定）：4–30 秒逐秒自选；最多 30 图 + 10 视频 + 10 音频（合计 ≤50）。480P 与 720P 各有「稳定 / 增强」两档，增强档输出质量更高。</td></tr>
-<tr id="vela-480-plus-ps"><td><code>vela-480-plus-ps</code></td><td>¥0.90/秒</td><td>—</td><td>—</td><td>—</td></tr>
-<tr id="vela-720-pro-ps"><td><code>vela-720-pro-ps</code></td><td>—</td><td>¥1.00/秒</td><td>—</td><td>—</td></tr>
-<tr id="vela-720-plus-ps"><td><code>vela-720-plus-ps</code></td><td>—</td><td>¥1.10/秒</td><td>—</td><td>—</td></tr>
-</table>
-<div class="note warn"><b>!</b><span>标「维护中」的型号当前暂不可用（渠道调整中），恢复后自动解除；其余型号均可正常调用。</span></div>
+<tr id="vela-mini-2-ps"><td><code>vela-mini-2-ps</code></td><td>¥0.18/秒</td><td>¥0.25/秒</td><td>—</td><td>—</td><td rowspan="4">Seedance-2 系按秒：mini/fast 5 或 10 秒；pro 4–15 秒；2.5-pro 4–30 秒。均支持 9 图 / 3 视频 / 3 音频（2.5-pro 为 30/10/10）。</td></tr>
+<tr id="vela-fast-2-ps"><td><code>vela-fast-2-ps</code></td><td>¥0.27/秒</td><td>¥0.35/秒</td><td>—</td><td>—</td></tr>
+<tr id="vela-pro-2-ps"><td><code>vela-pro-2-ps</code></td><td>¥0.35/秒</td><td>¥0.45/秒</td><td>¥0.80/秒</td><td>¥1.40/秒</td></tr>
+<tr id="vela-pro-2-5-ps"><td><code>vela-pro-2-5-ps</code></td><td>¥0.40/秒</td><td>¥0.60/秒</td><td>¥0.90/秒</td><td>—</td></tr>
+<tr id="vela-480-pro-ps"><td><code>vela-480-pro-ps</code></td><td>¥0.60/秒</td><td>—</td><td>—</td><td>—</td><td rowspan="5">固定分辨率按秒档（分辨率由模型名决定）：4–30 秒，30 图 / 10 视频 / 10 音频（≤50）。稳定=速度快，增强=满血全参。</td></tr>
+<tr id="vela-480-plus-ps"><td><code>vela-480-plus-ps</code></td><td>¥0.70/秒</td><td>—</td><td>—</td><td>—</td></tr>
+<tr id="vela-720-pro-ps"><td><code>vela-720-pro-ps</code></td><td>—</td><td>¥0.90/秒</td><td>—</td><td>—</td></tr>
+<tr id="vela-720-plus-ps"><td><code>vela-720-plus-ps</code></td><td>—</td><td>¥1.00/秒</td><td>—</td><td>—</td></tr>
+<tr id="vela-1080-pro-ps"><td><code>vela-1080-pro-ps</code></td><td>—</td><td>—</td><td>¥1.40/秒</td><td>—</td></tr>
+<tr id="vela-2.0-480-ps"><td><code>vela-2.0-480-ps</code></td><td>¥0.55/秒</td><td>—</td><td>—</td><td>—</td><td rowspan="2">2.0 代固定分辨率：4–30 秒，9 图 / 3 视频 / 3 音频。</td></tr>
+<tr id="vela-2.0-720-ps"><td><code>vela-2.0-720-ps</code></td><td>—</td><td>¥0.80/秒</td><td>—</td><td>—</td></tr>
+</table><div class="note warn"><b>!</b><span>标「维护中」的型号当前暂不可用（渠道调整中），恢复后自动解除；其余型号均可正常调用。</span></div>
 <div class="note"><b>i</b><span>怎么选？怕算不清就选按次（一口价，做多长都是那个钱）；要灵活控制成本就选固定分辨率按秒档（480P 八毛起，每秒计价），做几秒算几秒。表格里写「人脸易拦截」的模型，拿真人正脸照当素材可能被系统拦下，换个角度或漫画风头像更稳；写「face 放行」的可以加 face 参数解锁真人脸。最准的价格以网站「模型广场」为准。</span></div>
 </section>
 
@@ -359,7 +362,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>vela-2.5</code></td><td>按成功生成次数</td><td>¥2.00 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
 <tr><td>Vela 按次（<code>vela-mini</code> / <code>vela-2.5-a</code>）</td><td>按成功生成次数</td><td>¥1.50 / ¥3.30 每次（其余按次款维护中）</td></tr>
 <tr><td><code>vela-720p-30s</code>（低价档，维护中）</td><td>按成功生成次数</td><td>¥2.20 / 次（固定 30 秒 / 720P；可能降智 / 不稳定 / 人脸打码，失败自动退款）</td></tr>
-<tr><td>Vela 固定分辨率按秒档（480/720 × 稳定/增强）</td><td>按实际生成秒数</td><td>¥0.80 / ¥0.90 / ¥1.00 / ¥1.10 每秒（分辨率由模型名决定）</td></tr>
+<tr><td>Vela Seedance-2 系（mini / fast / pro / 2.5-pro）</td><td>按实际生成秒数</td><td>¥0.18 – ¥1.40 每秒（多分辨率档）</td></tr>
+<tr><td>Vela 固定分辨率按秒档（480/720/1080 + 2.0 代）</td><td>按实际生成秒数</td><td>¥0.55 – ¥1.40 每秒（分辨率由模型名决定）</td></tr>
 <tr><td><code>minimax-h3-a</code> … <code>minimax-h3-e</code></td><td>按实际生成秒数</td><td>480P ¥0.10/秒；720P ¥0.15/秒；d / e 另有 1080P ¥0.35/秒；<code>minimax-h3-b</code> 固定输出分辨率，统一 ¥0.15/秒</td></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
 <tr><td>Grok Imagine（<code>grok-imagine-video-1.5</code>）</td><td>按实际生成秒数</td><td>480P ¥0.10、720P ¥0.15、1080P ¥0.20 / 秒（1080P 仅文生与单图）</td></tr>
