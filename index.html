@@ -176,7 +176,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>要精修一张图：改细节、改文字、商品图</td><td><a href="#gpt-image-2.5-sunburst"><code>gpt-image-2.5-sunburst</code></a>（质量档）</td><td>写描述 + 可多轮继续改</td><td>¥0.10 一张</td></tr>
 </table>
 <div class="note"><b>i</b><span>记住一个规律：带「参考图」的模型负责「长得像」，带「音频」的负责「开口说话」，带「参考视频」的负责「照着拍」。只要记不住模型名，回这张表按「你想做的事」找就行。</span></div>
-<div class="jump"><b>章节</b><a href="#scene-picker">场景速选</a><a href="#quickstart">快速开始</a><a href="#create">怎么提交</a><a href="#materials">素材怎么传</a><a href="#refvideo">素材上传服务</a><a href="#query">查进度取成品</a><a href="#images">生图</a><a href="#faq">常见问题</a><a href="#billing">价格</a><a href="#errors">报错怎么办</a></div>
+<div class="jump"><b>章节</b><a href="#scene-picker">场景速选</a><a href="#quickstart">快速开始</a><a href="#create">怎么提交</a><a href="#materials">素材怎么传</a><a href="#refvideo">素材上传服务</a><a href="#query">查进度取成品</a><a href="#images">生图</a><a href="#h3-skill">H3 提示词助手</a><a href="#faq">常见问题</a><a href="#billing">价格</a><a href="#errors">报错怎么办</a></div>
 <div class="mgrid">
 <div class="mcard" id="vela-2.5"><h4><code>vela-2.5</code><span class="tag per">按次</span></h4>
 <p class="price">¥2.00 / 次</p>
@@ -349,6 +349,21 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
 <div class="note"><b>i</b><span>扣费像酒店预授权：下单时先按你的要求冻一笔预估费用，成品出来后按实际时长和清晰度多退少补。不同会员分组价格可能不同，以「模型广场」显示为准。</span></div>
+</section>
+
+<section id="h3-skill"><div class="eyebrow">H3 PROMPT SKILL</div><h2>H3 提示词助手（Skills，一条命令装好）</h2>
+<p>H3 出片效果很大程度取决于提示词。官方开源了一个 <code>h3-prompt-writing</code> Skill（技能包），装到你常用的 AI 助手（Claude Code / Codex / Cursor 等任何能读本地文件的 agent）后，你只要用大白话说想要什么画面，它就会自动改写成 H3 要的标准结构：<code>integrated_multimodal_description</code>（画面描述）、<code>overall_soundscape</code>（环境声）、<code>non_diegetic_music</code>（配乐），并处理好首尾帧衔接、参考素材标签（<code>&lt;Picture 1&gt;</code> / <code>&lt;Video 1&gt;</code> / <code>&lt;Audio 1&gt;</code>）和总时长。</p>
+<p>覆盖 H3 全部 5 种生成模式：文生视频 T2VA、单图 I2VA、首尾帧 FL2VA、尾帧 L2VA、多参考 Ref2VA。仓库里另有 8 个风格模板（极简产品广告、3D 动画短片、纸艺定格、手绘实拍、音乐视频字幕等）。Skill 纯本地运行，不调用外部 API，也不限制助手品牌。</p>
+<div class="endpoint"><span class="m">SHELL</span>一条命令安装（复制到终端回车，需要 Node.js）</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code># 只装 H3 提示词助手（推荐）
+npx skills add https://github.com/MiniMax-AI/MiniMax-H3 --skill h3-prompt-writing
+
+# 先看看仓库里有哪些 skills
+npx skills add https://github.com/MiniMax-AI/MiniMax-H3 --list
+
+# 一次装全部（1 个提示词 + 8 个风格模板）
+npx skills add https://github.com/MiniMax-AI/MiniMax-H3 --skill '*'</code></pre>
+<p style="color:var(--muted);font-size:13px">用法：装好后对 AI 助手说「用 H3 提示词助手帮我写一段 10 秒海边日落的提示词」，把它返回的提示词粘到本站 <code>POST /v1/videos</code> 的 <code>prompt</code> 字段即可。安装源为 MiniMax 官方开源仓库：<a href="https://github.com/MiniMax-AI/MiniMax-H3" target="_blank">github.com/MiniMax-AI/MiniMax-H3</a>。</p>
 </section>
 
 <section id="faq"><div class="eyebrow">FAQ</div><h2>常见问题（小白版）</h2>
