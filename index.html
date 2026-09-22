@@ -178,6 +178,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="note"><b>i</b><span>记住一个规律：带「参考图」的模型负责「长得像」，带「音频」的负责「开口说话」，带「参考视频」的负责「照着拍」。只要记不住模型名，回这张表按「你想做的事」找就行。</span></div>
 <div class="jump"><b>章节</b><a href="#scene-picker">场景速选</a><a href="#quickstart">快速开始</a><a href="#create">怎么提交</a><a href="#materials">素材怎么传</a><a href="#refvideo">素材上传服务</a><a href="#query">查进度取成品</a><a href="#images">生图</a><a href="#faq">常见问题</a><a href="#billing">价格</a><a href="#errors">报错怎么办</a></div>
 <div class="mgrid">
+<div class="mcard" id="vela-2.5"><h4><code>vela-2.5</code><span class="tag per">按次</span></h4>
+<p class="price">¥2.00 / 次</p>
+<p>一条管够 30 秒、720P 清晰度，最多 10 张参考图锁定人物和场景；不能传视频或音频当参考，时长分辨率写死不用选，一条一口价。</p></div>
 <div class="mcard" id="minimax-h3-text"><h4><code>minimax-h3-text</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.065 / 0.075 每秒</p>
 <p>凭一句话出片：写清楚画面，最长 12 秒，不用给任何图片。做几秒付几秒：480P ¥0.065/秒、720P ¥0.075/秒。</p></div>
@@ -213,6 +216,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3 id="vela-percall">Vela 系列 · 按次档</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长</th><th>分辨率</th><th>参考素材与说明</th></tr>
 <tr id="vela-2.5-mini"><td><code>vela-2.5-mini</code></td><td>¥1.50</td><td>4–12 秒</td><td>720P</td><td>≤9 图 + 3 音频；不限制人脸</td></tr>
+<tr id="vela-2.5"><td><code>vela-2.5</code></td><td>¥2.00</td><td>固定 30 秒</td><td>固定 720P</td><td>≤10 图；时长与分辨率参数忽略</td></tr>
 <tr id="vela-2.5-mix"><td><code>vela-2.5-mix</code></td><td>¥2.00</td><td>4–30 秒</td><td>720P</td><td>30 图 + 10 音频（≤40）；不支持视频</td></tr>
 <tr id="vela-2.5-max"><td><code>vela-2.5-max</code><span class="tag per">低价档</span></td><td>¥7.00</td><td>4–30 秒</td><td>720P</td><td>30 图 / 10 视频 / 10 音频；低价档：可能降智 / 不稳定 / 人脸打码</td></tr>
 </table>
@@ -246,7 +250,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </table>
 <h3 id="materials">各工作流参考素材</h3>
 <table><tr><th>模型</th><th>素材字段</th><th>说明</th></tr>
-<tr><td>Vela 按次款（<code>vela-2.5-mini</code> / <code>mix</code> / <code>max</code>）</td><td><code>images</code>: string[]</td><td>参考图 URL 数组；mini ≤9 张，mix / max ≤30 张（也兼容 <code>image_urls</code>）。</td></tr>
+<tr><td>Vela 按次款（<code>vela-2.5</code> / <code>vela-2.5-mini</code> / <code>mix</code> / <code>max</code>）</td><td><code>images</code>: string[]</td><td>参考图 URL 数组；vela-2.5 ≤10 张、mini ≤9 张、mix / max ≤30 张（也兼容 <code>image_urls</code>）。</td></tr>
 <tr><td>H3 全系</td><td><code>input_reference</code>: string[]</td><td>参考图 URL 数组，最多 9 张，重复 URL 自动去重；兼容 <code>image</code> / <code>images</code> / <code>image_url</code> / <code>image_urls</code> / <code>reference_images</code>，也可用 <code>ref_image_0</code>…<code>ref_image_8</code> 逐张指定。</td></tr>
 <tr><td><code>minimax-h3-frames</code></td><td><code>first_frame</code> / <code>last_frame</code>: string</td><td>首帧与尾帧图片 URL，两帧均必填。</td></tr>
 <tr><td><code>minimax-h3-lipsync-multi</code></td><td><code>audio</code>: string</td><td>音频文件 URL，用于口型对齐；恰好 1 段（多段声音先混音成一个文件），可配最多 9 张参考图。</td></tr>
@@ -335,7 +339,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
-<tr><td>Vela 按次档（<code>vela-2.5-mini</code> / <code>mix</code> / <code>max</code>）</td><td>按成功生成次数</td><td>¥1.50 / ¥2.00 / ¥7.00 每条（按次计费，不乘时长）</td></tr>
+<tr><td>Vela 按次档（<code>vela-2.5</code> / <code>vela-2.5-mini</code> / <code>mix</code> / <code>max</code>）</td><td>按成功生成次数</td><td>¥2.00 / ¥1.50 / ¥2.00 / ¥7.00 每条（按次计费，不乘时长）</td></tr>
 <tr><td>Vela 按秒多分辨率（mini-2 / fast-2 / pro-2 / pro-2.5）</td><td>按实际生成秒数</td><td>¥0.18 – ¥1.40 每秒（多分辨率档）</td></tr>
 <tr><td>Vela 固定分辨率按秒档（480/720/1080 + 2.0 代）</td><td>按实际生成秒数</td><td>¥0.55 – ¥1.40 每秒（分辨率由模型名决定）</td></tr>
 <tr><td><code>minimax-h3-text</code> … <code>minimax-h3-lipsync-multi</code></td><td>按实际生成秒数</td><td>480P ¥0.065/秒；720P ¥0.075/秒；lipsync / lipsync-multi 另有 1080P ¥0.30/秒；<code>minimax-h3-image</code> 固定输出分辨率，统一 ¥0.075/秒</td></tr>
