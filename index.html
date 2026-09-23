@@ -95,7 +95,7 @@ footer p{margin:.3em 0}
 <h1>会打字，就能做视频和图片。</h1>
 <p class="lead">你只需要三步：拿到令牌 → 发一句话描述想要的画面 → 等一两分钟下载成品视频。想生成图片更简单，发一段描述直接出图。不用安装任何软件，写文字、传图片链接就行。</p>
 <div class="pills">
-<span class="pill"><i></i>vela 系 · 按次 / 按秒</span><span class="pill"><i></i>minimax-h3-text · 文生视频</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-frames · 首尾帧</span><span class="pill"><i></i>minimax-h3-lipsync / lipsync-multi · 音画同步</span><span class="pill"><i></i>minimax-h3-reference · 参考视频</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
+<span class="pill"><i></i>vela 系 · 按次 / 按秒</span><span class="pill"><i></i>wan3.0 · 官转</span><span class="pill"><i></i>minimax-h3-text · 文生视频</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-frames · 首尾帧</span><span class="pill"><i></i>minimax-h3-lipsync / lipsync-multi · 音画同步</span><span class="pill"><i></i>minimax-h3-reference · 参考视频</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -219,6 +219,11 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr id="vela-2.5-1080-pro-ps"><td><code>vela-2.5-1080-pro-ps</code></td><td>固定 1080P</td><td>¥1.40/秒</td></tr>
 </table>
 <div class="note"><b>i</b><span>Vela 2.5 固定分辨率按秒档像打电话：做几秒付几秒，分辨率由模型名决定；pro 档速度快、原生过人脸，plus 档满血全参（支持视频 / 音频参考）。最准的价格以网站「模型广场」为准。</span></div>
+<h3 id="wan3">Wan 3.0（官转）</h3>
+<table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th></tr>
+<tr id="wan3.0"><td><code>wan3.0</code></td><td>¥0.30 / 秒</td><td>¥0.35 / 秒</td><td>¥0.38 / 秒</td></tr>
+</table>
+<div class="note"><b>i</b><span>wan3.0 走官方转发（官转）通道，按实际生成秒数计费，分辨率越高单价越高。</span></div>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
@@ -327,6 +332,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-reference</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P（支持参考视频），统一 ¥0.15/秒</td></tr>
 <tr><td>Vela 2.5 固定分辨率按秒（<code>vela-2.5-480/720/1080-*-ps</code>）</td><td>按实际生成秒数</td><td>480P ¥0.55 / ¥0.65；720P ¥0.85 / ¥0.95；1080P ¥1.40 每秒（pro = 稳定 / plus = 满血全参）</td></tr>
 <tr><td>Vela 2.5 按次（<code>vela-2.5-mix</code>）</td><td>按成功生成次数</td><td>¥2.50 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
+<tr><td><code>wan3.0</code>（官转）</td><td>按实际生成秒数</td><td>480P ¥0.30、720P ¥0.35、1080P ¥0.38 / 秒</td></tr>
 <tr><td>Grok Imagine（<code>grok-imagine-video-1.5</code>）</td><td>按实际生成秒数</td><td>480P ¥0.10、720P ¥0.15、1080P ¥0.20 / 秒（1080P 仅文生与单图）</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
