@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="JEV 结构化判断 API（/v1/evaluate）开发者文档 · 天才第一步">
+<title>JEV 结构化判断 API · 天才第一步</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230ea5e9'/%3E%3Cpath d='M26 20l18 12-18 12z' fill='white'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f6f9fc;--card:#fff;--soft:#eef6fd;--ink:#12233b;--muted:#5b7186;--line:#dbe7f2;--brand:#0e7fd9;--brand2:#095e9e;--ok:#0c9a6e;--warn:#b97a12;--bad:#c23b4b;--code:#0d1b2a;--codeink:#dceefb;--shadow:0 14px 36px #12324d14}
+html.dark{--bg:#0d1620;--card:#15222f;--soft:#122c3f;--ink:#e6f1f8;--muted:#9fb4c4;--line:#284054;--brand:#4cc2ff;--brand2:#8adcff;--ok:#3fd6a3;--warn:#f0b755;--bad:#ff7b8a;--code:#0a141e;--codeink:#d5ecfa;--shadow:0 14px 36px #0006}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 92% 0,#0ea5e91f,transparent 32rem),radial-gradient(circle at 3% 4%,#7c5ce014,transparent 24rem),var(--bg);color:var(--ink);font:15px/1.74 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Inter,sans-serif;transition:.2s}
+a{color:var(--brand2);text-decoration:none}a:hover{text-decoration:underline}
+button{font:inherit;cursor:pointer}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:9;border-bottom:1px solid var(--line);background:var(--card);opacity:.98;backdrop-filter:blur(14px)}
+.bar{height:64px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:10px;min-width:210px;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.logo{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;font-weight:800;box-shadow:0 8px 16px #0ea5e940}
+.brand b{display:block;font-size:15px}.brand small{display:block;color:var(--muted);font-size:11px;line-height:1.2}
+.nav{display:flex;gap:2px;flex:1;flex-wrap:wrap}
+.nav a{padding:7px 11px;border-radius:9px;color:var(--muted);font-size:13px}
+.nav a:hover{background:var(--soft);color:var(--ink);text-decoration:none}
+.eyebrow{color:var(--brand2);font-size:12px;font-weight:800;letter-spacing:.15em}
+.eyebrow:before{content:"";display:inline-block;width:22px;height:2px;margin:0 8px 4px 0;background:var(--brand);vertical-align:middle}
+h1{font-size:clamp(30px,4.2vw,46px);line-height:1.1;letter-spacing:-.04em;margin:14px 0}
+h2{font-size:26px;letter-spacing:-.02em;margin:8px 0 10px}
+h3{font-size:17px;margin:20px 0 8px}
+p{margin:.5em 0}
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.hero{padding:58px 0 44px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:30px;align-items:start}
+.hero p.lead{color:var(--muted);font-size:16.5px;max-width:680px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--muted);font-size:12px;box-shadow:var(--shadow)}
+.pill i{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:var(--brand)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.base h3{margin:2px 0 10px;font-size:15px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.base .urlbox{display:flex;gap:8px;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;word-break:break-all}
+.base .urlbox code{flex:1;color:var(--brand2);font-weight:600}
+.note{display:flex;gap:10px;border-radius:12px;padding:12px 14px;margin:12px 0;font-size:13.5px;border:1px solid var(--line);background:var(--soft)}
+.note.ok{border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+.note.warn{border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.note.bad{border-color:color-mix(in srgb,var(--bad) 45%,transparent)}
+.note b{flex:none}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.step em{font-style:normal;font-weight:800;color:var(--brand);font-size:12px;letter-spacing:.12em}
+.step b{display:block;margin:6px 0 4px;font-size:15px}
+.step span{color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:6px;margin:14px 0 0;flex-wrap:wrap}
+.tabs button{padding:7px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--muted);font-size:13px}
+.tabs button.on{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600}
+.pane{display:none}.pane.on{display:block}
+pre{position:relative;background:var(--code);color:var(--codeink);border-radius:14px;padding:16px 18px;overflow:auto;font-size:13px;line-height:1.65;margin:12px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.copy{position:absolute;top:9px;right:9px;padding:4px 12px;border:0;border-radius:8px;background:#ffffff1f;color:inherit;font-size:12px}
+.copy:hover{background:#ffffff33}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:14px 0}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;white-space:nowrap}
+td code,p code,li code{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em;color:var(--brand2)}
+.tag{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag.per{background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand2)}
+.endpoint{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;box-shadow:var(--shadow);margin:8px 0}
+.endpoint .m{font-weight:800;color:#fff;background:var(--brand);border-radius:7px;padding:2px 9px;font-size:12px;letter-spacing:.04em}
+*[id]{scroll-margin-top:96px}
+footer{padding:36px 0 48px;color:var(--muted);font-size:13px;text-align:center}
+footer p{margin:.3em 0}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.nav{display:none}}
+</style></head><body>
+<header><div class="wrap bar">
+<a class="brand" href="#top"><span class="logo">⚖</span><span><b>天才第一步 · JEV 文档</b><small>结构化判断 API（/v1/evaluate）</small></span></a>
+<nav class="nav"><a href="#quickstart">快速开始</a><a href="#request">请求结构</a><a href="#types">三种题型</a><a href="#response">响应</a><a href="#full">完整示例</a><a href="#billing">计费</a><a href="#errors">错误处理</a><a href="#faq">常见问题</a></nav>
+<div class="actions"><button id="theme" onclick="toggleTheme()">深色</button></div>
+</div></header>
+
+<main class="wrap" id="top">
+<div class="hero"><div class="hero-grid"><div>
+<div class="eyebrow">REST API · STRUCTURED JUDGMENT</div>
+<h1>发一段话，拿回结构化裁决。</h1>
+<p class="lead">JEV 是「判断模型」而不是「聊天模型」：你给出用户消息（state）和一组问题（questions），它返回每个问题的结构化答案（选项、概率、打分）。适合做意图分类、工单分流、紧急度判断、情绪打分。每次调用 <b>¥0.02</b>，固定按次计费。</p>
+<div class="pills">
+<span class="pill"><i></i>choice 单选 · 带概率分布</span><span class="pill"><i></i>boolean 真假判断</span><span class="pill"><i></i>score 打分</span><span class="pill"><i></i>同步 1–3 秒</span><span class="pill"><i></i>¥0.02 / 次</span>
+</div></div>
+<div class="card base"><h3>ENDPOINT</h3>
+<div class="urlbox"><code>POST https://ai.939593.xyz/v1/evaluate</code><button class="copy" onclick="copyText(this,'POST https://ai.939593.xyz/v1/evaluate')">复制</button></div>
+<p style="font-size:12.5px;color:var(--muted);margin:10px 0 0">备用入口 <code>https://cdn-ai.939593.xyz/v1/evaluate</code>。鉴权与其他接口相同：<code>Authorization: Bearer sk-你的令牌</code>。</p>
+</div></div>
+<div class="steps">
+<div class="step"><em>01</em><b>准备令牌</b><span>网站「令牌」页新建一个 sk- 令牌，分组选 gork（免费反代组）。</span></div>
+<div class="step"><em>02</em><b>写问题</b><span>把要判断的东西写成 questions：单选、真假、打分三种题型自由组合，一次最多问多个。</span></div>
+<div class="step"><em>03</em><b>拿答案</b><span>POST 过去，1–3 秒返回每个问题的答案 + 概率分布 + 置信度，直接进你的业务逻辑。</span></div>
+</div></div>
+
+<section id="quickstart"><div class="eyebrow">QUICKSTART</div><h2>快速开始</h2>
+<div class="note bad"><b>✗</b><span><b>不要用 chat/completions 调 jev。</b>它是纯判断模型，不支持聊天和代码生成；走 <code>/v1/chat/completions</code> 会被直接拒绝（400）。唯一入口是 <code>POST /v1/evaluate</code>。</span></div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/evaluate \
+  -H "Authorization: Bearer sk-你的令牌" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "jev",
+    "state": {
+      "message": "我被重复扣款了，请退款"
+    },
+    "questions": {
+      "intent": {
+        "type": "choice",
+        "instructions": "判断用户的主要诉求",
+        "criteria": {
+          "refund": "退款问题",
+          "technical": "技术问题",
+          "other": "其他问题"
+        }
+      }
+    }
+  }'</code></pre>
+<p>响应：</p>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>{
+  "answers": {
+    "intent": {
+      "choice": "refund",
+      "confidence": 1,
+      "probabilities": { "refund": 1, "technical": 0, "other": 0 },
+      "type": "choice"
+    }
+  },
+  "model": "jev",
+  "usage": { "inputTokens": 347, "outputTokens": 38 }
+}</code></pre>
+</section>
+
+<section id="request"><div class="eyebrow">REQUEST</div><h2>请求结构</h2>
+<table>
+<tr><th>字段</th><th>类型</th><th>必填</th><th>说明</th></tr>
+<tr><td><code>model</code></td><td>string</td><td>是</td><td>固定 <code>"jev"</code></td></tr>
+<tr><td><code>state</code></td><td>object</td><td>是</td><td>被判断的内容：<code>message</code>（用户消息）+ 可选 <code>context</code>（业务上下文，如历史工单、账户信息），给得越全判得越准</td></tr>
+<tr><td><code>questions</code></td><td>object</td><td>是</td><td>键为问题 ID（自定义，如 <code>intent</code>、<code>urgent</code>），值为一个题型对象；一次可同时问多个问题</td></tr>
+</table>
+<p>每个题型对象的公共字段：</p>
+<table>
+<tr><th>字段</th><th>说明</th></tr>
+<tr><td><code>type</code></td><td>题型：<code>choice</code> / <code>boolean</code> / <code>score</code>（只有这三种）</td></tr>
+<tr><td><code>instructions</code></td><td>给模型的判断指令，写清判断口径（如「判断用户的主要诉求」）</td></tr>
+<tr><td><code>criteria</code></td><td>判据，格式随题型不同，见下节</td></tr>
+</table>
+</section>
+
+<section id="types"><div class="eyebrow">QUESTION TYPES</div><h2>三种题型</h2>
+
+<h3 id="type-choice">1. choice —— 单选（带完整概率分布）</h3>
+<p><code>criteria</code> 是对象：键为选项值（自定义），值为选项含义描述。</p>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>"intent": {
+  "type": "choice",
+  "instructions": "判断用户的主要诉求",
+  "criteria": { "refund": "退款问题", "technical": "技术问题", "other": "其他问题" }
+}</code></pre>
+<p>返回：<code>choice</code>（最高概率选项）+ <code>confidence</code> + <code>probabilities</code>（每个选项的概率）。要自己做阈值分流就直接用 <code>probabilities</code>。</p>
+
+<h3 id="type-boolean">2. boolean —— 真假判断</h3>
+<p><code>criteria</code> 可省略（省略时按 instructions 字面判断）。返回只有一个 <code>probability</code>（为真的概率），true/false 阈值由你自定（一般 ≥0.5 视为真）。</p>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>"urgent": {
+  "type": "boolean",
+  "instructions": "是否需要立即处理的高紧急度问题"
+}</code></pre>
+<p>返回：<code>{"probability": 0.83, "type": "boolean"}</code></p>
+
+<h3 id="type-score">3. score —— 打分</h3>
+<p><code>criteria</code> 必须是<b>对象数组</b>，每项一个 <code>{分值: 描述}</code>。返回 <code>probabilities</code>（按档位顺序的分布）+ <code>score</code>（加权期望分）。</p>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>"severity": {
+  "type": "score",
+  "instructions": "用户情绪激动程度打分",
+  "criteria": [ {"1": "平静"}, {"3": "不满"}, {"5": "非常愤怒"} ]
+}</code></pre>
+<div class="note warn"><b>!</b><span><b>score 的换算规则：</b>返回的 <code>probabilities</code> 按档位<b>出现顺序</b>编号（"0"、"1"、"2"…），<code>score</code> = Σ(序号 × 概率)，范围 0 ~ 档位数-1，<b>不使用</b>你在键里写的 1/3/5 数字。要换算成 1–5 分请自行线性映射，例如 3 档时：<code>你的分 = score × 2 + 1</code>。</span></div>
+<p>示例返回：<code>{"probabilities": {"0": 0.01, "1": 0.49, "2": 0.5}, "score": 1.49, "confidence": 0.24, "type": "score"}</code></p>
+</section>
+
+<section id="response"><div class="eyebrow">RESPONSE</div><h2>响应结构</h2>
+<table>
+<tr><th>字段</th><th>说明</th></tr>
+<tr><td><code>answers</code></td><td>对象，键与你请求里的 questions ID 一一对应，值为对应题型的答案结构</td></tr>
+<tr><td><code>model</code></td><td><code>"jev"</code></td></tr>
+<tr><td><code>usage</code></td><td><code>inputTokens</code> / <code>outputTokens</code>（仅统计用途；计费按次，与 token 无关）</td></tr>
+</table>
+</section>
+
+<section id="full"><div class="eyebrow">FULL EXAMPLE</div><h2>完整示例：三题型组合分流</h2>
+<div class="tabs">
+<button class="on" onclick="tab(this,'f-req')">请求</button>
+<button onclick="tab(this,'f-resp')">响应</button>
+<button onclick="tab(this,'f-py')">Python</button>
+</div>
+<div class="pane on" id="f-req"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/evaluate \
+  -H "Authorization: Bearer sk-你的令牌" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "jev",
+    "state": {
+      "message": "你们app扣了我两次钱！第一次扣了没开通成功，第二次又扣！我要退款外加投诉",
+      "context": "用户账户有 2 笔相同金额扣款记录"
+    },
+    "questions": {
+      "intent": {
+        "type": "choice",
+        "instructions": "主要诉求",
+        "criteria": { "refund": "退款", "complaint": "投诉", "technical": "技术问题" }
+      },
+      "urgent": {
+        "type": "boolean",
+        "instructions": "是否高紧急度"
+      },
+      "severity": {
+        "type": "score",
+        "instructions": "情绪激烈程度",
+        "criteria": [ {"1": "平静"}, {"3": "不满"}, {"5": "非常愤怒"} ]
+      }
+    }
+  }'</code></pre></div>
+<div class="pane" id="f-resp"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>{
+  "answers": {
+    "intent":    { "choice": "refund", "confidence": 0.99,
+                   "probabilities": { "refund": 0.99, "complaint": 0.01, "technical": 0 },
+                   "type": "choice" },
+    "urgent":    { "probability": 0.83, "type": "boolean" },
+    "severity":  { "probabilities": { "0": 0.01, "1": 0.49, "2": 0.5 },
+                   "score": 1.49, "confidence": 0.24, "type": "score" }
+  },
+  "model": "jev",
+  "usage": { "inputTokens": 457, "outputTokens": 69 }
+}</code></pre>
+<p style="color:var(--muted);font-size:13px">分流逻辑示例：intent=refund 且 urgent.probability≥0.8 → 直接进退款快捷通道；severity.score≥1.5 → 附加安抚话术。</p></div>
+<div class="pane" id="f-py"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>import requests
+
+r = requests.post(
+    "https://ai.939593.xyz/v1/evaluate",
+    headers={"Authorization": "Bearer sk-你的令牌"},
+    json={
+        "model": "jev",
+        "state": {"message": "登录页面一直转圈打不开，急死了"},
+        "questions": {
+            "intent": {
+                "type": "choice",
+                "instructions": "判断用户的主要诉求",
+                "criteria": {"refund": "退款", "technical": "技术故障", "other": "其他"},
+            },
+            "urgent": {"type": "boolean", "instructions": "是否高紧急度"},
+        },
+    },
+    timeout=30,
+)
+r.raise_for_status()
+data = r.json()["answers"]
+
+if data["intent"]["choice"] == "technical" and data["urgent"]["probability"] >= 0.5:
+    print("→ 转技术支持加急队列")</code></pre></div>
+</section>
+
+<section id="billing"><div class="eyebrow">BILLING</div><h2>计费</h2>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>价格</td><td><b>¥0.02 / 次</b>（gork 分组令牌实付价；无论问几个问题、输入多长，一次请求一口价）</td></tr>
+<tr><td>失败请求</td><td>不扣费（仅 HTTP 200 的成功请求计费一次）</td></tr>
+<tr><td>usage 字段</td><td>仅统计展示，不影响计费金额</td></tr>
+</table>
+</section>
+
+<section id="errors"><div class="eyebrow">ERRORS</div><h2>错误处理</h2>
+<table>
+<tr><th>状态码</th><th>含义</th><th>排查</th></tr>
+<tr><td><code>401</code></td><td>Invalid token</td><td>令牌缺失/错误，检查 Bearer 前缀</td></tr>
+<tr><td><code>400</code></td><td>model / questions 必填校验失败</td><td>请求体补齐 <code>model</code> 和 <code>questions</code></td></tr>
+<tr><td><code>400</code></td><td>unsupported type / criteria 格式错误</td><td>题型只能是 choice/boolean/score；score 的 criteria 必须是对象数组；boolean 不要写成 bool</td></tr>
+<tr><td><code>400</code></td><td>请求消息协议不支持</td><td>你用了 chat/completions 调 jev，换成 <code>/v1/evaluate</code></td></tr>
+<tr><td><code>403</code></td><td>该令牌无权访问模型</td><td>令牌分组需为 gork（或在令牌模型限制里加上 jev）</td></tr>
+<tr><td><code>503</code></td><td>无可用渠道</td><td>分组下模型未开放，确认分组选了 gork</td></tr>
+</table>
+<div class="note"><b>i</b><span>400 类错误是永久性的，客户端不要重试；5xx 可指数退避重试。判断服务平均延迟 1–3 秒，建议客户端超时设 30 秒。</span></div>
+</section>
+
+<section id="faq"><div class="eyebrow">FAQ</div><h2>常见问题</h2>
+<h3>它能聊天 / 写代码吗？</h3>
+<p>不能。它是纯判断模型，只回答你 questions 里定义的问题。拿它当聊天模型用会被 400 拒绝。</p>
+<h3>一次能问几个问题？</h3>
+<p>可以多个，三种题型自由组合，价格不变（按请求次数计费，不是按问题数）。建议单次 ≤ 5 个问题，保证判断质量。</p>
+<h3>结果稳定吗？</h3>
+<p>同样输入多次调用结果一致（确定性输出），适合做规则化分流；拿不稳的边界场景直接用 probabilities 自己卡阈值。</p>
+<h3>和让 GPT 输出 JSON 比有什么优势？</h3>
+<p>不用写提示词、不用解析失败重试、不用怕模型输出幻觉格式：题型即协议，返回必是结构化 JSON，延迟也低得多（秒级）。</p>
+</section>
+
+<footer><p>天才第一步 · JEV 结构化判断 API · <a href="https://ai.939593.xyz">控制台</a> · <a href="https://782042369.github.io/video-api-docs/">视频/生图文档</a></p><p>端点问题请联系站长。</p></footer>
+</main>
+<script>
+function copyPre(btn){const t=btn.parentElement.querySelector("code").innerText;navigator.clipboard.writeText(t).then(()=>{btn.textContent="已复制";setTimeout(()=>btn.textContent="复制",1500)})}
+function copyText(btn,t){navigator.clipboard.writeText(t).then(()=>{btn.textContent="已复制";setTimeout(()=>btn.textContent="复制",1500)})}
+function tab(btn,id){const tabs=btn.parentElement;tabs.querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");const box=tabs.parentElement;box.querySelectorAll(":scope > .pane").forEach(p=>p.classList.remove("on"));document.getElementById(id).classList.add("on")}
+try{if(matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.classList.add("dark");document.getElementById("theme").textContent="浅色"}}catch(e){}
+function toggleTheme(){const d=document.documentElement.classList.toggle("dark");document.getElementById("theme").textContent=d?"浅色":"深色"}
+</script>
+</body></html>
