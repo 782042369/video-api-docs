@@ -191,10 +191,10 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>让照片开口说话：给人物图（最多 9 张）和一段配音，嘴型自动对上。有几段声音请先合成一个文件再传。做几秒付几秒：480P ¥0.065/秒、720P ¥0.075/秒、1080P ¥0.30/秒。</p></div>
 <div class="mcard" id="minimax-h3-720p"><h4><code>minimax-h3-720p</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.15 / 秒</p>
-<p>参考视频版（本模型支持参考视频）：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。固定 720P（请求里 <code>resolution</code> 写 <code>720p</code>），5–15 秒，统一 ¥0.15/秒。手头没直链？去 <a href="#refvideo">素材上传服务</a> 传一个。</p></div>
+<p>参考视频版（本模型支持参考视频）：传一段视频（<code>reference_videos</code>），AI 沿用里面的人物和运镜风格接着拍；也支持参考图。支持满参数：9 图 + 3 视频 + 3 音频。固定 720P（请求里 <code>resolution</code> 写 <code>720p</code>），5–15 秒，统一 ¥0.15/秒。手头没直链？去 <a href="#refvideo">素材上传服务</a> 传一个。</p></div>
 <div class="mcard" id="Minimax-h3-2k"><h4><code>Minimax-h3-2k</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.21 / 秒</p>
-<p>固定 2K（请求里 <code>resolution</code> 写 <code>2k</code>）：5–15 秒，统一 ¥0.21/秒。素材直链可用 <a href="#refvideo">上传服务</a>。</p></div>
+<p>固定 2K（请求里 <code>resolution</code> 写 <code>2k</code>）：支持满参数：9 图 + 3 视频 + 3 音频；5–15 秒，统一 ¥0.21/秒。素材直链可用 <a href="#refvideo">上传服务</a>。</p></div>
 <div class="mcard" id="grok-imagine-video-1.5"><h4><code>grok-imagine-video-1.5</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 / 0.20 每秒</p>
 <p>Grok 1.5 升级版：文生、单图图生、多参考图生视频（≤7 张，提示词用 <code>&lt;IMAGE_1&gt;</code> 点名）还支持预设声音（<code>&lt;AUDIO_0&gt;</code>）。1–15 秒，480P ¥0.10 / 720P ¥0.15 / 1080P ¥0.20 每秒（多参考图生最高 720P）。</p></div>
@@ -205,8 +205,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-frames</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P</td><td><code>first_frame</code> + <code>last_frame</code>（均必填）</td></tr>
 <tr><td><code>minimax-h3-lipsync</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td>恰好 1 张图 + <code>audio</code>（恰好 1 段）</td></tr>
 <tr><td><code>minimax-h3-lipsync-multi</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td><code>input_reference</code>（≤9 张）+ <code>audio</code>（恰好 1 段）</td></tr>
-<tr><td><code>minimax-h3-720p</code></td><td>按秒</td><td>15 秒</td><td>固定 720P</td><td><code>reference_videos</code>（1 段）或参考图；统一 ¥0.15/秒</td></tr>
-<tr><td><code>Minimax-h3-2k</code></td><td>按秒</td><td>15 秒</td><td>固定 2K</td><td>统一 ¥0.21/秒</td></tr>
+<tr><td><code>minimax-h3-720p</code></td><td>按秒</td><td>15 秒</td><td>固定 720P</td><td><code>reference_videos</code>（1 段）或参考图；支持满参数：9 图 + 3 视频 + 3 音频；统一 ¥0.15/秒</td></tr>
+<tr><td><code>Minimax-h3-2k</code></td><td>按秒</td><td>15 秒</td><td>固定 2K</td><td>支持满参数：9 图 + 3 视频 + 3 音频；统一 ¥0.21/秒</td></tr>
 <tr id="grok-imagine-video-1.5"><td><code>grok-imagine-video-1.5</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td>文生、<code>image</code>（1 张）或 <code>reference_images</code>（≤7 张）+ <code>reference_audios</code>（预设声音）</td></tr>
 </table>
 <div class="note"><b>i</b><span>小贴士：H3 系列有 480P（省钱包）、720P（清晰包）两档，lipsync / lipsync-multi 两款另有 1080P（¥0.30/秒）。text / image / frames / lipsync / lipsync-multi 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。image 是固定清晰度，统一 ¥0.075/秒；reference 固定 720P 统一 ¥0.15/秒；2k 固定 2K 统一 ¥0.21/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
@@ -334,8 +334,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <section id="billing"><div class="eyebrow">BILLING &amp; LIMITS</div><h2>计费与调用限制</h2>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>minimax-h3-text</code> … <code>minimax-h3-lipsync-multi</code></td><td>按实际生成秒数</td><td>480P ¥0.065/秒；720P ¥0.075/秒；lipsync / lipsync-multi 另有 1080P ¥0.30/秒；<code>minimax-h3-image</code> 固定输出分辨率，统一 ¥0.075/秒</td></tr>
-<tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒</td></tr>
-<tr><td><code>Minimax-h3-2k</code>（固定 2K）</td><td>按实际生成秒数</td><td>固定 2K，统一 ¥0.21/秒</td></tr>
+<tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
+<tr><td><code>Minimax-h3-2k</code>（固定 2K）</td><td>按实际生成秒数</td><td>固定 2K，统一 ¥0.21/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
 <tr><td>Vela 2.5 固定分辨率按秒（<code>vela-2.5-480/720/1080-*-ps</code>）</td><td>按实际生成秒数</td><td>480P ¥0.55 / ¥0.65；720P ¥0.85 / ¥0.95；1080P ¥1.40 每秒（pro = 稳定 / plus = 满血全参）</td></tr>
 <tr><td><code>vela-2.5-720-max-ps</code>（固定 720P 满血）</td><td>按实际生成秒数</td><td>¥0.55 / 秒（5–30 秒，30 图 + 10 视频 + 10 音频）</td></tr>
 <tr><td>Vela 2.5 按次（<code>vela-2.5-mix</code>）</td><td>按成功生成次数</td><td>¥2.50 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
