@@ -167,7 +167,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>用几张图锁定人物和服装，让它动起来</td><td><a href="#grok-imagine-video-1.5"><code>grok-imagine-video-1.5</code></a>（≤7 张）</td><td>传参考图，提示词用 &lt;IMAGE_1&gt; 点名</td><td>grok 按秒</td></tr>
 <tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
 <tr><td>要求高清晰度（1080P）的口播对口型</td><td><a href="#minimax-h3-lipsync-multi"><code>minimax-h3-lipsync-multi</code></a>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.50</td></tr>
-<tr><td>想要固定分辨率的 2.5 按秒长片（480 / 720 / 1080）</td><td><a href="#vela-persec">Vela 2.5 固定分辨率按秒档</a></td><td>写描述 + 自选秒数，可传 30 图 / 10 视频 / 10 音频</td><td>每秒 ¥0.55 – ¥1.40</td></tr>
+<tr><td>想要按秒计费的高质量视频（480P – 4K 自选）</td><td><a href="#vela-persec">Vela 按秒档</a>（<code>vela-2.5-pro</code> / <code>vela-2-pro</code> 等）</td><td>写描述 + 自选秒数与清晰度，支持首尾帧 / 参考图 / 参考视频</td><td>每秒 ¥0.15 – ¥2.05</td></tr>
 <tr><td>不想要视频，只要一张图（快速、日常）</td><td><a href="#gpt-image-2.5-flare"><code>gpt-image-2.5-flare</code></a>（速度档）</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
 <tr><td>要精修一张图：改细节、改文字、商品图</td><td><a href="#gpt-image-2.5-sunburst"><code>gpt-image-2.5-sunburst</code></a>（质量档）</td><td>写描述 + 可多轮继续改</td><td>¥0.10 一张</td></tr>
 </table>
@@ -198,6 +198,18 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="mcard" id="grok-imagine-video-1.5"><h4><code>grok-imagine-video-1.5</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.10 / 0.15 / 0.20 每秒</p>
 <p>Grok 1.5 升级版：文生、单图图生、多参考图生视频（≤7 张，提示词用 <code>&lt;IMAGE_1&gt;</code> 点名）还支持预设声音（<code>&lt;AUDIO_0&gt;</code>）。1–15 秒，480P ¥0.10 / 720P ¥0.15 / 1080P ¥0.20 每秒（多参考图生最高 720P）。</p></div>
+<div class="mcard" id="card-vela-2.5-pro"><h4><code>vela-2.5-pro</code><span class="tag sec">按秒</span></h4>
+<p class="price">¥0.35 / 0.75 / 1.25 每秒</p>
+<p>旗舰文/图生视频：5–30 秒，480P / 720P / 1080P 三档按秒，支持首尾帧、参考图与参考视频。</p></div>
+<div class="mcard" id="card-vela-2-pro"><h4><code>vela-2-pro</code><span class="tag sec">按秒</span></h4>
+<p class="price">¥0.25 / 0.55 / 1.05 / 2.05 每秒</p>
+<p>高质量档：最长 15 秒，480P / 720P / 1080P / 4K 四档，支持首尾帧与参考素材。</p></div>
+<div class="mcard" id="card-vela-2-fast"><h4><code>vela-2-fast</code><span class="tag sec">按秒</span></h4>
+<p class="price">¥0.20 / 0.45 每秒</p>
+<p>高性价比档：最长 15 秒，480P / 720P 两档，出片快。</p></div>
+<div class="mcard" id="card-vela-2-mini"><h4><code>vela-2-mini</code><span class="tag sec">按秒</span></h4>
+<p class="price">¥0.15 / 0.25 每秒</p>
+<p>轻量档：最长 15 秒，480P / 720P 两档，批量试想法首选。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>minimax-h3-text</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td>—（不接受任何参考素材）</td></tr>
@@ -210,20 +222,28 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr id="grok-imagine-video-1.5"><td><code>grok-imagine-video-1.5</code></td><td>按秒</td><td>15 秒</td><td>480P / 720P / 1080P</td><td>文生、<code>image</code>（1 张）或 <code>reference_images</code>（≤7 张）+ <code>reference_audios</code>（预设声音）</td></tr>
 </table>
 <div class="note"><b>i</b><span>小贴士：H3 系列有 480P（省钱包）、720P（清晰包）两档，lipsync / lipsync-multi 两款另有 1080P（¥0.30/秒）。text / image / frames / lipsync / lipsync-multi 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。image 是固定清晰度，统一 ¥0.075/秒；reference 固定 720P 统一 ¥0.15/秒；2k 固定 2K 统一 ¥0.21/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
-<h3 id="vela-percall">Vela 系列 · 按次档</h3>
-<table><tr><th>模型</th><th>价格/次</th><th>时长</th><th>分辨率</th><th>参考素材与说明</th></tr>
-<tr id="vela-2.5-mix"><td><code>vela-2.5-mix</code></td><td>¥2.50</td><td>固定 30 秒</td><td>720P</td><td>最多 30 张参考图；比例 16:9 / 9:16 等；不支持参考视频 / 音频</td></tr>
+<h3 id="vela-persec">Vela 系列 · 按秒档（做几秒付几秒）</h3>
+<table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th><th>4K</th><th>时长</th><th>说明</th></tr>
+<tr id="vela-2.5-pro"><td><code>vela-2.5-pro</code></td><td>¥0.35/秒</td><td>¥0.75/秒</td><td>¥1.25/秒</td><td>—</td><td>5–30 秒</td><td>旗舰档，支持首尾帧、参考图（≤30 张）与参考视频</td></tr>
+<tr id="vela-2-pro"><td><code>vela-2-pro</code></td><td>¥0.25/秒</td><td>¥0.55/秒</td><td>¥1.05/秒</td><td>¥2.05/秒</td><td>最长 15 秒</td><td>高质量档，支持首尾帧与参考素材</td></tr>
+<tr id="vela-2-fast"><td><code>vela-2-fast</code></td><td>¥0.20/秒</td><td>¥0.45/秒</td><td>—</td><td>—</td><td>最长 15 秒</td><td>高性价比档，出片快</td></tr>
+<tr id="vela-2-mini"><td><code>vela-2-mini</code></td><td>¥0.15/秒</td><td>¥0.25/秒</td><td>—</td><td>—</td><td>最长 15 秒</td><td>轻量档，批量试想法首选</td></tr>
 </table>
-<h3 id="vela-persec">Vela 2.5 固定分辨率 · 按秒档（<code>-ps</code> = 按秒计费）</h3>
-<table><tr><th>模型</th><th>分辨率</th><th>价格</th><th>素材与说明</th></tr>
-<tr id="vela-2.5-480-pro-ps"><td><code>vela-2.5-480-pro-ps</code></td><td>固定 480P</td><td>¥0.55/秒</td><td rowspan="5">4–30 秒逐秒自选。pro = 稳定速度快、原生过人脸（30 图 / 0 视频 / 10 音频）；plus = 满血全参（30 图 / 10 视频 / 10 音频，合计 ≤50）。素材直链可用 <a href="#refvideo">上传服务</a>。</td></tr>
-<tr id="vela-2.5-480-plus-ps"><td><code>vela-2.5-480-plus-ps</code></td><td>固定 480P</td><td>¥0.65/秒</td></tr>
-<tr id="vela-2.5-720-pro-ps"><td><code>vela-2.5-720-pro-ps</code></td><td>固定 720P</td><td>¥0.85/秒</td></tr>
-<tr id="vela-2.5-720-plus-ps"><td><code>vela-2.5-720-plus-ps</code></td><td>固定 720P</td><td>¥0.95/秒</td></tr>
-<tr id="vela-2.5-1080-pro-ps"><td><code>vela-2.5-1080-pro-ps</code></td><td>固定 1080P</td><td>¥1.40/秒</td></tr>
-<tr id="vela-2.5-720-max-ps"><td><code>vela-2.5-720-max-ps</code></td><td>固定 720P</td><td>¥0.55/秒</td><td>5–30 秒；最多 30 图 + 10 视频 + 10 音频（合计 ≤50）；不限制人脸</td></tr>
+<p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">这四款必填 <code>seconds</code>（做几秒）；清晰度用 <code>resolution</code>（480p / 720p / 1080p / 4k），画面形状用 <code>aspect_ratio</code>（16:9 / 9:16 / 1:1 / 4:3 / 3:4 等，自动就近匹配）。参考图用 <code>images</code> 或 <code>input_reference</code>，首尾帧用 <code>first_frame</code> + <code>last_frame</code>，参考视频用 <code>reference_videos</code>；另可传 <code>seed</code> 与 <code>audio</code>（是否生成音轨）。</p>
+<div class="endpoint"><span class="m">POST</span>/v1/videos · 示例：vela-2.5-pro 1080P</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5-pro",<br>    "prompt": "夜幕下的城市天际线，镜头缓缓拉升，霓虹闪烁",<br>    "seconds": 8,<br>    "resolution": "1080p",<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
+<h3 id="vela-percall">Vela 系列 · 按次档（一口价，做多久都一个价）</h3>
+<table><tr><th>模型</th><th>价格/次</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
+<tr id="vela-2.5-mini-row"><td><code>vela-2.5-mini</code></td><td>¥1.20</td><td>4–12 秒 · 720P</td><td>≤9 张参考图 + ≤3 段参考音频；不限制人脸</td></tr>
+<tr id="vela-2.5-mix"><td><code>vela-2.5-mix</code></td><td>¥1.80</td><td>4–30 秒 · 720P</td><td>16:9 / 9:16；≤30 图 + 10 音频（合计 ≤40）；不支持参考视频</td></tr>
+<tr id="vela-2.5"><td><code>vela-2.5</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>不支持音视频参考；低价直连档，偶有降智 / 人脸打码，无售后</td></tr>
+<tr id="vela-2.5-dola"><td><code>vela-2.5-dola</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>≤10 张参考图；16:9 / 9:16；dola 档，稳定性一般，无售后</td></tr>
+<tr id="vela-2-720"><td><code>vela-2-720</code></td><td>¥6.00</td><td>720P</td><td>≤9 图 + 3 视频 + 3 音频；不卡真人</td></tr>
+<tr id="vela-2.5-480"><td><code>vela-2.5-480</code></td><td>¥11.20</td><td>4–25 秒 · 480P</td><td>满血档，原生过人脸；≤30 图 + 10 音频</td></tr>
+<tr id="vela-2.5-720"><td><code>vela-2.5-720</code></td><td>¥13.20</td><td>4–25 秒 · 720P</td><td>满血档，原生过人脸；≤30 图 + 10 音频</td></tr>
+<tr id="vela-2.5-max"><td><code>vela-2.5-max</code></td><td>¥18.00</td><td>5–30 秒自选 · 1080P</td><td>满血全参 30-10-10；按次计费，价格与时长无关</td></tr>
 </table>
-<div class="note"><b>i</b><span>Vela 2.5 固定分辨率按秒档像打电话：做几秒付几秒，分辨率由模型名决定；pro 档速度快、原生过人脸，plus 档满血全参（支持视频 / 音频参考）。最准的价格以网站「模型广场」为准。</span></div>
+<div class="note"><b>i</b><span>按次档像点菜一口价：时长在范围内随便选，不影响价格；按秒档像打电话：做几秒付几秒。所有 Vela 模型都走 <code>POST /v1/videos</code>，素材直链可用 <a href="#refvideo">上传服务</a>。最准的价格以「模型广场」为准。</span></div>
 <h3 id="wan3">Wan 3.0（官转）</h3>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th></tr>
 <tr id="wan3.0"><td><code>wan3.0</code></td><td>¥0.30 / 秒</td><td>¥0.35 / 秒</td><td>¥0.38 / 秒</td></tr>
@@ -251,6 +271,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-lipsync</code></td><td><code>audio</code>: string</td><td>单图版：恰好 1 张参考图 + 1 段音频，人物嘴型对齐。</td></tr>
 <tr><td><code>minimax-h3-720p</code></td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（1 段），AI 沿用其人物与运镜；也可传参考图。</td></tr>
 <tr><td>H3 text / image / frames / lipsync / lipsync-multi</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝；需要参考视频请用 <code>minimax-h3-720p</code>。</td></tr>
+<tr><td>Vela 系列</td><td><code>images</code> / <code>input_reference</code>、<code>first_frame</code> + <code>last_frame</code>、<code>reference_videos</code></td><td>按秒新款支持参考图 / 首尾帧 / 参考视频；按次款以参考图为主（数量 9–30 张按模型而定），详见 Vela 目录两节。</td></tr>
 </table>
 <h3 id="example-frames">示例：首尾帧</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-frames",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
@@ -279,7 +300,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>参考图片</td><td><code>input_reference</code>（数组）</td><td><code>minimax-h3-image</code> / <code>minimax-h3-lipsync-multi</code></td></tr>
 <tr><td>首尾帧图片</td><td><code>first_frame</code> + <code>last_frame</code></td><td><code>minimax-h3-frames</code>（两帧均必填）</td></tr>
 <tr><td>音频 / 配音</td><td><code>audio</code>（恰好 1 段）</td><td><code>minimax-h3-lipsync-multi</code> 对口型</td></tr>
-<tr><td>Vela 参考图（按次款）</td><td><code>images</code>（数组）</td><td><code>vela-2.5-mix</code>；最多 30 张（也兼容 <code>image_urls</code>）</td></tr>
+<tr><td>Vela 参考图 / 首尾帧 / 参考视频</td><td><code>images</code>（数组）、<code>first_frame</code> + <code>last_frame</code>、<code>reference_videos</code></td><td>Vela 全系（按模型支持情况选用，详见模型目录）</td></tr>
 </table>
 <h3>示例：参考图 + 配音生成对口型视频（minimax-h3-lipsync-multi）</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code># 1) 上传人物图和配音（各传一次，拿到两个直链）<br>curl -F "file=@character.jpg" https://h3file.939593.xyz/upload<br>curl -F "file=@voice.mp3" https://h3file.939593.xyz/upload<br><br># 2) 提交任务：图进 input_reference，音频进 audio<br>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-lipsync-multi",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "seconds": 5,<br>    "resolution": "720P",<br>    "input_reference": ["https://h3file.939593.xyz/f/xxxx.jpg"],<br>    "audio": "https://h3file.939593.xyz/f/yyyy.mp3"<br>  }'</code></pre>
@@ -336,9 +357,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-text</code> … <code>minimax-h3-lipsync-multi</code></td><td>按实际生成秒数</td><td>480P ¥0.065/秒；720P ¥0.075/秒；lipsync / lipsync-multi 另有 1080P ¥0.30/秒；<code>minimax-h3-image</code> 固定输出分辨率，统一 ¥0.075/秒</td></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
 <tr><td><code>minimax-h3-2k</code>（固定 2K）</td><td>按实际生成秒数</td><td>固定 2K，统一 ¥0.21/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
-<tr><td>Vela 2.5 固定分辨率按秒（<code>vela-2.5-480/720/1080-*-ps</code>）</td><td>按实际生成秒数</td><td>480P ¥0.55 / ¥0.65；720P ¥0.85 / ¥0.95；1080P ¥1.40 每秒（pro = 稳定 / plus = 满血全参）</td></tr>
-<tr><td><code>vela-2.5-720-max-ps</code>（固定 720P 满血）</td><td>按实际生成秒数</td><td>¥0.55 / 秒（5–30 秒，30 图 + 10 视频 + 10 音频）</td></tr>
-<tr><td>Vela 2.5 按次（<code>vela-2.5-mix</code>）</td><td>按成功生成次数</td><td>¥2.50 / 次（固定 30 秒 / 720P，不乘时长）</td></tr>
+<tr><td>Vela 按秒档（<code>vela-2.5-pro</code> / <code>vela-2-pro</code> / <code>vela-2-fast</code> / <code>vela-2-mini</code>）</td><td>按实际生成秒数 × 分辨率档</td><td>vela-2.5-pro：¥0.35 / 0.75 / 1.25；vela-2-pro：¥0.25 / 0.55 / 1.05 / 2.05（4K）；vela-2-fast：¥0.20 / 0.45；vela-2-mini：¥0.15 / 0.25 每秒</td></tr>
+<tr><td>Vela 按次档（8 款）</td><td>按成功生成次数</td><td>¥1.20（vela-2.5-mini）至 ¥18.00（vela-2.5-max），详见模型目录；不乘时长</td></tr>
 <tr><td><code>wan3.0</code>（官转）</td><td>按实际生成秒数</td><td>480P ¥0.30、720P ¥0.35、1080P ¥0.38 / 秒</td></tr>
 <tr><td>Grok Imagine（<code>grok-imagine-video-1.5</code>）</td><td>按实际生成秒数</td><td>480P ¥0.10、720P ¥0.15、1080P ¥0.20 / 秒（1080P 仅文生与单图）</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
@@ -372,7 +392,7 @@ npx skills add https://github.com/MiniMax-AI/MiniMax-H3 --skill '*'</code></pre>
 <h3 id="faq-asset">「素材直链」是什么？我只有手机里的文件怎么办？</h3>
 <p>直链 = 一个任何人点开都能看到/下载的网址。本地文件先传到我们的 <a href="#refvideo">素材上传服务</a>（h3file.939593.xyz），拿到链接填进请求即可。链接 12 小时有效，足够批量任务排队。</p>
 <h3 id="faq-resolution">480P / 720P / 1080P 怎么选？</h3>
-<p>发朋友圈、快速试想法用 480P（最便宜）；正式发布用 720P（清晰且不贵）；大屏投放或精修口播用 1080P（目前仅 minimax-h3-lipsync / lipsync-multi 支持）。</p>
+<p>发朋友圈、快速试想法用 480P（最便宜）；正式发布用 720P（清晰且不贵）；大屏投放或精修口播用 1080P（H3 lipsync 系与 Vela 按秒新款支持，<code>vela-2-pro</code> 另有 4K）。</p>
 <h3 id="faq-fail">任务失败了，一般是什么原因？</h3>
 <p>最常见的三个：① 素材链接打不开（换上传服务重新传）；② 时长超出该模型的范围（对照模型目录改秒数）；③ 真人脸素材被内容安全拦截（换角度或漫画风）。失败都不扣钱，改好重发即可。</p>
 <h3 id="faq-save">成品和素材能存多久？</h3>
@@ -398,7 +418,7 @@ npx skills add https://github.com/MiniMax-AI/MiniMax-H3 --skill '*'</code></pre>
 </main>
 
 <footer><div class="wrap">
-<p>天才第一步 · 视频生成与生图服务文档（MiniMax H3 / GPT Image）</p>
+<p>天才第一步 · 视频生成与生图服务文档（MiniMax H3 / Vela / GPT Image）</p>
 <p>价格与可用模型以站内模型广场实时配置为准 · 反馈时请提供时间、模型、任务 ID 与错误码，不要发送 API 令牌</p>
 </div></footer>
 
