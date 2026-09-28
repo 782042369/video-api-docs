@@ -200,7 +200,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>Grok 1.5 升级版：文生、单图图生、多参考图生视频（≤7 张，提示词用 <code>&lt;IMAGE_1&gt;</code> 点名）还支持预设声音（<code>&lt;AUDIO_0&gt;</code>）。1–15 秒，480P ¥0.10 / 720P ¥0.15 / 1080P ¥0.20 每秒（多参考图生最高 720P）。</p></div>
 <div class="mcard" id="card-vela-2.5-pro"><h4><code>vela-2.5-pro</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.60 / 1.00 每秒</p>
-<p>旗舰文/图生视频：4–30 秒，720P / 1080P 两档按秒，支持首尾帧与参考图（≤30 张）。</p></div>
+<p>旗舰文/图生视频：4–30 秒，720P / 1080P 两档按秒，满参数。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>minimax-h3-text</code></td><td>按秒</td><td>12 秒</td><td>480P / 720P</td><td>—（不接受任何参考素材）</td></tr>
@@ -215,7 +215,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="note"><b>i</b><span>小贴士：H3 系列有 480P（省钱包）、720P（清晰包）两档，lipsync / lipsync-multi 两款另有 1080P（¥0.30/秒）。text / image / frames / lipsync / lipsync-multi 不能拿现成视频当参考素材，要传参考视频请用 minimax-h3-720p。image 是固定清晰度，统一 ¥0.075/秒；reference 固定 720P 统一 ¥0.15/秒；2k 固定 2K 统一 ¥0.21/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
 <h3 id="vela-persec">Vela 系列 · 按秒档（做几秒付几秒）</h3>
 <table><tr><th>模型</th><th>720P</th><th>1080P</th><th>时长</th><th>说明</th></tr>
-<tr id="vela-2.5-pro"><td><code>vela-2.5-pro</code></td><td>¥0.60/秒</td><td>¥1.00/秒</td><td>4–30 秒</td><td>旗舰档，支持首尾帧、参考图（≤30 张）；参考视频仅文生（不传图时）</td></tr>
+<tr id="vela-2.5-pro"><td><code>vela-2.5-pro</code></td><td>¥0.60/秒</td><td>¥1.00/秒</td><td>4–30 秒</td><td>旗舰档，满参数。</td></tr>
 </table>
 <p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">必填 <code>seconds</code>（做几秒，4–30 的整数）；清晰度用 <code>resolution</code>（720p / 1080p，无 480P 档，缺省按 720P 计），画面形状用 <code>aspect_ratio</code>（16:9 / 9:16 / 1:1 / 4:3 / 3:4 等，自动就近匹配）。参考图用 <code>images</code> 或 <code>input_reference</code>（≤30 张），首尾帧用 <code>first_frame</code> + <code>last_frame</code>；参考视频用 <code>reference_videos</code>，仅在不传参考图 / 首尾帧（文生模式）时生效；另可传 <code>seed</code> 与 <code>audio</code>（是否生成音轨）。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · 示例：vela-2.5-pro 1080P</div>
