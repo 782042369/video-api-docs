@@ -217,10 +217,15 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5-pro",<br>    "prompt": "夜幕下的城市天际线，镜头缓缓拉升，霓虹闪烁",<br>    "seconds": 8,<br>    "resolution": "1080p",<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 <h3 id="vela-percall">Vela 系列 · 按次档（一口价，做多久都一个价）</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
-<tr id="vela-2.5-mini-row"><td><code>vela-2.5-mini</code></td><td>¥1.20</td><td>4–12 秒 · 720P</td><td>≤9 张参考图 + ≤3 段参考音频；不限制人脸</td></tr>
+<tr id="vela-2-mini"><td><code>vela-2-mini</code></td><td>¥1.20</td><td>4–12 秒 · 720P</td><td>≤9 张参考图 + ≤3 段参考音频；不限制人脸；上游成功率高</td></tr>
+<tr id="vela-2.5-mix"><td><code>vela-2.5-mix</code></td><td>¥1.80</td><td>4–30 秒 · 720P</td><td>16:9 / 9:16；≤30 图 + 10 音频（合计 ≤40）；不支持参考视频；自动过人脸但卡脸率偏高，稳定性一般，无售后</td></tr>
+<tr id="vela-2.5-s"><td><code>vela-2.5-s</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>50% 概率过人脸；≤30 张参考图；16:9 / 9:16 / 1:1 / 4:3 / 3:4 / 21:9；低价档，无售后</td></tr>
+<tr id="vela-2.5"><td><code>vela-2.5</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>不支持音视频参考；偶有降智 / 人脸打码，无售后</td></tr>
+<tr id="vela-2.5-dola"><td><code>vela-2.5-dola</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>≤10 张参考图；16:9 / 9:16；稳定性一般，无售后</td></tr>
+<tr id="vela-2-15s"><td><code>vela-2-15s</code></td><td>¥2.20</td><td>固定 15 秒 · 720P</td><td>卡人脸、不卡 3D（真人素材慎选）；上游样本较少</td></tr>
 <tr id="vela-2-720"><td><code>vela-2-720</code></td><td>¥6.00</td><td>720P</td><td>≤9 图 + 3 视频 + 3 音频；内容审核较严，英文提示词易被误杀</td></tr>
 <tr id="vela-2.5-480"><td><code>vela-2.5-480</code></td><td>¥11.20</td><td>4–25 秒 · 480P</td><td>满血档，原生过人脸；≤30 图 + 10 音频</td></tr>
-<tr id="vela-2.5-720"><td><code>vela-2.5-720</code></td><td>¥13.00</td><td>4–25 秒 · 720P</td><td>满血档，原生过人脸；≤30 图 + 10 音频</td></tr>
+<tr id="vela-2.5-720"><td><code>vela-2.5-720</code></td><td>¥13.20</td><td>4–25 秒 · 720P</td><td>满血档，原生过人脸；≤30 图 + 10 音频</td></tr>
 </table>
 <div class="note"><b>i</b><span>按次档像点菜一口价：时长在范围内随便选，不影响价格；按秒档像打电话：做几秒付几秒。所有 Vela 模型都走 <code>POST /v1/videos</code>，素材直链可用 <a href="#refvideo">上传服务</a>。最准的价格以「模型广场」为准。</span></div>
 <h3 id="wan3">Wan 3.0（官转）</h3>
@@ -337,7 +342,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
 <tr><td><code>minimax-h3-2k</code>（固定 2K）</td><td>按实际生成秒数</td><td>固定 2K，统一 ¥0.21/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
 <tr><td>Vela 按秒档（<code>vela-2.5-pro</code>）</td><td>按实际生成秒数 × 分辨率档</td><td>720P ¥0.60、1080P ¥1.00 每秒（4–30 秒，无 480P 档）</td></tr>
-<tr><td>Vela 按次档（4 款）</td><td>按成功生成次数</td><td>¥1.20（vela-2.5-mini）至 ¥13.00（vela-2.5-720），详见模型目录；不乘时长</td></tr>
+<tr><td>Vela 按次档（9 款）</td><td>按成功生成次数</td><td>¥1.20（vela-2-mini）至 ¥13.20（vela-2.5-720），详见模型目录；不乘时长</td></tr>
 <tr><td><code>wan3.0</code>（官转）</td><td>按实际生成秒数</td><td>480P ¥0.30、720P ¥0.35、1080P ¥0.38 / 秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
