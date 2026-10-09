@@ -226,22 +226,13 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5-pro",<br>    "prompt": "夜幕下的城市天际线，镜头缓缓拉升，霓虹闪烁",<br>    "seconds": 8,<br>    "resolution": "1080p",<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 <h3 id="vela-percall">Vela 系列 · 按次档（一口价，做多久都一个价）</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
-<tr id="vela-2-mini"><td><code>vela-2-mini</code></td><td>¥1.20</td><td>4–12 秒 · 720P</td><td>≤9 张参考图 + ≤3 段参考音频；不限制人脸</td></tr>
-<tr id="vela-2.5-mix"><td><code>vela-2.5-mix</code></td><td>¥1.80</td><td>4–30 秒 · 720P</td><td>16:9 / 9:16；≤30 图 + 10 音频（合计 ≤40）；不支持参考视频；自动过人脸但卡脸率偏高</td></tr>
-<tr id="vela-2.5-s"><td><code>vela-2.5-s</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>50% 概率过人脸；≤30 张参考图；16:9 / 9:16 / 1:1 / 4:3 / 3:4 / 21:9</td></tr>
-<tr id="vela-2.5"><td><code>vela-2.5</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>不支持音视频参考；人脸可能打码</td></tr>
-<tr id="vela-2.5-dola"><td><code>vela-2.5-dola</code></td><td>¥1.80</td><td>固定 30 秒 · 720P</td><td>≤10 张参考图；16:9 / 9:16</td></tr>
-<tr id="vela-2.5-max"><td><code>vela-2.5-max</code></td><td>¥2.00</td><td>16–30 秒 · 720P</td><td>≤30 张参考图 + 10 段参考视频 + 10 段参考音频（图 / 视频 / 音频均收公网 URL 或 base64）；16:9 / 9:16 / 1:1 / 4:3 / 3:4 / 21:9；不提供原生人脸附加选项</td></tr>
-<tr id="vela-2-15s"><td><code>vela-2-15s</code></td><td>¥2.20</td><td>固定 15 秒 · 720P</td><td>卡人脸、不卡 3D（真人素材慎选）</td></tr>
-<tr id="vela-2-720"><td><code>vela-2-720</code></td><td>¥6.00</td><td>720P</td><td>≤9 图 + 3 视频 + 3 音频；内容审核较严，英文提示词易被误杀</td></tr>
-<tr id="vela-2.5-480"><td><code>vela-2.5-480</code></td><td>¥11.20</td><td>4–25 秒 · 480P</td><td>满血档，原生过人脸；≤30 图 + 10 音频（素材走 <code>assets</code> 格式，见参考素材表）</td></tr>
-<tr id="vela-2.5-720"><td><code>vela-2.5-720</code></td><td>¥13.20</td><td>4–25 秒 · 720P</td><td>满血档，原生过人脸；≤30 图 + 10 音频（素材走 <code>assets</code> 格式，见参考素材表）</td></tr>
+<tr id="vela-2.5-mix"><td><code>vela-2.5-mix</code></td><td>¥2.00</td><td>4–30 秒 · 720P</td><td>16:9 / 9:16；≤30 图 + 10 音频（合计 ≤40）；不支持参考视频；自动过人脸但卡脸率偏高</td></tr>
 </table>
 <div class="note"><b>i</b><span>按次档像点菜一口价：时长在范围内随便选，不影响价格；按秒档像打电话：做几秒付几秒。所有 Vela 模型都走 <code>POST /v1/videos</code>，素材直链可用 <a href="#refvideo">上传服务</a>。最准的价格以「模型广场」为准。</span></div>
-<h3 id="vela-max-example">示例：vela-2.5-max 图生视频（720P · 24 秒）</h3>
-<div class="endpoint"><span class="m">POST</span>/v1/videos · vela-2.5-max</div>
-<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5-max",<br>    "prompt": "参考图中的少女在海边奔跑，镜头跟随，黄昏光线",<br>    "duration": 24,<br>    "ratio": "16:9",<br>    "image_urls": ["https://h3file.939593.xyz/f/xxxx.jpg"],<br>    "video_urls": ["https://h3file.939593.xyz/f/xxxx.mp4"],<br>    "audio_urls": ["https://h3file.939593.xyz/f/xxxx.mp3"]<br>  }'</code></pre>
-<p>参考视频 / 音频与参考图一样直接给公网 URL（<code>video_urls</code> / <code>audio_urls</code>，数组），服务端会自动下载后转发给模型；也可改用 <code>video_b64s</code> / <code>audio_b64s</code> 传 base64，两种方式合并计数。</p>
+<h3 id="vela-mix-example">示例：vela-2.5-mix 图生视频（720P · 16 秒）</h3>
+<div class="endpoint"><span class="m">POST</span>/v1/videos · vela-2.5-mix</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5-mix",<br>    "prompt": "参考图中的少女在海边奔跑，镜头跟随，黄昏光线",<br>    "seconds": 16,<br>    "ratio": "16:9",<br>    "reference_images": ["https://h3file.939593.xyz/f/xxxx.jpg"]<br>  }'</code></pre>
+<p>参考图直接给公网 URL 或 base64 data URL（<code>reference_images</code>，最多 30 张）；配音参考用 <code>reference_audios</code>（公网 URL 数组，最多 10 段，与图片合计 ≤40 项）。</p>
 <p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">固定 720P、16–30 秒（<code>duration</code> 不填默认 30 秒），一口价 ¥2.00/次与时长无关。参考视频 / 音频用 <code>video_b64s</code> / <code>audio_b64s</code> 传 base64 数组；16 秒以上时长下上游不提供原生人脸附加选项。</p>
 <h3 id="wan3">Wan 3.0（官转）</h3>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th></tr>
@@ -272,9 +263,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>H3 text / image / frames / lipsync / lipsync-multi</td><td>—</td><td>不支持参考视频：<code>video</code> / <code>video_url</code> 等字段会被上游拒绝；需要参考视频请用 <code>minimax-h3-720p</code>。</td></tr>
 <tr><td>Vela 按秒款（vela-2.5-pro）</td><td><code>images</code> / <code>input_reference</code>、<code>first_frame</code> + <code>last_frame</code>、<code>reference_videos</code>（仅文生）</td><td>参考图 ≤30 张。</td></tr>
 <tr><td>Vela 按秒款（vela-2-flash / vela-2-933）</td><td><code>reference_images</code>（≤9）+ <code>reference_videos</code>（≤3）+ <code>reference_audios</code>（≤3）</td><td>素材传公网 URL。</td></tr>
-<tr><td>Vela 按次款（480 / 720 两档除外）</td><td><code>reference_images</code>（别名 <code>images</code> / <code>first_frame_image</code> / <code>last_frame_image</code>）+ <code>reference_audios</code></td><td>参考图：公网 URL 或 base64 data URL 可混用，单张 ≤32MB，数量 9–30 张按模型而定；参考音频：公网 URL 数组（vela-2-mini ≤3 段、vela-2.5-mix ≤10 段、vela-2-720 ≤3 段），URL 与参考图一样直接放数组里。</td></tr>
-<tr><td><code>vela-2.5-max</code></td><td><code>image_urls</code>（别名 <code>images</code> / <code>image_refs</code> / <code>reference_images</code>，或 <code>first_frame</code> / <code>last_frame</code>）+ <code>video_urls</code>（别名 <code>videos</code> / <code>reference_videos</code>）+ <code>audio_urls</code>（别名 <code>audios</code> / <code>reference_audios</code>）+ <code>video_b64s</code> + <code>audio_b64</code> / <code>audio_b64s</code></td><td>参考图 / 视频 / 音频统一收<strong>公网 URL 直链</strong>（MP4/MOV/WebM 与 MP3/M4A/WAV/OGG/FLAC，服务端自动下载转发）；也接受 base64（<code>video_b64s</code> / <code>audio_b64</code> / <code>audio_b64s</code>），URL 与 base64 合并计数：图 ≤30、视频 ≤10、音频 ≤10，视频 / 音频总大小各 ≤60MiB。时长 <code>duration</code> 16–30 整数（默认 30），画幅 <code>ratio</code>（别名 <code>aspect_ratio</code>），分辨率固定 720P。素材打不开会直接报错，不扣费。</td></tr>
-<tr><td>vela-2.5-480 / vela-2.5-720</td><td><code>assets</code>: object[]</td><td>每项 <code>{"category":"image"|"audio","url":"https直链"}</code>；本地文件用 <code>data_base64</code> 传纯 base64（不带 data: 前缀）。提示词须按顺序写 <code>@image1</code>、<code>@audio1</code> 引用对应素材，否则上游拒绝；音频素材须与图片搭配（纯音频请求会被拒）；不支持参考视频。</td></tr>
+<tr><td><code>vela-2.5-mix</code>（按次）</td><td><code>reference_images</code>（别名 <code>images</code> / <code>first_frame_image</code> / <code>last_frame_image</code>）+ <code>reference_audios</code></td><td>参考图：公网 URL 或 base64 data URL 可混用，单张 ≤32MB，≤30 张；参考音频：公网 URL 数组（≤10 段），与参考图合计 ≤40 项；不支持参考视频。</td></tr>
 </table>
 <h3 id="example-frames">示例：首尾帧</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-frames",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
@@ -303,9 +292,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>参考图片</td><td><code>input_reference</code>（数组）</td><td><code>minimax-h3-image</code> / <code>minimax-h3-lipsync-multi</code></td></tr>
 <tr><td>首尾帧图片</td><td><code>first_frame</code> + <code>last_frame</code></td><td><code>minimax-h3-frames</code>（两帧均必填）</td></tr>
 <tr><td>音频 / 配音</td><td><code>audio</code>（恰好 1 段）</td><td><code>minimax-h3-lipsync-multi</code> 对口型</td></tr>
-<tr><td>Vela 参考图 / 首尾帧</td><td><code>images</code>（数组）、<code>first_frame</code> + <code>last_frame</code></td><td>Vela 按秒款与按次款（vela-2.5-480 / 720 除外，那两档走 assets）</td></tr>
-<tr><td>Vela 参考音频</td><td><code>reference_audios</code>（数组）</td><td>Vela 按次款：vela-2-mini ≤3 段、vela-2.5-mix ≤10 段、vela-2-720 ≤3 段</td></tr>
-<tr><td>vela-2.5-480 / 720 全部素材</td><td><code>assets</code>（图 + 音频混编数组）</td><td>提示词须写 <code>@image1</code> / <code>@audio1</code>；音频必须搭配至少 1 张图片</td></tr>
+<tr><td>Vela 参考图 / 首尾帧</td><td><code>images</code>（数组）、<code>first_frame</code> + <code>last_frame</code></td><td>Vela 按秒款与 <code>vela-2.5-mix</code></td></tr>
+<tr><td>Vela 参考音频</td><td><code>reference_audios</code>（数组）</td><td><code>vela-2.5-mix</code>：≤10 段（与参考图合计 ≤40 项）</td></tr>
 </table>
 <h3>示例：参考图 + 配音生成对口型视频（minimax-h3-lipsync-multi）</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code># 1) 上传人物图和配音（各传一次，拿到两个直链）<br>curl -F "file=@character.jpg" https://h3file.939593.xyz/upload<br>curl -F "file=@voice.mp3" https://h3file.939593.xyz/upload<br><br># 2) 提交任务：图进 input_reference，音频进 audio<br>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-lipsync-multi",<br>    "prompt": "角色面对镜头说话，口型与音频对齐",<br>    "seconds": 5,<br>    "resolution": "720P",<br>    "input_reference": ["https://h3file.939593.xyz/f/xxxx.jpg"],<br>    "audio": "https://h3file.939593.xyz/f/yyyy.mp3"<br>  }'</code></pre>
@@ -364,7 +352,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-2k</code>（固定 2K）</td><td>按实际生成秒数</td><td>固定 2K，统一 ¥0.21/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
 <tr><td>Vela 按秒档（<code>vela-2.5-pro</code>）</td><td>按实际生成秒数 × 分辨率档</td><td>720P ¥0.60、1080P ¥1.00 每秒（4–30 秒，无 480P 档）</td></tr>
 <tr><td>Vela 按秒档（<code>vela-2-flash</code> / <code>vela-2-933</code>）</td><td>固定 720P × 请求秒数</td><td>¥0.35/秒（5–15 秒）</td></tr>
-<tr><td>Vela 按次档（9 款）</td><td>按成功生成次数</td><td>¥1.20（vela-2-mini）至 ¥13.20（vela-2.5-720），详见模型目录；不乘时长</td></tr>
+<tr><td>Vela 按次档（vela-2.5-mix）</td><td>按成功生成次数</td><td>一口价 ¥2.00/次，不乘时长</td></tr>
 <tr><td><code>wan3.0</code>（官转）</td><td>按实际生成秒数</td><td>480P ¥0.30、720P ¥0.35、1080P ¥0.38 / 秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
