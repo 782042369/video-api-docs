@@ -167,9 +167,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>照着一段视频的人物和运镜，拍同款新内容</td><td><a href="#minimax-h3-720p"><code>minimax-h3-720p</code></a></td><td>传 1 段参考视频（可用 <a href="#refvideo">上传服务</a>拿直链）</td><td>5 秒 ¥0.75</td></tr>
 <tr><td>要求高清晰度（1080P）的口播对口型</td><td><a href="#minimax-h3-lipsync-multi"><code>minimax-h3-lipsync-multi</code></a>（1080P 档）</td><td>同上，请求里 resolution 写 1080p</td><td>5 秒 ¥1.50</td></tr>
 <tr><td>想要按秒计费的旗舰长片（720 / 1080P 自选）</td><td><a href="#vela-persec">Vela 按秒档</a>（<code>vela-2.5-pro</code>）</td><td>写描述 + 自选秒数与清晰度，支持首尾帧 / 参考图</td><td>每秒 ¥0.60 – ¥1.00</td></tr>
-<tr><td>一句话拍 grok 风格短视频（文生 / 图生，一口价）</td><td><a href="#grok-percall"><code>grok-imagine-video</code></a></td><td>写描述，可选传首帧图</td><td>¥6 / 次</td></tr>
-<tr><td>文生 + 多张首帧参考图（最多 7 张）快速出片</td><td><a href="#grok-percall"><code>grok-imagine-video-1.5-fast</code></a></td><td>写描述 + 可选传图（≤7 张）</td><td>¥8 / 次</td></tr>
-<tr><td>用 grok 最新 1.5 旗舰，把一张图变成视频</td><td><a href="#grok-percall"><code>grok-imagine-video-1.5-preview</code></a></td><td>必传 1 张首帧图 + 描述动作</td><td>¥10 / 次</td></tr>
+<tr><td>一句话拍 grok 风格短视频（文生 / 图生，一口价）</td><td><a href="#grok-percall"><code>grok-imagine-video</code></a></td><td>写描述，可选传首帧图</td><td>¥0.6 / 次</td></tr>
+<tr><td>文生 + 多张首帧参考图（最多 7 张）快速出片</td><td><a href="#grok-percall"><code>grok-imagine-video-1.5-fast</code></a></td><td>写描述 + 可选传图（≤7 张）</td><td>¥0.8 / 次</td></tr>
+<tr><td>用 grok 最新 1.5 旗舰，把一张图变成视频</td><td><a href="#grok-percall"><code>grok-imagine-video-1.5-preview</code></a></td><td>必传 1 张首帧图 + 描述动作</td><td>¥1 / 次</td></tr>
 <tr><td>不想要视频，只要一张图（快速、日常）</td><td><a href="#gpt-image-2.5-flare"><code>gpt-image-2.5-flare</code></a>（速度档）</td><td>写描述（或传图让 AI 改）</td><td>¥0.10 一张</td></tr>
 <tr><td>要精修一张图：改细节、改文字、商品图</td><td><a href="#gpt-image-2.5-sunburst"><code>gpt-image-2.5-sunburst</code></a>（质量档）</td><td>写描述 + 可多轮继续改</td><td>¥0.10 一张</td></tr>
 </table>
@@ -210,13 +210,13 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p class="price">¥0.30 / 0.40 每秒</p>
 <p>全参旗舰：文生 / 图生视频；<code>resolution</code> 选 768p / 2k（缺省 768p），768P ¥0.30/秒、2K ¥0.40/秒，画幅用 <code>aspect_ratio</code>。</p></div>
 <div class="mcard" id="grok-imagine-video"><h4><code>grok-imagine-video</code><span class="tag per">按次</span></h4>
-<p class="price">¥6 / 次</p>
+<p class="price">¥0.6 / 次</p>
 <p>Grok 想象视频·标准版：文生、图生（首帧图）；6 / 10 / 15 秒，16:9 / 9:16，固定 720P，一口价。不支持参考视频。</p></div>
 <div class="mcard" id="grok-imagine-video-1.5-fast"><h4><code>grok-imagine-video-1.5-fast</code><span class="tag per">按次</span></h4>
-<p class="price">¥8 / 次</p>
+<p class="price">¥0.8 / 次</p>
 <p>Grok 1.5 Fast：文生视频 + 首帧多图参考（最多 7 张）；6 / 10 / 15 秒，16:9 / 9:16，固定 720P。</p></div>
 <div class="mcard" id="grok-imagine-video-1.5-preview"><h4><code>grok-imagine-video-1.5-preview</code><span class="tag per">按次</span></h4>
-<p class="price">¥10 / 次</p>
+<p class="price">¥1 / 次</p>
 <p>Grok 最新 1.5 旗舰：只支持图生视频（必传首帧图）；提示词 4096 字符内、中文一千字内，超长自动截断。</p></div>
 </div>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
@@ -257,9 +257,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="note"><b>i</b><span>wan3.0 走官方转发（官转）通道，按实际生成秒数计费，分辨率越高单价越高。</span></div>
 <h3 id="grok-percall">Grok 系列（xAI）· 按次档（一口价，失败不扣费）</h3>
 <table><tr><th>模型</th><th>价格 / 次</th><th>时长 / 画幅 / 清晰度</th><th>生成模式与素材</th></tr>
-<tr><td><code>grok-imagine-video</code></td><td>¥6.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频；图生视频（首帧图 <code>image_url</code>）；不支持参考视频</td></tr>
-<tr><td><code>grok-imagine-video-1.5-fast</code></td><td>¥8.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频 + 首帧多图参考（<code>image_urls</code>，最多 7 张）</td></tr>
-<tr><td><code>grok-imagine-video-1.5-preview</code></td><td>¥10.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>只支持图生视频：<code>image_url</code> 必传；提示词 4096 字符内（中文一千字内），超长自动截断</td></tr>
+<tr><td><code>grok-imagine-video</code></td><td>¥0.60</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频；图生视频（首帧图 <code>image_url</code>）；不支持参考视频</td></tr>
+<tr><td><code>grok-imagine-video-1.5-fast</code></td><td>¥0.80</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频 + 首帧多图参考（<code>image_urls</code>，最多 7 张）</td></tr>
+<tr><td><code>grok-imagine-video-1.5-preview</code></td><td>¥1.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>只支持图生视频：<code>image_url</code> 必传；提示词 4096 字符内（中文一千字内），超长自动截断</td></tr>
 </table>
 <p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">字段与全站公共参数一致：<code>prompt</code>（必填）、<code>duration</code>（也接受 <code>seconds</code>）、<code>aspect_ratio</code>（也接受 <code>ratio</code>，16:9 / 9:16）；分辨率固定 720P 无需填写。成品下载走 <code>GET /v1/videos/{task_id}/content</code>。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · 示例：grok-imagine-video 文生视频</div>
@@ -382,7 +382,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>Vela 按秒档（<code>vela-2-flash</code> / <code>vela-2-933</code>）</td><td>固定 720P × 请求秒数</td><td>¥0.35/秒（5–15 秒）</td></tr>
 <tr><td>Vela 按次档（vela-2.5-mix）</td><td>按成功生成次数</td><td>一口价 ¥2.00/次，不乘时长</td></tr>
 <tr><td><code>wan3.0</code>（官转）</td><td>按实际生成秒数</td><td>480P ¥0.30、720P ¥0.35、1080P ¥0.38 / 秒</td></tr>
-<tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥6 / ¥8 / ¥10 每次；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
+<tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥0.6 / ¥0.8 / ¥1 每次（对应 0.6r / 0.8r / 1r）；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
