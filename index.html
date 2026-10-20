@@ -169,15 +169,15 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>一口价长片：固定 720P、5–30 秒；参考图 ≤30 张 + 参考视频 ≤10 段 + 参考音频 ≤10 段，约 10 分钟出片。</p></div>
 <div class="mcard" id="MiniMax-H3"><h4><code>MiniMax-H3</code>（官）<span class="tag sec">按秒</span></h4>
 <p class="price">¥0.30 / 0.40 每秒</p>
-<p>官方通道。全参旗舰：文生 / 图生视频；<code>resolution</code> 选 768p / 2k（缺省 768p），768P ¥0.30/秒、2K ¥0.40/秒，画幅用 <code>aspect_ratio</code>。</p></div>
+<p>官方通道。全参数旗舰：文生 / 图生 / 参考视频 / 参考音频（9 图 + 3 视频 + 3 音频）；<code>resolution</code> 选 768p / 2k（缺省 768p），768P ¥0.30/秒、2K ¥0.40/秒，画幅用 <code>aspect_ratio</code>。</p></div>
 </div>
 <h3 id="minimax-h3-table">MiniMax H3 系列 · 按秒档（做几秒付几秒）</h3>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
 <tr><td><code>minimax-h3-720p</code></td><td>按秒</td><td>15 秒</td><td>固定 720P</td><td>支持满参数：9 图 + 3 视频 + 3 音频；统一 ¥0.15/秒</td></tr>
 <tr><td><code>minimax-h3-2k</code></td><td>按秒</td><td>15 秒</td><td>固定 2K</td><td>支持满参数：9 图 + 3 视频 + 3 音频；统一 ¥0.21/秒</td></tr>
-<tr><td><code>MiniMax-H3</code>（官方通道）</td><td>按秒</td><td>15 秒</td><td><code>resolution</code> 选 768p / 2k（缺省 768p）</td><td>文/图生视频：<code>input_reference</code>（≤9 张）；768P ¥0.30/秒、2K ¥0.40/秒</td></tr>
+<tr><td><code>MiniMax-H3</code>（官方通道）</td><td>按秒</td><td>15 秒</td><td><code>resolution</code> 选 768p / 2k（缺省 768p）</td><td>支持满参数：9 图 + 3 视频 + 3 音频；768P ¥0.30/秒、2K ¥0.40/秒</td></tr>
 </table>
-<div class="note"><b>i</b><span>小贴士：在架 H3 系列：minimax-h3-720p 固定 720P、统一 ¥0.15/秒；minimax-h3-2k 固定 2K、统一 ¥0.21/秒——两款都支持满参数（9 图 + 3 视频 + 3 音频）。官方通道 MiniMax-H3 按分辨率计价：768P ¥0.30/秒、2K ¥0.40/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
+<div class="note"><b>i</b><span>小贴士：在架 H3 四款（720p / 2k / 官方 768P / 官方 2K）全部支持满参数（9 图 + 3 视频 + 3 音频）：minimax-h3-720p 固定 720P、统一 ¥0.15/秒；minimax-h3-2k 固定 2K、统一 ¥0.21/秒；官方通道 MiniMax-H3 按分辨率计价：768P ¥0.30/秒、2K ¥0.40/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
 <h3 id="vela-percall">Vela 系列 · 按次档（一口价，做多久都一个价）</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
 <tr id="vela-2.5-M"><td><code>vela-2.5-M</code></td><td>¥5.50</td><td>5–30 秒 · 720P</td><td>≤30 张参考图 + 10 段参考视频 + 10 段参考音频（素材只收公网直链、不收 base64）；16:9 / 9:16 / 21:9 等画幅；约 10 分钟出片</td></tr>
@@ -211,7 +211,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3 id="materials">各工作流参考素材</h3>
 <table><tr><th>模型</th><th>素材字段</th><th>说明</th></tr>
 <tr><td>H3 系列（720p / 2k / 官方 MiniMax-H3）</td><td><code>input_reference</code>: string[]</td><td>参考图 URL 数组，最多 9 张，重复 URL 自动去重；兼容 <code>image</code> / <code>images</code> / <code>image_url</code> / <code>image_urls</code> / <code>reference_images</code>，也可用 <code>ref_image_0</code>…<code>ref_image_8</code> 逐张指定。</td></tr>
-<tr><td><code>minimax-h3-720p</code></td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（1 段），AI 沿用其人物与运镜；也可传参考图。</td></tr>
+<tr><td>H3 系列（720p / 2k / 官方 MiniMax-H3）</td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（≤3 段），AI 沿用其人物与运镜；也可传参考图 / 参考音频。</td></tr>
 <tr><td><code>vela-2.5-M</code>（按次）</td><td><code>images</code>（别名 <code>image_urls</code> / <code>image_refs</code> / <code>reference_images</code> / <code>input_reference</code>，或首尾帧 <code>start_frame</code> + <code>end_frame</code>，亦收 <code>first_frame</code> / <code>last_frame</code>）+ <code>reference_videos</code>（别名 <code>video_urls</code> / <code>videos</code>）+ <code>reference_audios</code>（别名 <code>audio_urls</code> / <code>audios</code>）</td><td>只收<strong>公网 URL 直链</strong>（不收 base64）：参考图 ≤30 张、参考视频 ≤10 段、参考音频 ≤10 段；时长 <code>duration</code> 5–30 整数（默认 5），画幅 <code>ratio</code>（别名 <code>aspect_ratio</code>），分辨率固定 720P。素材打不开会直接报错，不扣费。</td></tr>
 </table>
 <h3 id="example-frames">示例：首尾帧（vela-2.5-M 按次）</h3>
@@ -235,7 +235,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3 id="ref-assets-usage">图片 / 音频怎么用</h3>
 <p>上传方式一模一样（<code>curl -F "file=@xxx.jpg" https://h3file.939593.xyz/upload</code>），拿到的直链按素材类型填进对应字段：</p>
 <table><tr><th>素材类型</th><th>填哪个字段</th><th>适配模型</th></tr>
-<tr><td>参考视频</td><td><code>reference_videos</code>（vela-2.5-M 亦收 <code>video_urls</code>）</td><td><code>minimax-h3-720p</code> / <code>minimax-h3-2k</code> / <code>vela-2.5-M</code>（≤10 段）</td></tr>
+<tr><td>参考视频</td><td><code>reference_videos</code>（vela-2.5-M 亦收 <code>video_urls</code>）</td><td><code>minimax-h3-720p</code> / <code>minimax-h3-2k</code> / <code>MiniMax-H3</code>（官方）各 ≤3 段；<code>vela-2.5-M</code>（≤10 段）</td></tr>
 <tr><td>参考图片</td><td><code>input_reference</code>（数组；vela-2.5-M 用 <code>images</code>）</td><td><code>minimax-h3-720p</code> / <code>minimax-h3-2k</code> / <code>MiniMax-H3</code>（官方）/ <code>vela-2.5-M</code>（≤30 张）</td></tr>
 <tr><td>首尾帧图片</td><td><code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>vela-2.5-M</code>（两帧均必填）</td></tr>
 <tr><td>Vela 参考图 / 首尾帧</td><td><code>images</code>（数组）、<code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>vela-2.5-M</code>（图 ≤30 张）</td></tr>
@@ -294,7 +294,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>计费方式</th><th>价格</th></tr>
 <tr><td><code>minimax-h3-720p</code>（参考视频版）</td><td>按实际生成秒数</td><td>固定 720P，统一 ¥0.15/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
 <tr><td><code>minimax-h3-2k</code>（固定 2K）</td><td>按实际生成秒数</td><td>固定 2K，统一 ¥0.21/秒；支持满参数：9 图 + 3 视频 + 3 音频</td></tr>
-<tr><td><code>MiniMax-H3</code>（全参旗舰 · 官方通道）</td><td>按实际生成秒数 × 分辨率档</td><td>768P ¥0.30、2K ¥0.40 / 秒（<code>resolution</code> 选 768p / 2k，缺省 768p）</td></tr>
+<tr><td><code>MiniMax-H3</code>（全参旗舰 · 官方通道）</td><td>按实际生成秒数 × 分辨率档</td><td>768P ¥0.30、2K ¥0.40 / 秒（<code>resolution</code> 选 768p / 2k，缺省 768p；全参数：9 图 + 3 视频 + 3 音频）</td></tr>
 <tr><td>Vela 按次档（<code>vela-2.5-M</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/次，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
 <tr><td><code>wan3.0-video</code>（官转 · 返回官链）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.27、720P ¥0.34、1080P ¥0.36 / 秒</td></tr><tr><td><code>wan3.0-video-prime</code>（官转）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.30、720P ¥0.38、1080P ¥0.40 / 秒</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
