@@ -95,7 +95,7 @@ footer p{margin:.3em 0}
 <h1>会打字，就能做视频和图片。</h1>
 <p class="lead">你只需要三步：拿到令牌 → 发一句话描述想要的画面 → 等一两分钟下载成品视频。想生成图片更简单，发一段描述直接出图。不用安装任何软件，写文字、传图片链接就行。</p>
 <div class="pills">
-<span class="pill"><i></i>vela-2.5-M · 图音视混合参考</span><span class="pill"><i></i>wan3.0-video / prime · 官转 · 返回官链</span><span class="pill"><i></i>MiniMax-H3 · 官方通道</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>minimax-h3-2k · 2K 超清</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
+<span class="pill"><i></i>vela-2.5-M · 图音视混合参考</span><span class="pill"><i></i>wan3.0-video / prime · 官转 · 返回官链</span><span class="pill"><i></i>grok 视频 · 按次</span><span class="pill"><i></i>MiniMax-H3 · 官方通道</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>minimax-h3-2k · 2K 超清</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -173,6 +173,15 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="mcard" id="MiniMax-H3"><h4><code>MiniMax-H3</code>（官）<span class="tag sec">按秒</span></h4>
 <p class="price">¥0.30 / 0.40 每秒</p>
 <p>官方通道。全参数旗舰：文生 / 图生 / 参考视频 / 参考音频（9 图 + 3 视频 + 3 音频）；<code>resolution</code> 选 768p / 2k（缺省 768p），768P ¥0.30/秒、2K ¥0.40/秒，画幅用 <code>aspect_ratio</code>。</p></div>
+<div class="mcard" id="grok-imagine-video"><h4><code>grok-imagine-video</code><span class="tag per">按次</span></h4>
+<p class="price">¥0.6 / 次</p>
+<p>Grok 想象视频·标准版：文生、图生（首帧图）；6 / 10 / 15 秒，16:9 / 9:16，固定 720P，一口价。不支持参考视频。</p></div>
+<div class="mcard" id="grok-imagine-video-1.5-fast"><h4><code>grok-imagine-video-1.5-fast</code><span class="tag per">按次</span></h4>
+<p class="price">¥0.8 / 次</p>
+<p>Grok 1.5 Fast：文生视频 + 首帧多图参考（最多 7 张）；6 / 10 / 15 秒，16:9 / 9:16，固定 720P。</p></div>
+<div class="mcard" id="grok-imagine-video-1.5-preview"><h4><code>grok-imagine-video-1.5-preview</code><span class="tag per">按次</span></h4>
+<p class="price">¥1 / 次</p>
+<p>Grok 最新 1.5 旗舰：只支持图生视频（必传首帧图）；提示词 4096 字符内、中文一千字内，超长自动截断。</p></div>
 </div>
 <h3 id="minimax-h3-table">MiniMax H3 系列 · 按秒档（做几秒付几秒）</h3>
 <table><tr><th>模型</th><th>计费</th><th>时长上限</th><th>分辨率</th><th>参考素材字段</th></tr>
@@ -198,6 +207,15 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </table>
 <div class="note ok"><b>✓</b><span><b>官链</b>：<code>wan3.0-video</code> / <code>wan3.0-video-prime</code> 走官方转发（官转）通道，任务完成后<b>查进度接口会直接返回官方成品直链</b>——响应里的 <code>url</code> / <code>video_url</code> / <code>download_url</code>（约 24 小时有效），复制到浏览器就能直接下载，不必经过本站中转。</span></div>
 <div class="note"><b>i</b><span>按实际计费秒数结算：<b>输入参考视频秒数 + 输出视频秒数</b>；<code>resolution</code> 不填默认按 1080P 档计费（video ¥0.36/秒、prime ¥0.40/秒），<code>seconds</code> 不填默认 5 秒，单次最长 30 秒。失败全额退款。</span></div>
+<h3 id="grok-percall">Grok 系列（xAI）· 按次档（一口价，失败不扣费）</h3>
+<table><tr><th>模型</th><th>价格 / 次</th><th>时长 / 画幅 / 清晰度</th><th>生成模式与素材</th></tr>
+<tr><td><code>grok-imagine-video</code></td><td>¥0.60</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频；图生视频（首帧图 <code>image_url</code>）；不支持参考视频</td></tr>
+<tr><td><code>grok-imagine-video-1.5-fast</code></td><td>¥0.80</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频 + 首帧多图参考（<code>image_urls</code>，最多 7 张）</td></tr>
+<tr><td><code>grok-imagine-video-1.5-preview</code></td><td>¥1.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>只支持图生视频：<code>image_url</code> 必传；提示词 4096 字符内（中文一千字内），超长自动截断</td></tr>
+</table>
+<p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">字段与全站公共参数一致：<code>prompt</code>（必填）、<code>duration</code>（也接受 <code>seconds</code>）、<code>aspect_ratio</code>（也接受 <code>ratio</code>，16:9 / 9:16）；分辨率固定 720P 无需填写。成品下载走 <code>GET /v1/videos/{task_id}/content</code>。</p>
+<div class="endpoint"><span class="m">POST</span>/v1/videos · 示例：grok-imagine-video 文生视频</div>
+<pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "grok-imagine-video",<br>    "prompt": "夜晚的城市天台，一只柯基戴着耳机随音乐点头，霓虹闪烁，电影感运镜",<br>    "duration": 6,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
@@ -217,6 +235,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>H3 系列（image / 720p / 2k / 官方 MiniMax-H3）</td><td><code>input_reference</code>: string[]</td><td>参考图 URL 数组，最多 9 张，重复 URL 自动去重；兼容 <code>image</code> / <code>images</code> / <code>image_url</code> / <code>image_urls</code> / <code>reference_images</code>，也可用 <code>ref_image_0</code>…<code>ref_image_8</code> 逐张指定。</td></tr>
 <tr><td>H3 系列（720p / 2k / 官方 MiniMax-H3）</td><td><code>reference_videos</code>: string[]</td><td>参考视频直链数组（≤3 段），AI 沿用其人物与运镜；也可传参考图 / 参考音频（image 款仅收参考图，不收视频 / 音频）。</td></tr>
 <tr><td><code>vela-2.5-M</code>（按次）</td><td><code>images</code>（别名 <code>image_urls</code> / <code>image_refs</code> / <code>reference_images</code> / <code>input_reference</code>，或首尾帧 <code>start_frame</code> + <code>end_frame</code>，亦收 <code>first_frame</code> / <code>last_frame</code>）+ <code>reference_videos</code>（别名 <code>video_urls</code> / <code>videos</code>）+ <code>reference_audios</code>（别名 <code>audio_urls</code> / <code>audios</code>）</td><td>只收<strong>公网 URL 直链</strong>（不收 base64）：参考图 ≤30 张、参考视频 ≤10 段、参考音频 ≤10 段；时长 <code>duration</code> 5–30 整数（默认 5），画幅 <code>ratio</code>（别名 <code>aspect_ratio</code>），分辨率固定 720P。素材打不开会直接报错，不扣费。</td></tr>
+<tr><td>Grok 系列（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td><code>image_url</code>（首帧图）/ <code>image_urls</code>（多图 ≤7，fast）</td><td>全系不支持参考视频；preview 仅图生（<code>image_url</code> 必传）；素材传公网 URL。</td></tr>
 </table>
 <h3 id="example-frames">示例：首尾帧（vela-2.5-M 按次）</h3>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "vela-2.5-M",<br>    "prompt": "镜头从首帧缓慢推进，自然过渡到尾帧场景",<br>    "first_frame": "https://example.com/opening.jpg",<br>    "last_frame": "https://example.com/ending.jpg",<br>    "duration": 8,<br>    "aspect_ratio": "16:9"<br>  }'</code></pre>
@@ -244,6 +263,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>首尾帧图片</td><td><code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>vela-2.5-M</code>（两帧均必填）</td></tr>
 <tr><td>Vela 参考图 / 首尾帧</td><td><code>images</code>（数组）、<code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>vela-2.5-M</code>（图 ≤30 张）</td></tr>
 <tr><td>Vela 参考音频</td><td><code>reference_audios</code>（数组，亦收 <code>audio_urls</code>）</td><td><code>vela-2.5-M</code>：≤10 段（只收公网直链）</td></tr>
+<tr><td>Grok 首帧图 / 参考图</td><td><code>image_url</code> / <code>image_urls</code></td><td>Grok 系列按次档（preview 必传 <code>image_url</code>；不支持参考视频）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>素材直链的规矩：必须是公网可访问的链接。没有自己的图床/网盘直链？用上面第 1 步的上传服务就行，12 小时有效期内提交任务足够了。</span></div>
 </section>
@@ -286,7 +306,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>查询返回 OpenAI 风格的 video 对象：</p>
 <pre><code>{<br>  "id": "cgo...task_id",<br>  "object": "video",<br>  "model": "minimax-h3-720p",<br>  "status": "in_progress",   // queued | in_progress | completed | failed<br>  "progress": 50,<br>  "created_at": 1757136000,<br>  "completed_at": 1757136123,<br>  "error": null              // 失败时为 {"message": "...", "code": "task_failed"}<br>}</code></pre>
 <div class="note ok"><b>✓</b><span><b>官链</b>：<code>wan3.0-video</code> / <code>wan3.0-video-prime</code>（官转）完成后，上面的查询响应会<b>直接带上官方成品直链</b>（<code>url</code> / <code>video_url</code> / <code>download_url</code>，约 24 小时有效），可直接下载。</span></div>
-<div class="note warn"><b>!</b><span>其它模型（H3 / Vela 等）的查询响应不保证带直链：取成品请走下面的 <code>/content</code> 下载接口，带上你的令牌即可，这样你的视频不会被别人偷拿。</span></div>
+<div class="note warn"><b>!</b><span>其它模型（H3 / Vela / Grok 等）的查询响应不保证带直链：取成品请走下面的 <code>/content</code> 下载接口，带上你的令牌即可，这样你的视频不会被别人偷拿。</span></div>
 <pre><code>{<br>  "id": "task_xxx",<br>  "object": "video",<br>  "model": "wan3.0-video",<br>  "status": "completed",<br>  "progress": 100,<br>  "url": "https://dashscope-result-xxxx.oss-cn-beijing.aliyuncs.com/xxx.mp4?Expires=...",<br>  "video_url": "https://dashscope-result-xxxx.oss-cn-beijing.aliyuncs.com/xxx.mp4?Expires=...",<br>  "download_url": "https://dashscope-result-xxxx.oss-cn-beijing.aliyuncs.com/xxx.mp4?Expires=..."<br>}</code></pre>
 <h3 id="download">下载成品</h3>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content</div>
@@ -302,6 +322,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>MiniMax-H3</code>（全参旗舰 · 官方通道）</td><td>按实际生成秒数 × 分辨率档</td><td>768P ¥0.30、2K ¥0.40 / 秒（<code>resolution</code> 选 768p / 2k，缺省 768p；全参数：9 图 + 3 视频 + 3 音频）</td></tr>
 <tr><td>Vela 按次档（<code>vela-2.5-M</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/次，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
 <tr><td><code>wan3.0-video</code>（官转 · 返回官链）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.27、720P ¥0.34、1080P ¥0.36 / 秒</td></tr><tr><td><code>wan3.0-video-prime</code>（官转）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.30、720P ¥0.38、1080P ¥0.40 / 秒</td></tr>
+<tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥0.6 / ¥0.8 / ¥1 每次（对应 0.6r / 0.8r / 1r）；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
