@@ -174,13 +174,13 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p class="price">¥0.30 / 0.40 每秒</p>
 <p>官方通道。全参数旗舰：文生 / 图生 / 参考视频 / 参考音频（9 图 + 3 视频 + 3 音频）；<code>resolution</code> 选 768p / 2k（缺省 768p），768P ¥0.30/秒、2K ¥0.40/秒，画幅用 <code>aspect_ratio</code>。</p></div>
 <div class="mcard" id="grok-imagine-video"><h4><code>grok-imagine-video</code><span class="tag per">按次</span></h4>
-<p class="price">¥0.6 / 次</p>
+<p class="price">¥0.8 / 次</p>
 <p>Grok 想象视频·标准版：文生、图生（首帧图）；6 / 10 / 15 秒，16:9 / 9:16，固定 720P，一口价。不支持参考视频。</p></div>
 <div class="mcard" id="grok-imagine-video-1.5-fast"><h4><code>grok-imagine-video-1.5-fast</code><span class="tag per">按次</span></h4>
-<p class="price">¥0.8 / 次</p>
+<p class="price">¥1 / 次</p>
 <p>Grok 1.5 Fast：文生视频 + 首帧多图参考（最多 7 张）；6 / 10 / 15 秒，16:9 / 9:16，固定 720P。</p></div>
 <div class="mcard" id="grok-imagine-video-1.5-preview"><h4><code>grok-imagine-video-1.5-preview</code><span class="tag per">按次</span></h4>
-<p class="price">¥1 / 次</p>
+<p class="price">¥1.2 / 次</p>
 <p>Grok 最新 1.5 旗舰：只支持图生视频（必传首帧图）；提示词 4096 字符内、中文一千字内，超长自动截断。</p></div>
 </div>
 <h3 id="minimax-h3-table">MiniMax H3 系列 · 按秒档（做几秒付几秒）</h3>
@@ -209,9 +209,9 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <div class="note"><b>i</b><span>按实际计费秒数结算：<b>输入参考视频秒数 + 输出视频秒数</b>；<code>resolution</code> 不填默认按 1080P 档计费（video ¥0.36/秒、prime ¥0.40/秒），<code>seconds</code> 不填默认 5 秒，单次最长 30 秒。失败全额退款。</span></div>
 <h3 id="grok-percall">Grok 系列（xAI）· 按次档（一口价，失败不扣费）</h3>
 <table><tr><th>模型</th><th>价格 / 次</th><th>时长 / 画幅 / 清晰度</th><th>生成模式与素材</th></tr>
-<tr><td><code>grok-imagine-video</code></td><td>¥0.60</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频；图生视频（首帧图 <code>image_url</code>）；不支持参考视频</td></tr>
-<tr><td><code>grok-imagine-video-1.5-fast</code></td><td>¥0.80</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频 + 首帧多图参考（<code>image_urls</code>，最多 7 张）</td></tr>
-<tr><td><code>grok-imagine-video-1.5-preview</code></td><td>¥1.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>只支持图生视频：<code>image_url</code> 必传；提示词 4096 字符内（中文一千字内），超长自动截断</td></tr>
+<tr><td><code>grok-imagine-video</code></td><td>¥0.80</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频；图生视频（首帧图 <code>image_url</code>）；不支持参考视频</td></tr>
+<tr><td><code>grok-imagine-video-1.5-fast</code></td><td>¥1.00</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>文生视频 + 首帧多图参考（<code>image_urls</code>，最多 7 张）</td></tr>
+<tr><td><code>grok-imagine-video-1.5-preview</code></td><td>¥1.20</td><td>6 / 10 / 15 秒 · 16:9 / 9:16 · 固定 720P</td><td>只支持图生视频：<code>image_url</code> 必传；提示词 4096 字符内（中文一千字内），超长自动截断</td></tr>
 </table>
 <p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">字段与全站公共参数一致：<code>prompt</code>（必填）、<code>duration</code>（也接受 <code>seconds</code>）、<code>aspect_ratio</code>（也接受 <code>ratio</code>，16:9 / 9:16）；分辨率固定 720P 无需填写。成品下载走 <code>GET /v1/videos/{task_id}/content</code>。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · 示例：grok-imagine-video 文生视频</div>
@@ -322,7 +322,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>MiniMax-H3</code>（全参旗舰 · 官方通道）</td><td>按实际生成秒数 × 分辨率档</td><td>768P ¥0.30、2K ¥0.40 / 秒（<code>resolution</code> 选 768p / 2k，缺省 768p；全参数：9 图 + 3 视频 + 3 音频）</td></tr>
 <tr><td>Vela 按次档（<code>vela-2.5-M</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/次，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
 <tr><td><code>wan3.0-video</code>（官转 · 返回官链）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.27、720P ¥0.34、1080P ¥0.36 / 秒</td></tr><tr><td><code>wan3.0-video-prime</code>（官转）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.30、720P ¥0.38、1080P ¥0.40 / 秒</td></tr>
-<tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥0.6 / ¥0.8 / ¥1 每次（对应 0.6r / 0.8r / 1r）；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
+<tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥0.8 / ¥1 / ¥1.2 每次（对应 0.8r / 1r / 1.2r）；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>放心付：只有真正拿到成品才扣钱。参数填错、任务翻车、没出片，冻结的额度都会自动退回来，失败不收一分钱。</span></div>
