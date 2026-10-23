@@ -177,7 +177,7 @@ footer p{margin:.3em 0}
 <p style="font-size:12.5px;color:var(--muted);margin:10px 0 0">所有视频接口共用此 Base URL。请勿把本页文档地址或其他服务商域名（如 api.openai.com）拼进请求。备用入口 <code>https://cdn-ai.939593.xyz/v1</code>。</p>
 </div></div>
 <div class="steps">
-<div class="step"><em>01</em><b>拿一把「钥匙」</b><span>登录网站，在「令牌」页面点新建，得到一串 sk- 开头的字符——它就是你的钥匙，代替账号密码使用。</span></div>
+<div class="step"><em>01</em><b>拿一把「钥匙」</b><span>登录网站，在「令牌」页面点新建，得到一串 sk- 开头的字符，它就是你的钥匙，代替账号密码使用。</span></div>
 <div class="step"><em>02</em><b>下单点「菜」</b><span>告诉系统你想要什么：选一个模型（相当于选厨师），写一句画面描述（想要什么），要几秒、多清晰。系统会回给你一个任务编号。</span></div>
 <div class="step"><em>03</em><b>等出餐，取成品</b><span>视频要做一两分钟。每隔几秒问一次「好了吗」，看到 completed 就是做好了，用任务编号把 MP4 下载回来。</span></div>
 </div></div>
@@ -190,7 +190,7 @@ footer p{margin:.3em 0}
 <button onclick="tab(this,'q-py')">Python · 全流程</button>
 </div>
 <div class="pane on" id="q-h3"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "MiniMax-H3",<br>    "prompt": "海边日落，镜头缓慢向前推进，电影质感",<br>    "seconds": 8,<br>    "aspect_ratio": "16:9",<br>    "resolution": "768p"<br>  }'</code></pre>
-<p style="color:var(--muted);font-size:13px">MiniMax H3 全系工作流同样提交到 <code>POST /v1/videos</code>——本站已统一入口，无需使用 <code>/v1/videos/generations</code> 路径。</p></div>
+<p style="color:var(--muted);font-size:13px">MiniMax H3 全系工作流同样提交到 <code>POST /v1/videos</code>。本站已统一入口，无需使用 <code>/v1/videos/generations</code> 路径。</p></div>
 <div class="pane" id="q-py"><pre><button class="copy" onclick="copyPre(this)">复制</button><code>import requests, time
 
 BASE = "https://ai.939593.xyz/v1"
@@ -230,7 +230,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </section>
 
 <section id="models"><div class="eyebrow">MODEL CATALOG</div><h2>模型目录</h2>
-<p>模型就像不同风格的厨师：有的擅长文生视频，有的需要你给参考图，有的能让照片开口说话。带「按次」标签的是一口价（做一条付一次钱）；带「按秒」标签的像打电话计费（做了几秒付几秒的钱）。想直接看某个模型？点下面的名字就能跳过去（也可以把网址里的 <code>#模型名</code> 直接发给别人）。</p>
+<p>模型就像不同风格的厨师，各管一摊：有的只吃文字描述就能出片，有的要你喂参考图，还有专门让照片开口说话的。带「按次」标签的是一口价（做一条付一次钱）；带「按秒」标签的像打电话计费（做了几秒付几秒的钱）。想直接看某个模型？点下面的名字就能跳过去（也可以把网址里的 <code>#模型名</code> 直接发给别人）。</p>
 <div class="jump"><b>章节</b><a href="#quickstart">快速开始</a><a href="#create">怎么提交</a><a href="#materials">素材怎么传</a><a href="#refvideo">素材上传服务</a><a href="#query">查进度取成品</a><a href="#images">生图</a><a href="#h3-skill">H3 提示词助手</a><a href="#faq">常见问题</a><a href="#billing">价格</a><a href="#errors">报错怎么办</a></div>
 <div class="mgrid">
 <div class="mcard" id="minimax-h3-image"><h4><code>minimax-h3-image</code><span class="tag sec">按秒</span></h4>
@@ -265,7 +265,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>minimax-h3-2k</code></td><td>按秒</td><td>15 秒</td><td>固定 2K</td><td>支持满参数：9 图 + 3 视频 + 3 音频；统一 ¥0.21/秒</td></tr>
 <tr><td><code>MiniMax-H3</code>（官方通道）</td><td>按秒</td><td>15 秒</td><td><code>resolution</code> 选 768p / 2k（缺省 768p）</td><td>支持满参数：9 图 + 3 视频 + 3 音频；768P ¥0.30/秒、2K ¥0.40/秒</td></tr>
 </table>
-<div class="note"><b>i</b><span>小贴士：在架 H3 五款：minimax-h3-image 固定输出、统一 ¥0.075/秒（仅收参考图 ≤9 张）；其余四款（720p / 2k / 官方 768P / 官方 2K）全部支持满参数（9 图 + 3 视频 + 3 音频）——minimax-h3-720p 固定 720P、统一 ¥0.15/秒；minimax-h3-2k 固定 2K、统一 ¥0.21/秒；官方通道 MiniMax-H3 按分辨率计价：768P ¥0.30/秒、2K ¥0.40/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
+<div class="note"><b>i</b><span>小贴士：在架 H3 五款：minimax-h3-image 固定输出、统一 ¥0.075/秒（仅收参考图 ≤9 张）；其余四款（720p / 2k / 官方 768P / 官方 2K）全部支持满参数（9 图 + 3 视频 + 3 音频）。其中 minimax-h3-720p 固定 720P、统一 ¥0.15/秒；minimax-h3-2k 固定 2K、统一 ¥0.21/秒；官方通道 MiniMax-H3 按分辨率计价：768P ¥0.30/秒、2K ¥0.40/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
 <h3 id="vela-percall">Vela 系列 · 按次档（一口价，做多久都一个价）</h3>
 <table><tr><th>模型</th><th>价格/次</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
 <tr id="vela-2.5-M"><td><code>vela-2.5-M</code></td><td>¥5.50</td><td>5–30 秒 · 720P</td><td>≤30 张参考图 + 10 段参考视频 + 10 段参考音频（素材只收公网直链、不收 base64）；16:9 / 9:16 / 21:9 等画幅；约 10 分钟出片</td></tr>
@@ -280,7 +280,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <table><tr><th>模型</th><th>480P</th><th>720P</th><th>1080P</th></tr>
 <tr id="wan3.0-video"><td><code>wan3.0-video</code>（官转）</td><td>¥0.27 / 秒</td><td>¥0.34 / 秒</td><td>¥0.36 / 秒</td></tr><tr id="wan3.0-video-prime"><td><code>wan3.0-video-prime</code>（官转）</td><td>¥0.30 / 秒</td><td>¥0.38 / 秒</td><td>¥0.40 / 秒</td></tr>
 </table>
-<div class="note ok"><b>✓</b><span><b>官链</b>：<code>wan3.0-video</code> / <code>wan3.0-video-prime</code> 走官方转发（官转）通道，任务完成后<b>查进度接口会直接返回官方成品直链</b>——响应里的 <code>url</code> / <code>video_url</code> / <code>download_url</code>（约 24 小时有效），复制到浏览器就能直接下载，不必经过本站中转。</span></div>
+<div class="note ok"><b>✓</b><span><b>官链</b>：<code>wan3.0-video</code> / <code>wan3.0-video-prime</code> 走官方转发（官转）通道，任务完成后<b>查进度接口会直接返回官方成品直链</b>，字段为 <code>url</code> / <code>video_url</code> / <code>download_url</code>（约 24 小时有效），复制到浏览器就能直接下载，不必经过本站中转。</span></div>
 <div class="note"><b>i</b><span>按实际计费秒数结算：<b>输入参考视频秒数 + 输出视频秒数</b>；<code>resolution</code> 不填默认按 1080P 档计费（video ¥0.36/秒、prime ¥0.40/秒），<code>seconds</code> 不填默认 5 秒，单次最长 30 秒。失败全额退款。</span></div>
 <h3 id="grok-percall">Grok 系列（xAI）· 按次档（一口价，失败不扣费）</h3>
 <table><tr><th>模型</th><th>价格 / 次</th><th>时长 / 画幅 / 清晰度</th><th>生成模式与素材</th></tr>
@@ -294,7 +294,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </section>
 
 <section id="create"><div class="eyebrow">CREATE VIDEO</div><h2>创建视频任务</h2>
-<p>提交成功后会马上回给你一个任务编号（id）——这只是「订单已接单」，视频还要再做一会儿。务必把这个编号存下来，查进度、取成品全靠它。</p>
+<p>提交成功后会马上回给你一个任务编号（id），这只是「订单已接单」，视频还要再做一会儿。务必把这个编号存下来，查进度、取成品全靠它。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos</div>
 <div class="note warn"><b>!</b><span>所有视频模型都用同一个地址提交：<code>POST /v1/videos</code>。网上教程里出现的 <code>/v1/videos/generations</code> 在本站不存在（会报 404），从别家搬代码过来记得先改地址。</span></div>
 <h3 id="params">公共参数</h3>
@@ -321,7 +321,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>手上有段视频、几张图或一段配音，想让 AI 照着它们拍片？四步搞定：先把素材传到本站素材暂存服务拿到直链 → 把直链塞进生成请求对应字段 → 隔几秒问一次进度 → 做好了下载 MP4。下面以参考视频为例走完整流程，图片 / 音频的用法在后面。</p>
 <div class="endpoint"><span class="m">POST</span>https://h3file.939593.xyz/upload · 第 1 步：上传参考视频</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl -F "file=@my-video.mp4" https://h3file.939593.xyz/upload</code></pre>
-<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>——这个 url 就是直链。文件 12 小时后自动删除，足够批量任务排队使用。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持常见视频（mp4 / mov / webm…）、图片（jpg / png / webp…）和音频（mp3 / wav / m4a），单个 ≤200MB。</p>
+<p style="color:var(--muted);font-size:13.5px">返回 <code>{"url":"https://h3file.939593.xyz/f/xxxx.mp4","delete_at":...}</code>，这个 url 就是直链。文件 12 小时后自动删除，足够批量任务排队使用。也可以直接用浏览器打开 <a href="https://h3file.939593.xyz" target="_blank">h3file.939593.xyz</a> 手动上传拿链接。支持常见视频（mp4 / mov / webm…）、图片（jpg / png / webp…）和音频（mp3 / wav / m4a），单个 ≤200MB。</p>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · 第 2 步：带参考视频生成（minimax-h3-720p）</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "minimax-h3-720p",<br>    "prompt": "参考这段视频的人物形象和运镜风格，拍摄一只柯基在草地奔跑",<br>    "seconds": 5,<br>    "resolution": "720p",<br>    "reference_videos": ["https://h3file.939593.xyz/f/xxxx.mp4"]<br>  }'</code></pre>
 <p style="color:var(--muted);font-size:13.5px">保存返回的 <code>id</code>（任务编号）。minimax-h3-720p 固定 720P、5–15 秒、统一 ¥0.15/秒，做几秒付几秒，失败不扣费。</p>
@@ -344,7 +344,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 </section>
 
 <section id="images"><div class="eyebrow">IMAGE GENERATION</div><h2>生图 API（OpenAI 兼容）</h2>
-<p>生图比生视频还简单——发完描述等几秒，图片直接回给你，不用轮询等进度。两种玩法：凭空画（文生图）和改已有的图（图生图，把图片当附件一起发）。需要你的令牌属于「生图」分组。</p>
+<p>生图比生视频还简单：发完描述等几秒，图片直接回给你，不用轮询等进度。两种玩法：凭空画（文生图）和改已有的图（图生图，把图片当附件一起发）。需要你的令牌属于「生图」分组。</p>
 <table><tr><th>模型</th><th>定位</th><th>适合什么</th><th>计费</th></tr>
 <tr id="gpt-image-2"><td><code>gpt-image-2</code></td><td>1K 基础档</td><td>日常出图，够用就好</td><td>按张计费</td></tr>
 <tr id="gpt-image-2-high"><td><code>gpt-image-2-high</code></td><td>4K 高清档</td><td>要放大打印、抠细节</td><td>按张计费</td></tr>
