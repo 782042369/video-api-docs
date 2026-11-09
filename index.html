@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="天才第一步 视频/生图 API（Seedance 2.0/2.5 + MiniMax H3 + Wan 3.0 + GPT Image）开发者文档">
-<title>视频与生图 API（Seedance 2.0/2.5 + MiniMax H3 + Wan 3.0 + GPT Image）· 天才第一步</title>
+<meta name="description" content="天才第一步 视频/生图 API（sdtj + MiniMax H3 + Wan 3.0 + GPT Image）开发者文档">
+<title>视频与生图 API（sdtj + MiniMax H3 + Wan 3.0 + GPT Image）· 天才第一步</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d0d0d'/%3E%3Cpath d='M26 20l18 12-18 12z' fill='%2318E299'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +159,7 @@ footer p{margin:.3em 0}
 }
 </style></head><body>
 <header><div class="wrap bar">
-<a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频 / 生图 API（Seedance 2.0/2.5 + MiniMax H3 + GPT Image）</small></span></a>
+<a class="brand" href="#top"><span class="logo">▶</span><span><b>天才第一步 · 开发者文档</b><small>视频 / 生图 API（sdtj + MiniMax H3 + GPT Image）</small></span></a>
 <nav class="nav"><a href="#quickstart">快速开始</a><a href="#auth">认证</a><a href="#models">模型</a><a href="#create">创建任务</a><a href="#refvideo">参考素材</a><a href="#query">查询与下载</a><a href="#images">生图</a><a href="#billing">计费</a><a href="#faq">常见问题</a><a href="#errors">错误处理</a></nav>
 <div class="actions"><button class="action" id="theme" onclick="toggleTheme()">深色</button></div>
 </div></header>
@@ -170,7 +170,7 @@ footer p{margin:.3em 0}
 <h1>会打字，就能做视频和图片。</h1>
 <p class="lead">你只需要三步：拿到令牌 → 发一句话描述想要的画面 → 等一两分钟下载成品视频。想生成图片更简单，发一段描述直接出图。不用安装任何软件，写文字、传图片链接就行。</p>
 <div class="pills">
-<span class="pill"><i></i>sdtj 特价 · Seedance 2.0/2.5 按秒</span><span class="pill"><i></i>sdtj-2.5-条-720p · 图音视混合参考</span><span class="pill"><i></i>wan3.0-video · 官转 · 返回官链</span><span class="pill"><i></i>grok 视频 · 按次</span><span class="pill"><i></i>MiniMax-H3 · 官方通道</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>minimax-h3-2k · 2K 超清</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
+<span class="pill"><i></i>sdtj · 按秒档（2.0 / 2.5）</span><span class="pill"><i></i>sdtj-2.5-条-720p · 图音视混合参考</span><span class="pill"><i></i>wan3.0-video · 官转 · 返回官链</span><span class="pill"><i></i>grok 视频 · 按次</span><span class="pill"><i></i>MiniMax-H3 · 官方通道</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>minimax-h3-2k · 2K 超清</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -244,7 +244,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>固定 2K（请求里 <code>resolution</code> 写 <code>2k</code>）：支持满参数：9 图 + 3 视频 + 3 音频；5–15 秒，统一 ¥0.21/秒。素材直链可用 <a href="#refvideo">上传服务</a>。</p></div>
 <div class="mcard" id="card-sdtj"><h4><code>sdtj-2.0/2.5</code><span class="tag sec">按秒</span></h4>
 <p class="price">¥0.52–3.38 / 秒</p>
-<p>Seedance 2.0/2.5 特价：480P / 720P / 1080P / 4K 固定档按秒计费，参考视频时长同价计费。详见下方「Seedance 特价 · 按秒档」。</p></div>
+<p>sdtj 按秒款：480P / 720P / 1080P / 4K 固定档按秒计费，参考视频时长同价计费。详见下方「sdtj · 按秒档」。</p></div>
 <div class="mcard" id="card-sdtj-2.5-条-720p"><h4><code>sdtj-2.5-条-720p</code><span class="tag per">按条</span></h4>
 <p class="price">¥5.50 / 条</p>
 <p>一口价长片：固定 720P、5–30 秒；参考图 ≤30 张 + 参考视频 ≤10 段 + 参考音频 ≤10 段，约 10 分钟出片。</p></div>
@@ -269,22 +269,22 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>MiniMax-H3</code>（官方通道）</td><td>按秒</td><td>15 秒</td><td><code>resolution</code> 选 768p / 2k（缺省 768p）</td><td>支持满参数：9 图 + 3 视频 + 3 音频；768P ¥0.30/秒、2K ¥0.40/秒</td></tr>
 </table>
 <div class="note"><b>i</b><span>小贴士：在架 H3 五款：minimax-h3-image 固定输出、统一 ¥0.075/秒（仅收参考图 ≤9 张）；其余四款（720p / 2k / 官方 768P / 官方 2K）全部支持满参数（9 图 + 3 视频 + 3 音频）。其中 minimax-h3-720p 固定 720P、统一 ¥0.15/秒；minimax-h3-2k 固定 2K、统一 ¥0.21/秒；官方通道 MiniMax-H3 按分辨率计价：768P ¥0.30/秒、2K ¥0.40/秒。最准的价格以网站「模型广场」页面显示为准。</span></div>
-<h3 id="sdtj-table">Seedance 特价 · 按秒档（sdtj-2.0 / 2.5）</h3>
+<h3 id="sdtj-table">sdtj · 按秒档（2.0 / 2.5）</h3>
 <table><tr><th>模型</th><th>分辨率</th><th>价格</th><th>说明</th></tr>
-<tr id="sdtj-2.0-720p"><td><code>sdtj-2.0-720p</code></td><td>720P</td><td>¥0.65 / 秒</td><td>Seedance 2.0 特价；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
-<tr id="sdtj-2.0-1080p"><td><code>sdtj-2.0-1080p</code></td><td>1080P</td><td>¥1.56 / 秒</td><td>Seedance 2.0 特价；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
-<tr id="sdtj-2.0-4k"><td><code>sdtj-2.0-4k</code></td><td>4K</td><td>¥3.38 / 秒</td><td>Seedance 2.0 特价；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
-<tr id="sdtj-2.5-480p"><td><code>sdtj-2.5-480p</code></td><td>480P</td><td>¥0.52 / 秒</td><td>Seedance 2.5 特价；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
-<tr id="sdtj-2.5-720p"><td><code>sdtj-2.5-720p</code></td><td>720P</td><td>¥0.91 / 秒</td><td>Seedance 2.5 特价；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
-<tr id="sdtj-2.5-1080p"><td><code>sdtj-2.5-1080p</code></td><td>1080P</td><td>¥2.60 / 秒</td><td>Seedance 2.5 特价；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
+<tr id="sdtj-2.0-720p"><td><code>sdtj-2.0-720p</code></td><td>720P</td><td>¥0.65 / 秒</td><td>sdtj-2.0；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
+<tr id="sdtj-2.0-1080p"><td><code>sdtj-2.0-1080p</code></td><td>1080P</td><td>¥1.56 / 秒</td><td>sdtj-2.0；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
+<tr id="sdtj-2.0-4k"><td><code>sdtj-2.0-4k</code></td><td>4K</td><td>¥3.38 / 秒</td><td>sdtj-2.0；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
+<tr id="sdtj-2.5-480p"><td><code>sdtj-2.5-480p</code></td><td>480P</td><td>¥0.52 / 秒</td><td>sdtj-2.5；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
+<tr id="sdtj-2.5-720p"><td><code>sdtj-2.5-720p</code></td><td>720P</td><td>¥0.91 / 秒</td><td>sdtj-2.5；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
+<tr id="sdtj-2.5-1080p"><td><code>sdtj-2.5-1080p</code></td><td>1080P</td><td>¥2.60 / 秒</td><td>sdtj-2.5；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
 </table>
 <div class="note"><b>i</b><span>按秒档：输出视频秒数与参考视频秒数都计价，单价相同；sdtj-2.0 完成后按上游 billing_seconds 结算，sdtj-2.5 按参考视频与生成视频总秒数结算，多退少补。最准的价格以「模型广场」为准。</span></div>
-<h3 id="seedance-percall">Seedance 2.5 · 按条档（一口价，做多久都一个价）</h3>
+<h3 id="sdtj-percall">sdtj · 按条档（2.5 / 720P，一口价）</h3>
 <table><tr><th>模型</th><th>价格/条</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
 <tr id="sdtj-2.5-条-720p"><td><code>sdtj-2.5-条-720p</code></td><td>¥5.50</td><td>5–30 秒 · 720P</td><td>≤30 张参考图 + 10 段参考视频 + 10 段参考音频（素材只收公网直链、不收 base64）；16:9 / 9:16 / 21:9 等画幅；约 10 分钟出片</td></tr>
 </table>
-<div class="note"><b>i</b><span>按次档像点菜一口价：时长在范围内随便选，不影响价格；按秒档像打电话：做几秒付几秒。所有 Seedance 模型都走 <code>POST /v1/videos</code>，素材直链可用 <a href="#refvideo">上传服务</a>。最准的价格以「模型广场」为准。</span></div>
-<h3 id="seedance-percall-example">示例：sdtj-2.5-条-720p 参考图 / 视频 / 音频混合生成（720P · 24 秒）</h3>
+<div class="note"><b>i</b><span>按次档像点菜一口价：时长在范围内随便选，不影响价格；按秒档像打电话：做几秒付几秒。所有视频模型都走 <code>POST /v1/videos</code>，素材直链可用 <a href="#refvideo">上传服务</a>。最准的价格以「模型广场」为准。</span></div>
+<h3 id="sdtj-percall-example">示例：sdtj-2.5-条-720p 参考图 / 视频 / 音频混合生成（720P · 24 秒）</h3>
 <div class="endpoint"><span class="m">POST</span>/v1/videos · sdtj-2.5-条-720p</div>
 <pre><button class="copy" onclick="copyPre(this)">复制</button><code>curl https://ai.939593.xyz/v1/videos <br>  -H "Authorization: Bearer sk-你的令牌" <br>  -H "Content-Type: application/json" <br>  -d '{<br>    "model": "sdtj-2.5-条-720p",<br>    "prompt": "参考图中的少女在海边奔跑，镜头跟随，黄昏光线",<br>    "duration": 24,<br>    "ratio": "16:9",<br>    "image_urls": ["https://h3file.939593.xyz/f/xxxx.jpg"],<br>    "video_urls": ["https://h3file.939593.xyz/f/xxxx.mp4"],<br>    "audio_urls": ["https://h3file.939593.xyz/f/xxxx.mp3"]<br>  }'</code></pre>
 <p>参考视频 / 音频与参考图一样直接给公网 URL（<code>video_urls</code> / <code>audio_urls</code>，数组），服务端会自动下载后转发给模型；<strong>不收 base64</strong>，只收公网直链。合并计数：图 ≤30、视频 ≤10、音频 ≤10。素材打不开会直接报错，不扣费。</p>
@@ -349,8 +349,8 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td>参考视频</td><td><code>reference_videos</code>（sdtj-2.5-条-720p 亦收 <code>video_urls</code>）</td><td><code>minimax-h3-720p</code> / <code>minimax-h3-2k</code> / <code>MiniMax-H3</code>（官方）各 ≤3 段；<code>sdtj-2.5-条-720p</code>（≤10 段）</td></tr>
 <tr><td>参考图片</td><td><code>input_reference</code>（数组；sdtj-2.5-条-720p 用 <code>images</code>）</td><td><code>minimax-h3-image</code> / <code>minimax-h3-720p</code> / <code>minimax-h3-2k</code> / <code>MiniMax-H3</code>（官方）/ <code>sdtj-2.5-条-720p</code>（H3 系 ≤9 张、按条档 ≤30 张）</td></tr>
 <tr><td>首尾帧图片</td><td><code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>sdtj-2.5-条-720p</code>（两帧均必填）</td></tr>
-<tr><td>Seedance 按条档参考图 / 首尾帧</td><td><code>images</code>（数组）、<code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>sdtj-2.5-条-720p</code>（图 ≤30 张）</td></tr>
-<tr><td>Seedance 按条档参考音频</td><td><code>reference_audios</code>（数组，亦收 <code>audio_urls</code>）</td><td><code>sdtj-2.5-条-720p</code>：≤10 段（只收公网直链）</td></tr>
+<tr><td>sdtj 按条档参考图 / 首尾帧</td><td><code>images</code>（数组）、<code>start_frame</code> + <code>end_frame</code>（亦收 <code>first_frame</code> / <code>last_frame</code>）</td><td><code>sdtj-2.5-条-720p</code>（图 ≤30 张）</td></tr>
+<tr><td>sdtj 按条档参考音频</td><td><code>reference_audios</code>（数组，亦收 <code>audio_urls</code>）</td><td><code>sdtj-2.5-条-720p</code>：≤10 段（只收公网直链）</td></tr>
 <tr><td>Grok 首帧图 / 参考图</td><td><code>image_url</code> / <code>image_urls</code></td><td>Grok 系列按次档（preview 必传 <code>image_url</code>；不支持参考视频）</td></tr>
 </table>
 <div class="note ok"><b>✓</b><span>素材直链的规矩：必须是公网可访问的链接。没有自己的图床/网盘直链？用上面第 1 步的上传服务就行，12 小时有效期内提交任务足够了。</span></div>
@@ -394,7 +394,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <p>查询返回 OpenAI 风格的 video 对象：</p>
 <pre><code>{<br>  "id": "cgo...task_id",<br>  "object": "video",<br>  "model": "minimax-h3-720p",<br>  "status": "in_progress",   // queued | in_progress | completed | failed<br>  "progress": 50,<br>  "created_at": 1757136000,<br>  "completed_at": 1757136123,<br>  "error": null              // 失败时为 {"message": "...", "code": "task_failed"}<br>}</code></pre>
 <div class="note ok"><b>✓</b><span><b>官链</b>：<code>wan3.0-video</code>（官转）完成后，上面的查询响应会<b>直接带上官方成品直链</b>（<code>url</code> / <code>video_url</code> / <code>download_url</code>，约 24 小时有效），可直接下载。</span></div>
-<div class="note warn"><b>!</b><span>其它模型（H3 / Seedance / Grok 等）的查询响应不保证带直链：取成品请走下面的 <code>/content</code> 下载接口，带上你的令牌即可，这样你的视频不会被别人偷拿。</span></div>
+<div class="note warn"><b>!</b><span>其它模型（H3 / sdtj / Grok 等）的查询响应不保证带直链：取成品请走下面的 <code>/content</code> 下载接口，带上你的令牌即可，这样你的视频不会被别人偷拿。</span></div>
 <pre><code>{<br>  "id": "task_xxx",<br>  "object": "video",<br>  "model": "wan3.0-video",<br>  "status": "completed",<br>  "progress": 100,<br>  "url": "https://dashscope-result-xxxx.oss-cn-beijing.aliyuncs.com/xxx.mp4?Expires=...",<br>  "video_url": "https://dashscope-result-xxxx.oss-cn-beijing.aliyuncs.com/xxx.mp4?Expires=...",<br>  "download_url": "https://dashscope-result-xxxx.oss-cn-beijing.aliyuncs.com/xxx.mp4?Expires=..."<br>}</code></pre>
 <h3 id="download">下载成品</h3>
 <div class="endpoint"><span class="m">GET</span>/v1/videos/{task_id}/content</div>
@@ -410,7 +410,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>MiniMax-H3</code>（全参旗舰 · 官方通道）</td><td>按实际生成秒数 × 分辨率档</td><td>768P ¥0.30、2K ¥0.40 / 秒（<code>resolution</code> 选 768p / 2k，缺省 768p；全参数：9 图 + 3 视频 + 3 音频）</td></tr>
 <tr><td><code>sdtj-2.0-720p</code> / <code>-1080p</code> / <code>-4k</code></td><td>按实际计费秒数（输出 + 参考视频）</td><td>720P ¥0.65、1080P ¥1.56、4K ¥3.38 / 秒（同价计参考视频秒数）</td></tr>
 <tr><td><code>sdtj-2.5-480p</code> / <code>-720p</code> / <code>-1080p</code></td><td>按参考视频与生成视频总计费秒数</td><td>480P ¥0.52、720P ¥0.91、1080P ¥2.60 / 秒（多退少补）</td></tr>
-<tr><td>Seedance 按条档（<code>sdtj-2.5-条-720p</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/条，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
+<tr><td>sdtj 按条档（<code>sdtj-2.5-条-720p</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/条，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
 <tr><td><code>wan3.0-video</code>（官转 · 返回官链）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.15、720P ¥0.30、1080P ¥0.60 / 秒</td></tr>
 <tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥0.8 / ¥1 / ¥1.2 每次（对应 0.8r / 1r / 1.2r）；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
@@ -470,7 +470,7 @@ npx skills add https://github.com/MiniMax-AI/MiniMax-H3 --skill '*'</code></pre>
 </main>
 
 <footer><div class="wrap">
-<p>天才第一步 · 视频生成与生图服务文档（MiniMax H3 / Seedance / GPT Image）</p>
+<p>天才第一步 · 视频生成与生图服务文档（MiniMax H3 / sdtj / GPT Image）</p>
 <p>价格与可用模型以站内模型广场实时配置为准 · 反馈时请提供时间、模型、任务 ID 与错误码，不要发送 API 令牌</p>
 </div></footer>
 
