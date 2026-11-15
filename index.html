@@ -282,7 +282,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <h3 id="sdtj-percall">sdtj · 按条档（2.5 / 720P，一口价）</h3>
 <table><tr><th>模型</th><th>价格/条</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
 <tr id="sdtj-2.5-条-720p"><td><code>sdtj-2.5-条-720p</code></td><td>¥5.50</td><td>5–30 秒 · 720P</td><td>≤30 张参考图 + 10 段参考视频 + 10 段参考音频（素材只收公网直链、不收 base64）；16:9 / 9:16 / 21:9 等画幅；约 10 分钟出片</td></tr>
-<tr id="sdtj-2.5-flash-720p"><td><code>sdtj-2.5-flash-720p</code></td><td>¥5.50</td><td>720P · flash 快速款</td><td>一条一结不乘时长；参考素材只收公网直链、不收 base64；不保证随时可用</td></tr>
+<tr id="sdtj-2.5-flash-720p"><td><code>sdtj-2.5-flash-720p</code></td><td>¥5.50</td><td>固定 12 秒 · 720P · flash 快速款</td><td>一条一结不乘时长（<code>duration</code> / <code>seconds</code> 参数不生效）；<code>prompt</code> 必填；参考图/视频/音频只收公网直链、不收 base64；不保证随时可用</td></tr>
 </table>
 <div class="note"><b>i</b><span>按次档像点菜一口价：时长在范围内随便选，不影响价格；按秒档像打电话：做几秒付几秒。所有视频模型都走 <code>POST /v1/videos</code>，素材直链可用 <a href="#refvideo">上传服务</a>。最准的价格以「模型广场」为准。</span></div>
 <h3 id="sdtj-percall-example">示例：sdtj-2.5-条-720p 参考图 / 视频 / 音频混合生成（720P · 24 秒）</h3>
@@ -413,7 +413,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>sdtj-2.0-fast</code> / <code>sdtj-2.0-mini</code></td><td>按实际计费秒数（输出 + 参考视频）</td><td>fast：480P ¥0.26、720P ¥0.52；mini：480P ¥0.16、720P ¥0.33 每秒（<code>resolution</code> 未传按 720P 计）</td></tr>
 <tr><td><code>sdtj-2.5-480p</code> / <code>-720p</code> / <code>-1080p</code></td><td>按参考视频与生成视频总计费秒数</td><td>480P ¥0.52、720P ¥0.91、1080P ¥2.60 / 秒（多退少补）</td></tr>
 <tr><td>sdtj 按条档（<code>sdtj-2.5-条-720p</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/条，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
-<tr><td>flash 按条档（<code>sdtj-2.5-flash-720p</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/条，不乘时长；720P flash 快速款，参考素材只收公网直链；不保证随时可用</td></tr>
+<tr><td>flash 按条档（<code>sdtj-2.5-flash-720p</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/条，固定 12 秒 · 720P（时长参数不生效）；prompt 必填，参考素材只收公网直链；不保证随时可用</td></tr>
 <tr><td><code>wan3.0-video</code>（官转 · 返回官链）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.15、720P ¥0.30、1080P ¥0.60 / 秒</td></tr>
 <tr><td>Grok 按次档（<code>grok-imagine-video</code> / <code>-1.5-fast</code> / <code>-1.5-preview</code>）</td><td>按成功生成次数</td><td>一口价 ¥0.8 / ¥1 / ¥1.2 每次（对应 0.8r / 1r / 1.2r）；失败不扣费，时长 6 / 10 / 15 秒任选不影响价格</td></tr>
 <tr><td>GPT Image 系列（<code>gpt-image-2</code> / <code>-high</code> / <code>2.5-flare</code> / <code>2.5-sunburst</code>）</td><td>按成功张数</td><td>¥0.10 / 张（n 为张数，失败不扣费）</td></tr>
