@@ -170,7 +170,7 @@ footer p{margin:.3em 0}
 <h1>会打字，就能做视频和图片。</h1>
 <p class="lead">你只需要三步：拿到令牌 → 发一句话描述想要的画面 → 等一两分钟下载成品视频。想生成图片更简单，发一段描述直接出图。不用安装任何软件，写文字、传图片链接就行。</p>
 <div class="pills">
-<span class="pill"><i></i>sdtj · 按秒档（2.0 / 2.5）</span><span class="pill"><i></i>sdtj-2.5-条-720p · 图音视混合参考</span><span class="pill"><i></i>wan3.0-video · 官转 · 返回官链</span><span class="pill"><i></i>grok 视频 · 按次</span><span class="pill"><i></i>MiniMax-H3 · 官方通道</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
+<span class="pill"><i></i>sdtj · 按秒档（2.0 / 2.5）</span><span class="pill"><i></i>sdtj-2.0-fast / mini · 分辨率参数</span><span class="pill"><i></i>sdtj-2.5-条-720p · 图音视混合参考</span><span class="pill"><i></i>wan3.0-video · 官转 · 返回官链</span><span class="pill"><i></i>grok 视频 · 按次</span><span class="pill"><i></i>MiniMax-H3 · 官方通道</span><span class="pill"><i></i>minimax-h3-image · 多图参考</span><span class="pill"><i></i>minimax-h3-720p · 参考视频</span><span class="pill"><i></i>异步任务 · MP4 直下</span><span class="pill"><i></i>gpt-image-2 · 文生图 / 图生图</span>
 </div></div>
 <div class="card base"><h3>API BASE URL</h3>
 <div class="urlbox"><code>https://ai.939593.xyz/v1</code><button class="copy-inline" onclick="copyText(this,'https://ai.939593.xyz/v1')">复制</button></div>
@@ -267,16 +267,18 @@ print("saved", task_id + ".mp4")</code></pre></div>
 <tr><td><code>MiniMax-H3</code>（官方通道）</td><td>按秒</td><td>15 秒</td><td><code>resolution</code> 选 768p / 2k（缺省 768p）</td><td>支持满参数：9 图 + 3 视频 + 3 音频；768P ¥0.30/秒、2K ¥0.40/秒</td></tr>
 </table>
 <div class="note"><b>i</b><span>小贴士：在架 H3 三款：minimax-h3-image 固定输出、统一 ¥0.075/秒（仅收参考图 ≤9 张）；minimax-h3-720p 固定 720P、统一 ¥0.15/秒；官方通道 MiniMax-H3 按分辨率计价：768P ¥0.30/秒、2K ¥0.40/秒。三款均支持满参数（9 图 + 3 视频 + 3 音频，image 款仅参考图）。最准的价格以网站「模型广场」页面显示为准。</span></div>
-<h3 id="sdtj-table">sdtj · 按秒档（2.0 / 2.5）</h3>
+<h3 id="sdtj-table">sdtj · 按秒档（2.0 / 2.5 / fast / mini）</h3>
 <table><tr><th>模型</th><th>分辨率</th><th>价格</th><th>说明</th></tr>
 <tr id="sdtj-2.0-720p"><td><code>sdtj-2.0-720p</code></td><td>720P</td><td>¥0.65 / 秒</td><td>sdtj-2.0；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
 <tr id="sdtj-2.0-1080p"><td><code>sdtj-2.0-1080p</code></td><td>1080P</td><td>¥1.56 / 秒</td><td>sdtj-2.0；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
 <tr id="sdtj-2.0-4k"><td><code>sdtj-2.0-4k</code></td><td>4K</td><td>¥3.38 / 秒</td><td>sdtj-2.0；参考视频时长同价计费（完成后按上游 billing_seconds 结算）</td></tr>
+<tr id="sdtj-2.0-fast"><td><code>sdtj-2.0-fast</code></td><td>480P / 720P（<code>resolution</code> 参数，缺省 720P）</td><td>¥0.26（480P）/ ¥0.52（720P）每秒</td><td>sdtj-2.0 快速款，4–15 秒；支持首尾帧 / 参考图 / 参考视频 / 视频编辑；参考视频时长同价计费（按上游 billing_seconds 结算）</td></tr>
+<tr id="sdtj-2.0-mini"><td><code>sdtj-2.0-mini</code></td><td>480P / 720P（<code>resolution</code> 参数，缺省 720P）</td><td>¥0.16（480P）/ ¥0.33（720P）每秒</td><td>sdtj-2.0 轻量款，4–15 秒；支持首尾帧 / 参考图 / 参考视频 / 视频编辑；参考视频时长同价计费（按上游 billing_seconds 结算）</td></tr>
 <tr id="sdtj-2.5-480p"><td><code>sdtj-2.5-480p</code></td><td>480P</td><td>¥0.52 / 秒</td><td>sdtj-2.5；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
 <tr id="sdtj-2.5-720p"><td><code>sdtj-2.5-720p</code></td><td>720P</td><td>¥0.91 / 秒</td><td>sdtj-2.5；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
 <tr id="sdtj-2.5-1080p"><td><code>sdtj-2.5-1080p</code></td><td>1080P</td><td>¥2.60 / 秒</td><td>sdtj-2.5；按参考视频与生成视频总计费秒数结算，多退少补</td></tr>
 </table>
-<div class="note"><b>i</b><span>按秒档：输出视频秒数与参考视频秒数都计价，单价相同；sdtj-2.0 完成后按上游 billing_seconds 结算，sdtj-2.5 按参考视频与生成视频总秒数结算，多退少补。最准的价格以「模型广场」为准。</span></div>
+<div class="note"><b>i</b><span>按秒档：输出视频秒数与参考视频秒数都计价，单价相同；sdtj-2.0 完成后按上游 billing_seconds 结算，sdtj-2.5 按参考视频与生成视频总秒数结算，多退少补。fast / mini 款分辨率为 <code>resolution</code> 请求参数（480p / 720p，缺省 720p，1080p/4K 为旗舰版独占）。最准的价格以「模型广场」为准。</span></div>
 <h3 id="sdtj-percall">sdtj · 按条档（2.5 / 720P，一口价）</h3>
 <table><tr><th>模型</th><th>价格/条</th><th>时长 / 分辨率</th><th>参考素材与说明</th></tr>
 <tr id="sdtj-2.5-条-720p"><td><code>sdtj-2.5-条-720p</code></td><td>¥5.50</td><td>5–30 秒 · 720P</td><td>≤30 张参考图 + 10 段参考视频 + 10 段参考音频（素材只收公网直链、不收 base64）；16:9 / 9:16 / 21:9 等画幅；约 10 分钟出片</td></tr>
@@ -407,6 +409,7 @@ print("saved", task_id + ".mp4")</code></pre></div>
 
 <tr><td><code>MiniMax-H3</code>（全参旗舰 · 官方通道）</td><td>按实际生成秒数 × 分辨率档</td><td>768P ¥0.30、2K ¥0.40 / 秒（<code>resolution</code> 选 768p / 2k，缺省 768p；全参数：9 图 + 3 视频 + 3 音频）</td></tr>
 <tr><td><code>sdtj-2.0-720p</code> / <code>-1080p</code> / <code>-4k</code></td><td>按实际计费秒数（输出 + 参考视频）</td><td>720P ¥0.65、1080P ¥1.56、4K ¥3.38 / 秒（同价计参考视频秒数）</td></tr>
+<tr><td><code>sdtj-2.0-fast</code> / <code>sdtj-2.0-mini</code></td><td>按实际计费秒数（输出 + 参考视频）</td><td>fast：480P ¥0.26、720P ¥0.52；mini：480P ¥0.16、720P ¥0.33 每秒（<code>resolution</code> 未传按 720P 计）</td></tr>
 <tr><td><code>sdtj-2.5-480p</code> / <code>-720p</code> / <code>-1080p</code></td><td>按参考视频与生成视频总计费秒数</td><td>480P ¥0.52、720P ¥0.91、1080P ¥2.60 / 秒（多退少补）</td></tr>
 <tr><td>sdtj 按条档（<code>sdtj-2.5-条-720p</code>）</td><td>按成功生成次数</td><td>一口价 ¥5.50/条，不乘时长；720P · 5–30 秒，参考素材图 ≤30 / 视频 ≤10 / 音频 ≤10</td></tr>
 <tr><td><code>wan3.0-video</code>（官转 · 返回官链）</td><td>按实际生成秒数（输入参考视频 + 输出视频）</td><td>480P ¥0.15、720P ¥0.30、1080P ¥0.60 / 秒</td></tr>
